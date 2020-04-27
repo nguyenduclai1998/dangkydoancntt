@@ -43,8 +43,8 @@
                     <label for="exampleFormControlSelect1">Chuyên ngành</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="chuyennganh">
                         <option value="">--Chọn chuyên ngành--</option>
-                        @if(isset($chuyennganh))
-                            @foreach($chuyennganh as $cn)
+                        @if(isset($CHUYENNGANHS))
+                            @foreach($CHUYENNGANHS as $cn)
                                 <option value="{{$cn->id}}">{{$cn->tenchuyennganh}}</option>
                             @endforeach
                         @endif

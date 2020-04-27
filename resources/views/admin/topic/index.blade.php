@@ -9,8 +9,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
-                    <li class="breadcrumb-item active"><a href="">Đề tài</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.index')}}">Trang chủ</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('admin.topic.detai')}}">Đề tài</a></li>
                     <li class="breadcrumb-item active">Danh sách</li>
                 </ol>
             </div>

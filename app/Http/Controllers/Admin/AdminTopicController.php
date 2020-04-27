@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminTopicController extends AdminController
 {
+	public function deTai()
+	{
+		$detai = $detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh')
+											->join('users', 'users.id', '=', 'detai.user_id')
+											->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
+											->paginate(5);
+		$viewData = [
+			'detai' => $detai
+		];
+		return view('admin.topic.index', $viewData);    
+	}
+
     public function index($id)
     {
     	$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh')
@@ -28,12 +40,8 @@ class AdminTopicController extends AdminController
 
     public function create()
     {
-    	$chuyennganh = DB::table('chuyennganh')->select('chuyennganh.id', 'tenchuyennganh')
-    										   ->get();
-    	$viewData = [
-    		'chuyennganh' => $chuyennganh
-    	];
-    	return view('admin.topic.create',$viewData);
+		dd('error');
+    	return view('admin.topic.create');
     }
 
     public function store(Request $request)

@@ -14,6 +14,7 @@
 		})->name('admin.index');
 
 		Route::group(['prefix' => 'de-tai'], function(){
+			Route::get('','AdminTopicController@deTai')->name('admin.topic.detai');
 			Route::get('/{id}','AdminTopicController@index')->name('admin.topic.index');
 			Route::get('create','AdminTopicController@create')->name('admin.topic.create');
 			Route::post('create','AdminTopicController@store')->name('admin.topic.store');
