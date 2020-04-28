@@ -9,8 +9,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
-                    <li class="breadcrumb-item active"><a href="#">Tin tức</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.index')}}">Trang chủ</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('admin.tintuc.tintuc')}}">Tin tức</a></li>
                     <li class="breadcrumb-item active">Danh sách</li>
                 </ol>
             </div>
@@ -54,8 +54,9 @@
                     <thead>
                         <tr>
                             <th scope="col">Mã</th>
-                            <th scope="col">Tên chuyên ngành </th>
-                            <th scope="col">Mô tả chuyên ngành</th>
+                            <th scope="col">Tên bài viết </th>
+                            <th scope="col">Nội dung</th>
+                            <th scope="col">Người tạo</th>
                             <th scope="col">Hoạt động</th>
                         </tr>
                     </thead>
@@ -64,8 +65,9 @@
                             @foreach($tintuc as $tt)
                                 <tr>
                                     <th scope="row">{{$tt->id}}</th>
-                                    <td>{{$tt->tenchuyennganh}}</td>
-                                    <td>{{$tt->mota}}</td>
+                                    <td>{{$tt->tenbaiviet}}</td>
+                                    <td>{{$tt->noidung}}</td>
+                                    <td>{{$tt->name}}</td>
                                     <td>
                                         <a href="{{ route('admin.chuyennganh.edit', $tt->id)}}" class="btn btn-xs btn-primary"><i class="fas fa-pencil-alt"></i> Sửa</a>
                                         <a href="{{ route('admin.chuyennganh.delete', $tt->id)}}" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Xóa</a>

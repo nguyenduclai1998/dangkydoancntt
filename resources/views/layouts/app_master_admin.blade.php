@@ -213,7 +213,7 @@
                                     @if(isset($CHUYENNGANHS))
                                         @foreach($CHUYENNGANHS as $cn)
                                             <li class="nav-item">
-                                                <a href="{{ route('admin.tintuc.index')}}" class="nav-link menu" style="max-width: 235px">
+                                                <a href="{{ route('admin.tintuc.index',$cn->id)}}" class="nav-link menu" style="max-width: 235px">
                                                     <i class="far fa-circle nav-icon"></i>
                                                     <p>{{$cn->tenchuyennganh}}</p>
                                                 </a>

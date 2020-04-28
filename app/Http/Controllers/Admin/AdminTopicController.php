@@ -15,7 +15,7 @@ class AdminTopicController extends AdminController
 {
 	public function deTai()
 	{
-		$detai = $detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh')
+		$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh')
 											->join('users', 'users.id', '=', 'detai.user_id')
 											->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
 											->paginate(5);
@@ -40,7 +40,6 @@ class AdminTopicController extends AdminController
 
     public function create()
     {
-		dd('error');
     	return view('admin.topic.create');
     }
 

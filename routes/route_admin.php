@@ -15,8 +15,8 @@
 
 		Route::group(['prefix' => 'de-tai'], function(){
 			Route::get('','AdminTopicController@deTai')->name('admin.topic.detai');
+			Route::get('/create','AdminTopicController@create')->name('admin.topic.create');
 			Route::get('/{id}','AdminTopicController@index')->name('admin.topic.index');
-			Route::get('create','AdminTopicController@create')->name('admin.topic.create');
 			Route::post('create','AdminTopicController@store')->name('admin.topic.store');
 			Route::get('edit/{id}','AdminTopicController@edit')->name('admin.topic.edit');
 			Route::post('update/{id}','AdminTopicController@update')->name('admin.topic.update');
@@ -34,9 +34,13 @@
 		});
 
 		Route::group(['prefix' => 'tin-tuc'], function() {
-			Route::get('','TinTucController@index')->name('admin.tintuc.index');
+			Route::get('','TinTucController@tinTuc')->name('admin.tintuc.tintuc');
 			Route::get('create','TinTucController@create')->name('admin.tintuc.create');
+			Route::get('/{id}','TinTucController@index')->name('admin.tintuc.index');
 			Route::post('create','TinTucController@store')->name('admin.tintuc.store');
+			Route::get('edit/{id}','TinTucController@edit')->name('admin.tintuc.edit');
+			Route::post('update/{id}','TinTucController@update')->name('admin.tintuc.update');
+			Route::get('delete/{id}','TinTucController@delete')->name('admin.tintuc.delete');
 		});
 	});
 

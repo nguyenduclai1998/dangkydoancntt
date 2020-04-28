@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
-                    <li class="breadcrumb-item active"><a href="#">Tin tức</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('admin.tintuc.tintuc')}}">Tin tức</a></li>
                     <li class="breadcrumb-item active">Thêm mới</li>
                 </ol>
             </div>
@@ -32,17 +32,34 @@
     @endif
     <form action="{{ route('admin.tintuc.store')}}" method="POST" id="tintuc">
     @csrf
-        <div class="form-group">
-            <label for="formGroupExampleInput">Tên tin tức</label>
-            <input type="text" class="form-control" name="tenchuyennganh" placeholder="Tên chuyên ngành">
-        </div>
-        <div class="mb-3">
-            <label for="formGroupExampleInput">Mô tả</label>
-            <textarea class="textarea" placeholder="Mô tả" id="content" name="mota" 
-                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+        <div class="row">
+            <div class="form-group col-sm-12 col-md-8 col-lg-8">
+                <label for="formGroupExampleInput">Tên tin tức</label>
+                <input type="text" class="form-control" name="tenbaiviet" placeholder="Tên tin tức">
+            </div>
+
+            <div class="form-group col-sm-12 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Chuyên ngành</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="chuyennganh">
+                        <option value="">--Chọn chuyên ngành--</option>
+                        @if(isset($CHUYENNGANHS))
+                            @foreach($CHUYENNGANHS as $cn)
+                                <option value="{{$cn->id}}">{{$cn->tenchuyennganh}}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                  </div>
+            </div>
+
+            <div class="mb-3 col-sm-12 col-md-8 col-lg-8">
+                <label for="formGroupExampleInput">Mô tả</label>
+                <textarea class="textarea" placeholder="Mô tả" id="content" name="noidung" 
+                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+            </div>
         </div>
         <div class="card-footer" style="padding: 0">
-            <a href="{{ route('admin.tintuc.index')}}" class="btn btn-secondary" style="font-size: .875rem;">Quay lại</a>
+            <a href="{{ route('admin.tintuc.tintuc')}}" class="btn btn-secondary" style="font-size: .875rem;">Quay lại</a>
             <button type="submit" class="btn btn-primary" style="font-size: .875rem;">Thêm mới</button>
         </div>
     </form>

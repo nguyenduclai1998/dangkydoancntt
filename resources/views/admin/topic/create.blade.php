@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Thêm mới chuyên ngành</h1>
+                <h1>Thêm mới đề tài</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
-                    <li class="breadcrumb-item active"><a href=" {{ route('admin.topic.index')}}">Đề tài</a></li>
+                    <li class="breadcrumb-item active"><a href=" {{ route('admin.topic.detai')}}">Đề tài</a></li>
                     <li class="breadcrumb-item active">Thêm mới</li>
                 </ol>
             </div>
@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="card-footer" style="padding: 0">
-            <a href="{{ route('admin.topic.index')}}" class="btn btn-secondary" style="font-size: .875rem;">Quay lại</a>
+            <a href="{{ route('admin.topic.detai')}}" class="btn btn-secondary" style="font-size: .875rem;">Quay lại</a>
             <button type="submit" class="btn btn-primary" style="font-size: .875rem;">Thêm mới</button>
         </div>
     </form>
