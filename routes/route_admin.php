@@ -33,6 +33,16 @@
 
 		});
 
+		Route::group(['prefix' => 'linh-vuc'], function(){
+			Route::get('', 'LinhVucController@index')->name('admin.linhvuc.index');
+			Route::get('create','LinhVucController@create')->name('admin.linhvuc.create');
+			Route::post('create','LinhVucController@store')->name('admin.linhvuc.store');
+			Route::get('edit/{id}','LinhVucController@edit')->name('admin.linhvuc.edit');
+			Route::post('update/{id}','LinhVucController@update')->name('admin.linhvuc.update');
+			Route::get('delete/{id}','LinhVucController@delete')->name('admin.linhvuc.delete');
+
+		});
+
 		Route::group(['prefix' => 'tin-tuc'], function() {
 			Route::get('','TinTucController@tinTuc')->name('admin.tintuc.tintuc');
 			Route::get('create','TinTucController@create')->name('admin.tintuc.create');

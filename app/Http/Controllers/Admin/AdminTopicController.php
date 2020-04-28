@@ -15,8 +15,9 @@ class AdminTopicController extends AdminController
 {
 	public function deTai()
 	{
-		$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh')
+		$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
 											->join('users', 'users.id', '=', 'detai.user_id')
+                                            ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
 											->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
 											->paginate(5);
 		$viewData = [
@@ -27,11 +28,12 @@ class AdminTopicController extends AdminController
 
     public function index($id)
     {
-    	$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh')
+    	$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
     							   ->join('users', 'users.id', '=', 'detai.user_id')
+                                   ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
     							   ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
                                    ->where('chuyennganh.id', $id)
-    							   ->paginate(5);                               
+    							   ->paginate(5);                              
     	$viewData = [
     		'detai' => $detai
     	];
@@ -52,12 +54,14 @@ class AdminTopicController extends AdminController
     		'tendetai.min'			=> "Tên đề tài tối thiểu là 3 ký tự",
     		'tendetai.max'			=> "Tên đề tài quá dài.",
     		'chuyennganh.required' 	=> "Chuyên ngành không được bỏ trống.",
+            'linhvuc.required'      => "Lĩnh vực không được bỏ trống.",
     		'mota.required' 		=> "Mô tả không được bỏ trống."
     	];
 
     	$validator = Validator::make($data,[
     		'tendetai'		=> 'required|min:3|max:255',
     		'chuyennganh' 	=> 'required',
+            'linhvuc'       => 'required',
     		'mota'			=> 'required'
     	], $messages);
 
@@ -72,6 +76,7 @@ class AdminTopicController extends AdminController
     		$detai->mota 			= $request->mota;
     		$detai->slug 			= Str::slug($request->tendetai."-".time());
     		$detai->chuyennganh_id 	= $request->chuyennganh;
+            $detai->linhvuc_id      = $request->linhvuc;
     		$detai->user_id 	   	= $id;
     		$detai->save();
 
@@ -92,6 +97,7 @@ class AdminTopicController extends AdminController
     	$viewDataChuyennganh = [
     		'chuyennganh' => $chuyennganh
     	];
+
     	return view('admin.topic.update', $viewDataDetai, $viewDataChuyennganh);
     }
 

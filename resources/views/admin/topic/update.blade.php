@@ -47,7 +47,7 @@
                             <option value="">--Chọn chuyên ngành--</option>
                             @if(isset($chuyennganh))
                                 @foreach($chuyennganh as $cn)
-                                    <option value="{{$cn->id}}">{{$cn->tenchuyennganh}}</option>
+                                    <option value="{{$cn->id}}" {{$detai->chuyennganh_id == $cn->id ? "selected='seleted'" : "" }}>{{$cn->tenchuyennganh}}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -57,6 +57,20 @@
                     <label for="formGroupExampleInput">Mô tả</label>
                     <textarea class="textarea" placeholder="Mô tả" id="content" value="" name="mota" 
                         style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$detai->mota}}</textarea>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Lĩnh vực</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="linhvuc">
+                            <option value="">--Chọn lĩnh vực--</option>
+                            @if(isset($LINHVUCS))
+                                @foreach($LINHVUCS as $lv)
+                                    <option value="{{$lv->id}}" {{$detai->linhvuc_id == $lv->id ? "selected='seleted'" : "" }}>{{$lv->tenlinhvuc}}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="card-footer" style="padding: 0">

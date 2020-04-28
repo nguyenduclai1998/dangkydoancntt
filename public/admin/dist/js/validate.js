@@ -45,6 +45,27 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+    $("#linhvuc").validate({ 
+        rules: {
+            tenlinhvuc: {
+                required: true,
+            },
+            mota: {
+                required: true
+            }
+        },
+        messages: {
+            tenlinhvuc: {
+                required: "Tên lĩnh vực không được bỏ trống.",
+            },
+            mota: {
+                required: "Mô tả không được bỏ trống."
+            }
+        }
+    });
+});
+
+$(document).ready(function() {
     $("#detai").validate({ 
         rules: {
             tendetai: {

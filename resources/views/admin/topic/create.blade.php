@@ -54,8 +54,25 @@
 
             <div class="mb-3 col-sm-12 col-md-8 col-lg-8">
                 <label for="formGroupExampleInput">Mô tả</label>
-                <textarea class="textarea" placeholder="Mô tả" id="content" name="mota" 
+                <textarea class="textarea" placeholder="Mô tả" id="textarea" name="mota" 
                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    <script type="text/javascript">
+                        CKEditor.replace('textarea');
+                    </script>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Lĩnh vực</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="linhvuc">
+                        <option value="">--Chọn lĩnh vực--</option>
+                        @if(isset($LINHVUCS))
+                            @foreach($LINHVUCS as $lv)
+                                <option value="{{$lv->id}}">{{$lv->tenlinhvuc}}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                  </div>
             </div>
         </div>
         <div class="card-footer" style="padding: 0">

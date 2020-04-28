@@ -26,7 +26,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $chuyennganh = DB::table('chuyennganh')->select('chuyennganh.id', 'tenchuyennganh')->get();
+        $linhvuc     = DB::table('linhvuc')->select('linhvuc.id', 'tenlinhvuc')->get();
 
         View::share('CHUYENNGANHS', $chuyennganh);
+        View::share('LINHVUCS', $linhvuc);
     }
 }

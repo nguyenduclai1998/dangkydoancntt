@@ -56,6 +56,7 @@
                             <th scope="col">Mã</th>
                             <th scope="col">Tên đề tài </th>
                             <th scope="col">Mô tả đề tài</th>
+                            <th scope="col">Lĩnh vực</th>
                             <th scope="col">Chuyên ngành</th>
                             <th scope="col">Người tạo</th>
                             <th scope="col">Hoạt động</th>
@@ -68,6 +69,7 @@
                                     <th scope="row">{{$dt->id}}</th>
                                     <td>{{$dt->tendetai}}</td>
                                     <td>{{$dt->mota}}</td>
+                                    <td>{{$dt->tenlinhvuc}}</td>
                                     <td>{{$dt->tenchuyennganh}}</td>
                                     <td>{{$dt->name}}</td>
                                     <td>

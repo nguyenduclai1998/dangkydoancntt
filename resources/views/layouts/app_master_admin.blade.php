@@ -17,6 +17,7 @@
 
         <!-- DataTables CSS -->
         <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+        <script src="//cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
 
     </head>
     <style type="text/css">
@@ -201,6 +202,15 @@
                                     </p>
                                 </a>
                             </li>
+
+                            <li class="nav-item has-treeview">
+                                <a href="{{ route('admin.linhvuc.index')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-table"></i>
+                                    <p>
+                                        Lĩnh vực
+                                    </p>
+                                </a>
+                            </li>
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-book"></i>
@@ -291,5 +301,6 @@
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
         <script src="{{asset('admin/dist/js/validate.js')}}"></script>
+        
     </body>
 </html>

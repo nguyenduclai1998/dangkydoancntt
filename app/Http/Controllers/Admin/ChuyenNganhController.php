@@ -61,31 +61,15 @@ class ChuyenNganhController extends Controller
 
     public function update(Request $request, $id)
     {
-    	$data = $request->except('_token');
-
-    	$messages = [
-    		'tenchuyennganh.unique'	=> "Tên chuyên ngành đã tồn tại."
-    	];
-
-    	$validator = Validator::make($data,[
-    		'tenchuyennganh'	=> 'unique:chuyennganh'
-    	], $messages);
-
-    	if($validator->fails()) {
-    		$errors = $validator->errors();
-    		return redirect()->back()->with('errors', $errors);
-    	}else {
-    		$chuyennganh = new ChuyenNganh();
-			$chuyennganh = ChuyenNganh::find($id);
-			$chuyennganh->tenchuyennganh = $request->tenchuyennganh;
-			$chuyennganh->mota 			 = $request->mota;
-			$chuyennganh->slug 			 = Str::slug($request->tenchuyennganh);
-			
-			$chuyennganh->update();
-
-			return redirect()->back()->with('notify','Cập nhật thành công.');
-    	}
+		$chuyennganh = new ChuyenNganh();
+		$chuyennganh = ChuyenNganh::find($id);
+		$chuyennganh->tenchuyennganh = $request->tenchuyennganh;
+		$chuyennganh->mota 			 = $request->mota;
+		$chuyennganh->slug 			 = Str::slug($request->tenchuyennganh);
 		
+		$chuyennganh->update();
+
+		return redirect()->back()->with('notify','Cập nhật thành công.');
     }
 
     public function delete($id)
