@@ -52,6 +52,13 @@
 			Route::post('update/{id}','TinTucController@update')->name('admin.tintuc.update');
 			Route::get('delete/{id}','TinTucController@delete')->name('admin.tintuc.delete');
 		});
+
+		Route::group(['prefix' => 'quan-ly-giao-vien'], function() {
+			Route::get('', 'QuanLyGiaoVienController@index')->name('admin.quanlygiaovien.index');
+			Route::get('create', 'QuanLyGiaoVienController@create')->name('admin.quanlygiaovien.create');
+			Route::post('create', 'QuanLyGiaoVienController@store')->name('admin.quanlygiaovien.store');
+
+		});
 	});
 
 	

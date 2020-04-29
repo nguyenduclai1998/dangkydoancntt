@@ -34,7 +34,7 @@
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="../../index3.html" class="nav-link">Home</a>
+                        <a href="{{ route('admin.index')}}" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href="#" class="nav-link">Contact</a>
@@ -163,9 +163,11 @@
                         <div class="image">
                             <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
                         </div>
+                        @if(Auth::check())
                         <div class="info">
-                            <a href="#" class="d-block">Alexander Pierce</a>
+                            <a href="" class="d-block">{{Auth::user()->name}}</a>
                         </div>
+                        @endif
                     </div>
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
@@ -211,6 +213,16 @@
                                     </p>
                                 </a>
                             </li>
+
+                            <li class="nav-item has-treeview">
+                                <a href="{{ route('admin.quanlygiaovien.index')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-table"></i>
+                                    <p>
+                                        Quản lý giáo viên
+                                    </p>
+                                </a>
+                            </li>
+
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-book"></i>
