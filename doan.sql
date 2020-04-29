@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2020 at 01:48 PM
+-- Generation Time: Apr 29, 2020 at 10:17 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.15
 
@@ -165,23 +165,7 @@ CREATE TABLE `nguyenvong1` (
   `detaidexuat_id` bigint(20) UNSIGNED DEFAULT NULL,
   `linhvuc_id` bigint(20) UNSIGNED NOT NULL,
   `trangthai` tinyint(1) NOT NULL DEFAULT 0,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nguyenvong2`
---
-
-CREATE TABLE `nguyenvong2` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `detai_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `detaidexuat_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `linhvuc_id` bigint(20) UNSIGNED NOT NULL,
-  `trangthai` tinyint(1) NOT NULL DEFAULT 0,
+  `loainguyenvong` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -302,18 +286,18 @@ ALTER TABLE `chuyennganh`
 --
 ALTER TABLE `detai`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `detai_user_id_foreign` (`user_id`),
   ADD KEY `detai_chuyennganh_id_foreign` (`chuyennganh_id`),
-  ADD KEY `detai_linhvuc_id_foreign` (`linhvuc_id`);
+  ADD KEY `detai_linhvuc_id_foreign` (`linhvuc_id`),
+  ADD KEY `detai_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `dexuatdetai`
 --
 ALTER TABLE `dexuatdetai`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `dexuatdetai_user_id_foreign` (`user_id`),
   ADD KEY `dexuatdetai_chuyennganh_id_foreign` (`chuyennganh_id`),
-  ADD KEY `dexuatdetai_linhvuc_id_foreign` (`linhvuc_id`);
+  ADD KEY `dexuatdetai_linhvuc_id_foreign` (`linhvuc_id`),
+  ADD KEY `dexuatdetai_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -342,16 +326,6 @@ ALTER TABLE `nguyenvong1`
   ADD KEY `nguyenvong1_detai_id_foreign` (`detai_id`),
   ADD KEY `nguyenvong1_detaidexuat_id_foreign` (`detaidexuat_id`),
   ADD KEY `nguyenvong1_linhvuc_id_foreign` (`linhvuc_id`);
-
---
--- Indexes for table `nguyenvong2`
---
-ALTER TABLE `nguyenvong2`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `nguyenvong2_user_id_foreign` (`user_id`),
-  ADD KEY `nguyenvong2_detai_id_foreign` (`detai_id`),
-  ADD KEY `nguyenvong2_detaidexuat_id_foreign` (`detaidexuat_id`),
-  ADD KEY `nguyenvong2_linhvuc_id_foreign` (`linhvuc_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -435,12 +409,6 @@ ALTER TABLE `nguyenvong1`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `nguyenvong2`
---
-ALTER TABLE `nguyenvong2`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
@@ -472,17 +440,17 @@ ALTER TABLE `users`
 -- Constraints for table `detai`
 --
 ALTER TABLE `detai`
-  ADD CONSTRAINT `detai_chuyennganh_id_foreign` FOREIGN KEY (`chuyennganh_id`) REFERENCES `chuyennganh` (`id`),
-  ADD CONSTRAINT `detai_linhvuc_id_foreign` FOREIGN KEY (`linhvuc_id`) REFERENCES `linhvuc` (`id`),
-  ADD CONSTRAINT `detai_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `detai_chuyennganh_id_foreign` FOREIGN KEY (`chuyennganh_id`) REFERENCES `chuyennganh` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `detai_linhvuc_id_foreign` FOREIGN KEY (`linhvuc_id`) REFERENCES `linhvuc` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `detai_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `dexuatdetai`
 --
 ALTER TABLE `dexuatdetai`
-  ADD CONSTRAINT `dexuatdetai_chuyennganh_id_foreign` FOREIGN KEY (`chuyennganh_id`) REFERENCES `chuyennganh` (`id`),
-  ADD CONSTRAINT `dexuatdetai_linhvuc_id_foreign` FOREIGN KEY (`linhvuc_id`) REFERENCES `linhvuc` (`id`),
-  ADD CONSTRAINT `dexuatdetai_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `dexuatdetai_chuyennganh_id_foreign` FOREIGN KEY (`chuyennganh_id`) REFERENCES `chuyennganh` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `dexuatdetai_linhvuc_id_foreign` FOREIGN KEY (`linhvuc_id`) REFERENCES `linhvuc` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `dexuatdetai_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `nguyenvong1`
@@ -492,15 +460,6 @@ ALTER TABLE `nguyenvong1`
   ADD CONSTRAINT `nguyenvong1_detaidexuat_id_foreign` FOREIGN KEY (`detaidexuat_id`) REFERENCES `dexuatdetai` (`id`),
   ADD CONSTRAINT `nguyenvong1_linhvuc_id_foreign` FOREIGN KEY (`linhvuc_id`) REFERENCES `linhvuc` (`id`),
   ADD CONSTRAINT `nguyenvong1_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `nguyenvong2`
---
-ALTER TABLE `nguyenvong2`
-  ADD CONSTRAINT `nguyenvong2_detai_id_foreign` FOREIGN KEY (`detai_id`) REFERENCES `detai` (`id`),
-  ADD CONSTRAINT `nguyenvong2_detaidexuat_id_foreign` FOREIGN KEY (`detaidexuat_id`) REFERENCES `dexuatdetai` (`id`),
-  ADD CONSTRAINT `nguyenvong2_linhvuc_id_foreign` FOREIGN KEY (`linhvuc_id`) REFERENCES `linhvuc` (`id`),
-  ADD CONSTRAINT `nguyenvong2_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `thongtin`
