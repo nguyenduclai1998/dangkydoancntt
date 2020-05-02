@@ -23,4 +23,53 @@ class QuanLyGiaoVienController extends Controller
 		];
 		return view('admin.quanlygiaovien.index', $viewData);   
     }
+
+    public function create()
+    {
+    	return view('admin.quanlygiaovien.create');
+    }
+
+    public function store(Request $request)
+    {
+    	$data = $request->except('_token');
+    	$messages = [
+    		'email.unique'	=> "Tài khoản email đã tồn tại."
+    	];
+
+    	$validator = Validator::make($data,[
+    		'email'	=> 'unique:users'
+    	], $messages);
+
+    	if($validator->fails()) {
+    		$errors = $validator->errors();
+    		return redirect()->back()->with('errors', $errors);
+    	}else {
+    		$role_id = 2;
+    		$user = new User();
+    		$user->name 	= $request->name;
+    		$user->email 	= $request->email;
+    		$user->password = bcrypt($request->password);
+    		$user->role_id 	= $role_id;
+
+    		$user->save();
+
+    		//them id user vao bang thong tin
+    		$id = $user->id;
+    		$idUser = new ThongTin();
+    		$idUser->user_id = $id;
+    		$idUser->save();
+    		return redirect()->back()->with('notify','Thêm mới tài khoản thành công');
+    	}
+    }
+
+    public function delete($id)
+    {
+
+    }
+
+    public function view($id)
+    {
+        
+    	return view('admin.quanlygiaovien.view');
+    }
 }

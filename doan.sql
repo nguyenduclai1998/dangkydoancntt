@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2020 at 10:17 AM
+-- Generation Time: May 02, 2020 at 04:28 AM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.3.15
+-- PHP Version: 7.3.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -227,7 +227,9 @@ CREATE TABLE `thongtin` (
 --
 
 INSERT INTO `thongtin` (`id`, `ngaysinh`, `sdt`, `masv`, `gioitinh`, `avatar`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, 1, '2020-04-28 01:48:59', '2020-04-28 01:48:59');
+(1, NULL, NULL, NULL, NULL, NULL, 1, '2020-04-28 01:48:59', '2020-04-28 01:48:59'),
+(2, NULL, NULL, NULL, NULL, NULL, 2, '2020-04-30 19:13:10', '2020-04-30 19:13:10'),
+(9, NULL, NULL, NULL, NULL, NULL, 9, '2020-04-30 19:25:24', '2020-04-30 19:25:24');
 
 -- --------------------------------------------------------
 
@@ -246,6 +248,13 @@ CREATE TABLE `tintuc` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `tintuc`
+--
+
+INSERT INTO `tintuc` (`id`, `tenbaiviet`, `noidung`, `slug`, `chuyennganh_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'Đại học Công nghệ GTVT hỗ trợ học sinh lớp 12 ôn tập thi THPT Quốc gia năm 2020 trong mùa dịch Covid- 19', '<h2>Nhằm hỗ trợ học sinh phổ th&ocirc;ng chuẩn bị thi THPT Quốc gia năm 2020 trong khi diễn biến dịch Covid- 19 vẫn diễn biến phức tạp, học sinh kh&ocirc;ng đến trường học tập trung theo chương tr&igrave;nh học tập, Trường Đại học C&ocirc;ng nghệ GTVT đ&atilde; triển khai chương tr&igrave;nh&nbsp;&quot;Đồng h&agrave;nh c&ugrave;ng học sinh lớp 12 &ocirc;n tập thi THPT Quốc gia năm 2020 trong m&ugrave;a dịch Covid- 19&quot;</h2>\r\n\r\n<p>Theo đ&oacute;, Chương tr&igrave;nh được tổ chức trong 4 th&aacute;ng, bắt đầu từ th&aacute;ng 4 đến hết th&aacute;ng 7/2020. Mỗi tuần sẽ c&oacute; 4 m&ocirc;n To&aacute;n, L&yacute;, H&oacute;a, Tiếng Anh được hướng dẫn &ocirc;n tập theo chủ đề v&agrave; được ph&aacute;t trực tiếp v&agrave;o 21h h&agrave;ng ng&agrave;y tr&ecirc;n Fanpage&nbsp;utt.vn&nbsp;v&agrave; k&ecirc;nh Youtube uttchannel của Trường.</p>\r\n\r\n<p>Song song đ&oacute;, để gi&uacute;p cho học sinh vừa &ocirc;n luyện củng cố kiến thức vừa l&agrave;m quen v&agrave; c&oacute;&nbsp;kỹ năng để giải c&aacute;c đề thi minh họa theo cấu tr&uacute;c đề thi THPT Quốc gia năm 2020 của Bộ Gi&aacute;o dục v&agrave; Đ&agrave;o tạo, Nh&agrave; trường cũng tổ chức cuộc thi &quot;Giải thử đề- B&ecirc; qu&agrave; thật&quot; với nhiều giải thưởng c&oacute; gi&aacute; trị l&ecirc;n đến h&agrave;ng chục triệu đồng, mỗi tuần học sinh sẽ giải thử một đề thi v&agrave; sẽ được c&aacute;c thầy c&ocirc; hướng dẫn, trao giải v&agrave;o tuần kế tiếp.</p>', 'dai-hoc-cong-nghe-gtvt-ho-tro-hoc-sinh-lop-12-on-tap-thi-thpt-quoc-gia-nam-2020-trong-mua-dich-covid-19-1588340189', 1, 9, '2020-05-01 06:36:29', '2020-05-01 06:36:29');
+
 -- --------------------------------------------------------
 
 --
@@ -258,7 +267,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role_id` bigint(20) UNSIGNED NOT NULL DEFAULT 3,
+  `role_id` bigint(20) UNSIGNED DEFAULT 3,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -269,7 +278,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Lai Nguyễn Đức', 'kenchivas1998@gmail.com', NULL, '$2y$10$YiIs1u/hZd0TKm2EsYuF0uWFXPUWmnxFPMJFg4ABZ.YN3uG1drRTm', 1, NULL, '2020-04-28 01:48:59', '2020-04-28 01:48:59');
+(1, 'Lai Nguyễn Đức', 'kenchivas1998@gmail.com', NULL, '$2y$10$YiIs1u/hZd0TKm2EsYuF0uWFXPUWmnxFPMJFg4ABZ.YN3uG1drRTm', 1, NULL, '2020-04-28 01:48:59', '2020-04-28 01:48:59'),
+(2, 'Lai Nguyễn Đức', 'nguyenduclai.utt@gmail.com', NULL, '$2y$10$bAlPE42qpVUtNqHdfsuTI.HC5Da2pQUCx17pkal1ci7lcZVPQR8aC', 3, NULL, '2020-04-30 19:13:10', '2020-04-30 19:13:10'),
+(9, 'Lai Nguyễn Đức', 'williamlongworth@my.smccd.edu', NULL, '$2y$10$Osq/QgkLkuD/Ke07H9ikgOaSdHEcNir.ggO/8EhhP1G4dvR1Rctky', 2, NULL, '2020-04-30 19:25:24', '2020-04-30 19:25:24');
 
 --
 -- Indexes for dumped tables
@@ -418,19 +429,19 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `thongtin`
 --
 ALTER TABLE `thongtin`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tintuc`
 --
 ALTER TABLE `tintuc`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -465,7 +476,7 @@ ALTER TABLE `nguyenvong1`
 -- Constraints for table `thongtin`
 --
 ALTER TABLE `thongtin`
-  ADD CONSTRAINT `thongtin_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `thongtin_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `tintuc`

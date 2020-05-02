@@ -17,8 +17,8 @@
 
         <!-- DataTables CSS -->
         <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
-        <script src="//cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
-
+        <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
+        <script src="{{ asset('admin/ckeditor/ckeditor.js')}}"></script>        
     </head>
     <style type="text/css">
         label.error {color: red;}
@@ -313,6 +313,8 @@
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
         <script src="{{asset('admin/dist/js/validate.js')}}"></script>
-        
+        <script type="text/javascript">
+            CKEDITOR.replace( 'content' );
+        </script>
     </body>
 </html>

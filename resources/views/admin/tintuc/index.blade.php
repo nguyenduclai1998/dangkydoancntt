@@ -57,6 +57,7 @@
                             <th scope="col">Tên bài viết </th>
                             <th scope="col">Nội dung</th>
                             <th scope="col">Người tạo</th>
+                            <th scope="col">Chuyên ngành</th>
                             <th scope="col">Hoạt động</th>
                         </tr>
                     </thead>
@@ -65,12 +66,17 @@
                             @foreach($tintuc as $tt)
                                 <tr>
                                     <th scope="row">{{$tt->id}}</th>
-                                    <td>{{$tt->tenbaiviet}}</td>
-                                    <td>{{$tt->noidung}}</td>
+                                    <td><p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">
+                                        {{$tt->tenbaiviet}}
+                                    </p></td>
+                                    <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">
+                                        {{$tt->noidung}}
+                                    </td>
                                     <td>{{$tt->name}}</td>
+                                    <td>{{$tt->tenchuyennganh}}</td>
                                     <td>
-                                        <a href="{{ route('admin.chuyennganh.edit', $tt->id)}}" class="btn btn-xs btn-primary"><i class="fas fa-pencil-alt"></i> Sửa</a>
-                                        <a href="{{ route('admin.chuyennganh.delete', $tt->id)}}" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Xóa</a>
+                                        <a href="{{ route('admin.tintuc.edit', $tt->id)}}" class="btn btn-xs btn-primary"><i class="fas fa-pencil-alt"></i> Sửa</a>
+                                        <a href="{{ route('admin.tintuc.delete', $tt->id)}}" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Xóa</a>
                                     </td>
                                 </tr>
                             @endforeach

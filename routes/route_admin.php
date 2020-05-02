@@ -57,7 +57,8 @@
 			Route::get('', 'QuanLyGiaoVienController@index')->name('admin.quanlygiaovien.index');
 			Route::get('create', 'QuanLyGiaoVienController@create')->name('admin.quanlygiaovien.create');
 			Route::post('create', 'QuanLyGiaoVienController@store')->name('admin.quanlygiaovien.store');
-
+			Route::get('delete/{id}','QuanLyGiaoVienController@delete')->name('admin.quanlygiaovien.delete');
+			Route::get('view/{id}','QuanLyGiaoVienController@view')->name('admin.quanlygiaovien.view');
 		});
 	});
 

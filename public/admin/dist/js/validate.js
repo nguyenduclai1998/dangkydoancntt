@@ -91,3 +91,44 @@ $(document).ready(function() {
         }
     });
 });
+
+$("#register").validate({ 
+    rules: {
+        name: {
+            required: true
+        },
+        email: {
+            required: true,
+            email: true
+        },
+        password: {
+            required: true,
+            minlength: 8
+        },
+        confirmpassword: {
+            required: true,
+            minlength: 8,
+            equalTo: "#password"
+        }
+    },
+    messages: {
+        name: {
+            required: "Vui lòng nhập họ tên."
+        },
+        email: {
+            required: "Vui lòng nhập email.",
+            email: "Email chưa đúng định dạng."
+        },
+        
+        password: {
+            required: "Vui lòng nhập mật khẩu.",
+            minlength: "Mật khẩu tối thiểu là 8 kí tự."
+        },
+        confirmpassword: {
+            required: "Vui lòng nhập mật khẩu.",
+            minlength: "Mật khẩu tối thiểu là 8 kí tự.",
+            equalTo: 'Mật khẩu không khớp.'
+        }
+    } 
+
+});
