@@ -5,19 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\ThongTin;
+use App\Models\Admin\Role;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class QuanLyGiaoVienController extends Controller
 {
     public function index()
     {
-    	$giaovien = DB::table('users')->select('users.id', 'users.name', 'users.email', 'role.rolename', 'users.role_id')
-    								  ->join('role','role.id', '=', 'users.role_id')
-    								  ->where('users.role_id', '=', 2)
-    								  ->paginate(5);
+    	$giaovien  = User::with('thongtin','role')->where('users.role_id', 2)->paginate(5);
     	$viewData = [
 			'giaovien' => $giaovien
 		];
@@ -69,6 +68,41 @@ class QuanLyGiaoVienController extends Controller
 
     public function view($id)
     {
-    	return view('admin.quanlygiaovien.view');
+    	$giaovien  = User::with('thongtin','role')->where('users.id', $id)->first();
+  		$viewData = [
+			'giaovien' => $giaovien
+		];
+    	return view('admin.quanlygiaovien.view', $viewData);
+    }
+
+    public function changePassword(Request $request)
+    {
+    	$user_id = \Auth::user()->id;
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("errors","Mật khẩu bạn nhập không đúng, vui lòng thử lại.");
+        }
+
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+            //Current password and new password are same
+            return redirect()->back()->with("errors","New Password cannot be same as your current password. Please choose a different password.");
+        }
+
+        $validatedData = $request->validate([
+            'current-password' => 'required',
+            'new-password' => 'required|string|min:6|confirmed',
+        ]);
+
+        //Change Password
+        $user = User::find($user_id);
+        $user->password = bcrypt($request->get('new-password'));
+        $user->save();
+
+        return redirect()->back()->with("notify","Password changed successfully !");
+    }
+
+    public function updateProfile(Request $request)
+    {
+
     }
 }

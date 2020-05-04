@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function thongtin()
+    {
+        return $this->hasOne('App\Models\Admin\ThongTin', 'user_id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Admin\Role', 'role_id');
+    }
 }

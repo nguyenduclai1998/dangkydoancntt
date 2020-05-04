@@ -1,5 +1,6 @@
 @extends('layouts.app_master_admin')
 @section('content')
+@if(isset($giaovien))
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -9,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.index')}}">Trang chủ</a></li>
                     <li class="breadcrumb-item active"><a href=" {{ route('admin.quanlygiaovien.index')}}">Giáo viên</a></li>
                     <li class="breadcrumb-item active">Danh sách</li>
                 </ol>
@@ -19,7 +20,6 @@
     <!-- /.container-fluid -->
 </section>
 <!-- Main content -->
-
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -34,51 +34,53 @@
                     </div>
                 </div>
             </div>
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary" style="font-size: .875rem;"><a href="{{ route('admin.quanlygiaovien.create')}}" style="color: #fff">Thêm mới </a><i class="fas fa-plus"></i></button>
-            </div>
-            <!-- /.card-header -->
-            @if(count($errors)>0)
-                <div class="alert alert-danger">
-                    @foreach ($errors->all() as $err)
-                        {{$err}}<br>
-                    @endforeach
-                </div>
-            @endif
-            {{-- Hiển thị thông tin trạng thái tạo bài viết --}}
-            @if (session('notify'))
-                <div class="alert alert-info">{{session('notify')}}</div>
-            @endif
-            <div class="card-body table-responsive p-0">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">Mã</th>
-                            <th scope="col">Họ và tên </th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Quyền hạn</th>
-                            <th scope="col">Hành động</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <section class="content">
+                <div class="card-body pb-0">
+                    <div class="row d-flex align-items-stretch">
                         @if(isset($giaovien))
                             @foreach($giaovien as $gv)
-                                <tr>
-                                    <th scope="row">{{$gv->id}}</th>
-                                    <td>{{$gv->name}}</td>
-                                    <td>{{$gv->email}}</td>
-                                    <td>{{$gv->rolename}}</td>
-                                    <td>
-                                        <a href="{{ route('admin.quanlygiaovien.view', $gv->id)}}" class="btn btn-xs btn-primary"><i class="fas fa-pencil-alt"></i> Xem</a>
-                                        <a href="{{ route('admin.quanlygiaovien.delete', $gv->id)}}" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Xóa</a>
-                                    </td>
-                                </tr>
+                                <div class="col-12 col-sm-4 col-md-4 d-flex align-items-stretch">
+                                    <div class="card bg-light">
+                                        <div class="card-header text-muted border-bottom-0">
+                                            {{$gv->role->rolename}}
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <h2 class="lead"><b>{{$gv->name}}</b></h2>
+                                                    <p class="text-muted text-sm"><b>Email: </b>{{$gv->email}}</p>
+                                                    <p class="text-muted text-sm"><b>Ngày sinh: </b>{{$gv->thongtin->ngaysinh}}</p>
+                                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Học hàm: {{$gv->thongtin->hocham}}</li>
+                                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: {{$gv->thongtin->sdt}}</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-5 text-center">
+                                                    @if($gv->thongtin->avatar == null)
+                                                        <img style="max-width: 128px; height: auto;" src="{{ asset('admin/dist/img/default-avatar.png')}}" alt="" class="img-circle img-fluid">
+                                                    @else
+                                                        <img style="max-width: 128px; height: auto;" src="{{ asset('admin/dist/img/user1-128x128.jpg')}}" alt="" class="img-circle img-fluid">
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-right">
+                                                <a href="#" class="btn btn-sm bg-teal">
+                                                <i class="fas fa-comments"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-user"></i> View Profile
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
                         @endif
-                    </tbody>
-                </table>
-            </div>
-            <!-- /.card-body -->
+                    </div>
+                </div>
+            </section>
         </div>
         <!-- /.card -->
         <div>
@@ -87,4 +89,5 @@
     </div>
 </div>
 <!-- /.row -->
+@endif
 @stop
