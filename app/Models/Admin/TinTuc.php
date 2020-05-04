@@ -16,9 +16,13 @@ class TinTuc extends Model
     	'user_id'
     ];
 
-    protected $hiden = [
-    	'id',
-    	'chuyennganh_id',
-    	'user_ids'
-    ];
+    public function chuyennganh()
+    {
+        return $this->belongsTo('App\Models\Admin\ChuyenNganh');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

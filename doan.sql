@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2020 at 04:28 AM
+-- Generation Time: May 04, 2020 at 03:19 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.14
 
@@ -155,10 +155,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nguyenvong1`
+-- Table structure for table `nguyenvong`
 --
 
-CREATE TABLE `nguyenvong1` (
+CREATE TABLE `nguyenvong` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `detai_id` bigint(20) UNSIGNED DEFAULT NULL,
@@ -329,9 +329,9 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `nguyenvong1`
+-- Indexes for table `nguyenvong`
 --
-ALTER TABLE `nguyenvong1`
+ALTER TABLE `nguyenvong`
   ADD PRIMARY KEY (`id`),
   ADD KEY `nguyenvong1_user_id_foreign` (`user_id`),
   ADD KEY `nguyenvong1_detai_id_foreign` (`detai_id`),
@@ -414,9 +414,9 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `nguyenvong1`
+-- AUTO_INCREMENT for table `nguyenvong`
 --
-ALTER TABLE `nguyenvong1`
+ALTER TABLE `nguyenvong`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -464,9 +464,9 @@ ALTER TABLE `dexuatdetai`
   ADD CONSTRAINT `dexuatdetai_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `nguyenvong1`
+-- Constraints for table `nguyenvong`
 --
-ALTER TABLE `nguyenvong1`
+ALTER TABLE `nguyenvong`
   ADD CONSTRAINT `nguyenvong1_detai_id_foreign` FOREIGN KEY (`detai_id`) REFERENCES `detai` (`id`),
   ADD CONSTRAINT `nguyenvong1_detaidexuat_id_foreign` FOREIGN KEY (`detaidexuat_id`) REFERENCES `dexuatdetai` (`id`),
   ADD CONSTRAINT `nguyenvong1_linhvuc_id_foreign` FOREIGN KEY (`linhvuc_id`) REFERENCES `linhvuc` (`id`),

@@ -17,8 +17,8 @@ class ThongTin extends Model
         'user_id'
     ];
 
-    protected $hidden = [
-    	'id',
-    	'user_id'
-    ];
+    public function users()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

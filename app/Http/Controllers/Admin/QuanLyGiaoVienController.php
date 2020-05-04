@@ -69,7 +69,6 @@ class QuanLyGiaoVienController extends Controller
 
     public function view($id)
     {
-        
     	return view('admin.quanlygiaovien.view');
     }
 }

@@ -55,7 +55,7 @@
                         <tr>
                             <th scope="col">Mã</th>
                             <th scope="col">Tên bài viết </th>
-                            <th scope="col">Nội dung</th>
+                            <!-- <th scope="col">Nội dung</th> -->
                             <th scope="col">Người tạo</th>
                             <th scope="col">Chuyên ngành</th>
                             <th scope="col">Hoạt động</th>
@@ -69,8 +69,8 @@
                                     <td><p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">
                                         {{$tt->tenbaiviet}}
                                     </p></td>
-                                    <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">
-                                        {{$tt->noidung}}
+                                    <!-- <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">
+                                        {!!$tt->noidung!!} -->
                                     </td>
                                     <td>{{$tt->name}}</td>
                                     <td>{{$tt->tenchuyennganh}}</td>

@@ -13,8 +13,4 @@ class ChuyenNganh extends Model
     	'mota',
     	'slug',
     ];
-
-    protected $hidden = [
-    	'id'
-    ];
 }
