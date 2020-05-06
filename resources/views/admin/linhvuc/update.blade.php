@@ -40,7 +40,7 @@
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput">Mô tả</label>
-                <textarea class="textarea" placeholder="Mô tả" id="content" value="" name="mota" 
+                <textarea class="textarea" placeholder="Mô tả" id="" value="" name="mota" 
                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$linhvuc->mota}}</textarea>
             </div>
             <div class="card-footer" style="padding: 0">

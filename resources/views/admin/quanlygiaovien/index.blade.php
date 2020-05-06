@@ -34,6 +34,9 @@
                     </div>
                 </div>
             </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary" style="font-size: .875rem;"><a href="{{ route('admin.quanlygiaovien.create')}}" style="color: #fff">Thêm mới </a><i class="fas fa-plus"></i></button>
+            </div>
             <section class="content">
                 <div class="card-body pb-0">
                     <div class="row d-flex align-items-stretch">
@@ -88,6 +91,11 @@
         </div>
     </div>
 </div>
+<style type="text/css">
+    .card.bg-light {
+        width: 100%;
+    }
+</style>
 <!-- /.row -->
 @endif
 @stop
