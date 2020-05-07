@@ -69,6 +69,7 @@ class QuanLyGiaoVienController extends Controller
     public function view($id)
     {
     	$giaovien  = User::with('thongtin','role')->where('users.id', $id)->first();
+        //dd($giaovien->thongtin->avatar);
   		$viewData = [
 			'giaovien' => $giaovien
 		];
