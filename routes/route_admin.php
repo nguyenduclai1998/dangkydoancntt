@@ -13,6 +13,8 @@
 		    return view('admin.index');
 		})->name('admin.index');
 
+		Route::post('image-upload', 'ImageUploadController@imageUpload')->name('admin.image.upload');
+
 		Route::group(['prefix' => 'de-tai'], function(){
 			Route::get('','AdminTopicController@deTai')->name('admin.topic.detai');
 			Route::get('/create','AdminTopicController@create')->name('admin.topic.create');

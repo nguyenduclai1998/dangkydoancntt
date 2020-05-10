@@ -314,7 +314,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
         <script src="{{asset('admin/dist/js/validate.js')}}"></script>
         <script type="text/javascript">
-            CKEDITOR.replace( 'content' );
+            CKEDITOR.replace( 'content', {
+                filebrowserUploadUrl: "{{route('admin.image.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
         </script>
     </body>
 </html>
