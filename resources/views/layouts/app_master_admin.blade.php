@@ -14,8 +14,9 @@
         <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css')}}">
 
         <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('admin/css/upload.css')}}">
         <!-- Google Font: Source Sans Pro -->
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap&subset=vietnamese">
 
         <!-- DataTables CSS -->
         <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
@@ -304,7 +305,7 @@
         <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{asset('admin/dist/js/demo.js')}}"></script>
-
+        <script src="{{asset('admin/js/main.js')}}"></script>
         <!-- jQuery -->
         <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
          
@@ -318,7 +319,7 @@
         <script type="text/javascript">
             CKEDITOR.replace( 'content', {
                 filebrowserUploadUrl: "{{route('admin.image.upload', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form'
+                filebrowserUploadMethod: 'form',
             });
         </script>
     </body>

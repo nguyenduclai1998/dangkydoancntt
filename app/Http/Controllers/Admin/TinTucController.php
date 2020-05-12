@@ -66,13 +66,31 @@ class TinTucController extends Controller
     		$errors = $validator->errors();
     		return redirect()->back()->with('errors', $errors);
     	}else {
+			if($request->hasFile('upload')) {
+				//get filename with extension
+				$filenamewithextension = $request->file('upload')->getClientOriginalName();
+		   
+				//get filename without extension
+				$filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+		   
+				//get file extension
+				$extension = $request->file('upload')->getClientOriginalExtension();
+		   
+				//filename to store
+				$filenametostore = $filename.'_'.time().'.'.$extension;
+
+				//Upload File
+				$request->file('upload')->storeAs('public/uploads', $filenametostore);
+		 
+			}
     		// Lấy thông tin người dùng thêm mới đề tài
     		$id = Auth::id();
     		$tintuc = new TinTuc();
     		$tintuc->tenbaiviet 		= $request->tenbaiviet;
     		$tintuc->noidung 		    = $request->noidung;
     		$tintuc->slug 			    = Str::slug($request->tenbaiviet."-".time());
-    		$tintuc->chuyennganh_id 	= $request->chuyennganh;
+			$tintuc->chuyennganh_id 	= $request->chuyennganh;
+			$tintuc->avatar				= $filenametostore;
     		$tintuc->user_id 	   	    = $id;
     		$tintuc->save();
 
