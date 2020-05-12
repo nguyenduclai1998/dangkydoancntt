@@ -57,6 +57,18 @@
                 <textarea class="textarea" placeholder="Mô tả" id="content" name="noidung" 
                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
             </div>
+
+            <div class="form-group col-sm-12 col-md-4 col-lg-4">
+                <div class="uploadOuter">
+                    <label for="uploadFile" class="btn btn-primary">Upload Image</label>
+                        <strong>OR</strong>
+                            <span class="dragBox" >
+                            Darg and Drop image here
+                                <input class="fileImgage" type="file" onChange="dragNdrop(event)"  ondragover="drag()" ondrop="drop()" id="uploadFile"  />
+                            </span>
+                        </div>
+                    <div id="preview"></div>
+                </div>
         </div>
         <div class="card-footer" style="padding: 0">
             <a href="{{ route('admin.tintuc.tintuc')}}" class="btn btn-secondary" style="font-size: .875rem;">Quay lại</a>
