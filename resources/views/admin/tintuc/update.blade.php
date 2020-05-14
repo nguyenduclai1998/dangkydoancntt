@@ -31,7 +31,7 @@
         <div class="alert alert-info">{{session('notify')}}</div>
     @endif
     @if(isset($tintuc))
-    <form action="{{ route('admin.tintuc.update', [$tintuc->id])}}" method="POST" id="tintuc">
+    <form action="{{ route('admin.tintuc.update', [$tintuc->id])}}" method="POST" enctype="multipart/form-data" id="tintuc">
     @csrf
         <div class="row">
             <div class="form-group col-sm-12 col-md-8 col-lg-8">
@@ -57,6 +57,21 @@
                 <label for="formGroupExampleInput">Mô tả</label>
                 <textarea class="textarea" placeholder="Mô tả" id="content" name="noidung"
                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$tintuc->noidung}}</textarea>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-4 col-lg-4">
+                <label for="formGroupExampleInput">Ảnh đại diện</label>
+                <div class="col-sm-6 imgUp">
+                @if($tintuc->avatar == null)
+                    <div class="imagePreview"></div>
+                @else 
+                    <div class="imagePreview" style="background: url({{env('url_image').$tintuc->avatar}}); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
+                @endif
+                        <label class="btn btn-primary uploadImage"> Upload
+                            <input type="file" class="uploadFile img" value="Upload Photo" name="upload" style="width: 0px;height: 0px;overflow: hidden;">
+                        </label>
+                </div>
+            <!-- col-2 -->
             </div>
         </div>
         <div class="card-footer" style="padding: 0">

@@ -67,6 +67,19 @@ class TinTucController extends Controller
     		return redirect()->back()->with('errors', $errors);
     	}else {
 			if($request->hasFile('upload')) {
+				$messages = [
+					'upload.required' 		=> "Ảnh đại diện không được để trống.",
+					'upload.mimes' 			=> "Ảnh đại diện không đúng định dạng",
+					'upload.max'			=> "Ảnh đại diện quá lớn."
+				];
+
+				$validator = Validator::make($data,[
+					'upload'  => 'required|file|mimes:jpeg,jpg,png,gif|max:10000'
+				], $messages);
+				if($validator->fails()) {
+					$errors = $validator->errors();
+					return redirect()->back()->with('errors', $errors);
+				}
 				//get filename with extension
 				$filenamewithextension = $request->file('upload')->getClientOriginalName();
 		   
@@ -130,15 +143,58 @@ class TinTucController extends Controller
             $errors = $validator->errors();
             return redirect()->back()->with('errors', $errors);
         }else {
-            $tintuc = new TinTuc();
-            $tintuc = TinTuc::find($id);
-            $tintuc->tenbaiviet         = $request->tenbaiviet;
-            $tintuc->noidung            = $request->noidung;
-            $tintuc->slug               = Str::slug($request->tenbaiviet."-".time());
-            $tintuc->chuyennganh_id     = $request->chuyennganh;
-            $tintuc->update();
+			if($request->hasFile('upload')) {
 
-            return redirect()->back()->with('notify','Cập nhật thành công.');
+				$messages = [
+					'upload.required' 		=> "Ảnh đại diện không được để trống.",
+					'upload.mimes' 			=> "Ảnh đại diện không đúng định dạng",
+					'upload.max'			=> "Ảnh đại diện quá lớn."
+				];
+
+				$validator = Validator::make($data,[
+					'upload'  => 'required|file|mimes:jpeg,jpg,png,gif|max:10000'
+				], $messages);
+				if($validator->fails()) {
+					$errors = $validator->errors();
+					return redirect()->back()->with('errors', $errors);
+				}
+				//get filename with extension
+				$filenamewithextension = $request->file('upload')->getClientOriginalName();
+		   
+				//get filename without extension
+				$filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+		   
+				//get file extension
+				$extension = $request->file('upload')->getClientOriginalExtension();
+		   
+				//filename to store
+				$filenametostore = $filename.'_'.time().'.'.$extension;
+
+				//Upload File
+				$request->file('upload')->storeAs('public/uploads', $filenametostore);
+
+				$tintuc = new TinTuc();
+				$tintuc = TinTuc::find($id);
+				$tintuc->tenbaiviet         = $request->tenbaiviet;
+				$tintuc->noidung            = $request->noidung;
+				$tintuc->slug               = Str::slug($request->tenbaiviet."-".time());
+				$tintuc->avatar				= $filenametostore;
+				$tintuc->chuyennganh_id     = $request->chuyennganh;
+				$tintuc->update();
+
+				return redirect()->back()->with('notify','Cập nhật thành công.');
+		 
+			} else {
+				$tintuc = new TinTuc();
+				$tintuc = TinTuc::find($id);
+				$tintuc->tenbaiviet         = $request->tenbaiviet;
+				$tintuc->noidung            = $request->noidung;
+				$tintuc->slug               = Str::slug($request->tenbaiviet."-".time());
+				$tintuc->chuyennganh_id     = $request->chuyennganh;
+				$tintuc->update();
+	
+				return redirect()->back()->with('notify','Cập nhật thành công.');
+			}
         }
     }
 

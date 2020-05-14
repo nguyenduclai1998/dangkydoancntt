@@ -10,9 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 include 'route_admin.php';
+
+	Route::group(['prefix' => '', 'namespace' => 'fontend'], function() {
+		Route::get('/', function() {
+			return view('font-end.index');
+		});
+	});
