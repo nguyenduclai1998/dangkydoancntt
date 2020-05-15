@@ -54,7 +54,14 @@
 					<div class="left-menu">
 						<ul class="navbarMain__menu__wrap">
 							<li class=""><a href="">Trang chủ</a></li>
-							<li class=""><a href="">Đề tài</a></li>
+							<li class="dropdown_menu" >
+								<a href="" class="height: 100%;display: inline-flex;align-items: center;">Đề tài</a>
+								<ul class="dropdown_content">
+									<a href="" title="">Hệ thống thông tin</a>
+									<a href="" title="">Hệ thống thông tin</a>
+									<a href="" title="">Hệ thống thông tin</a>
+								</ul>
+							</li>
 							<li class=""><a href="">Tin tức</a></li>
 							<li class=""><a href="">Liên hệ</a></li>
 						</ul>
@@ -64,7 +71,6 @@
 					</div>
 				</div>
 			</div>
-			
 		</div>
 	</section>
 	<div class="navbarMain--mobile">
