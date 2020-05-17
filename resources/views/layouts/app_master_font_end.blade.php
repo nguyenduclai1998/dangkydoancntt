@@ -54,7 +54,16 @@
 					<div class="left-menu">
 						<ul class="navbarMain__menu__wrap">
 							<li class=""><a href="">Trang chủ</a></li>
-							<li class=""><a href="">Đề tài</a></li>
+							<li class="dropdown_menu" >
+								<a href="" class="height: 100%;display: inline-flex;align-items: center;">Đề tài</a>
+								<ul class="dropdown_content">
+									@if(isset($CHUYENNGANHS))
+										@foreach($CHUYENNGANHS as $cn)
+											<a href="" title="">{{$cn->tenchuyennganh}}</a>
+										@endforeach
+									@endif
+								</ul>
+							</li>
 							<li class=""><a href="">Tin tức</a></li>
 							<li class=""><a href="">Liên hệ</a></li>
 						</ul>

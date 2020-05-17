@@ -72,16 +72,30 @@ class AdminTopicController extends AdminController
     		// Lấy thông tin người dùng thêm mới đề tài
     		$id = Auth::id();
     		$detai = new DeTai();
-    		$detai->tendetai 		= $request->tendetai;
-    		$detai->mota 			= $request->mota;
-    		$detai->slug 			= Str::slug($request->tendetai."-".time());
-    		$detai->chuyennganh_id 	= $request->chuyennganh;
-            $detai->linhvuc_id      = $request->linhvuc;
-    		$detai->user_id 	   	= $id;
-    		$detai->save();
+            $sinhvien_id            = $request->sinhvien;
 
-    		return redirect()->back()->with('notify','Thêm mới thành công.');
-    		
+            if(isset($sinhvien_id)) {
+                $detai->tendetai        = $request->tendetai;
+                $detai->mota            = $request->mota;
+                $detai->slug            = Str::slug($request->tendetai."-".time());
+                $detai->chuyennganh_id  = $request->chuyennganh;
+                $detai->linhvuc_id      = $request->linhvuc;
+                $detai->user_id         = $id;
+                $detai->sinhvien_id     = $sinhvien_id;
+                $detai->save();
+
+                return redirect()->back()->with('notify','Thêm mới thành công.');
+            }
+
+            $detai->tendetai        = $request->tendetai;
+            $detai->mota            = $request->mota;
+            $detai->slug            = Str::slug($request->tendetai."-".time());
+            $detai->chuyennganh_id  = $request->chuyennganh;
+            $detai->linhvuc_id      = $request->linhvuc;
+            $detai->user_id         = $id;
+            $detai->save();
+
+            return redirect()->back()->with('notify','Thêm mới thành công.');
     	}
     }
 
@@ -92,13 +106,8 @@ class AdminTopicController extends AdminController
     		'detai' => $detai
     	];
 
-    	$chuyennganh = DB::table('chuyennganh')->select('chuyennganh.id', 'tenchuyennganh')
-    										   ->get();
-    	$viewDataChuyennganh = [
-    		'chuyennganh' => $chuyennganh
-    	];
 
-    	return view('admin.topic.update', $viewDataDetai, $viewDataChuyennganh);
+    	return view('admin.topic.update', $viewDataDetai,);
     }
 
     public function update(Request $request, $id)
@@ -123,9 +132,13 @@ class AdminTopicController extends AdminController
     	}else {
     		$detai = new DeTai();
     		$detai = DeTai::find($id);
+            $sinhvien_id            = $request->sinhvien;
+
     		$detai->tendetai 		= $request->tendetai;
     		$detai->mota 	 		= $request->mota;
     		$detai->chuyennganh_id 	= $request->chuyennganh;
+            $detai->linhvuc_id      = $request->linhvuc;
+            $detai->sinhvien_id     = $sinhvien_id;
     		$detai->slug 	 		= Str::slug($request->tendetai."-".time());
 
     		$detai->update();

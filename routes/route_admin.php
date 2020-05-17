@@ -59,10 +59,16 @@
 			Route::get('', 'QuanLyGiaoVienController@index')->name('admin.quanlygiaovien.index');
 			Route::get('create', 'QuanLyGiaoVienController@create')->name('admin.quanlygiaovien.create');
 			Route::post('create', 'QuanLyGiaoVienController@store')->name('admin.quanlygiaovien.store');
-			Route::get('delete/{id}','QuanLyGiaoVienController@delete')->name('admin.quanlygiaovien.delete');
 			Route::get('view/{id}','QuanLyGiaoVienController@view')->name('admin.quanlygiaovien.view');
 			Route::post('changepassword', 'QuanLyGiaoVienController@changePassword')->name('admin.quanlygiaovien.changepassword');
 			Route::post('updateprofile', 'QuanLyGiaoVienController@updateProfile')->name('admin.quanlygiaovien.updateprofile');
+		});
+
+		Route::group(['prefix' => 'quan-ly-sinh-vien'], function() {
+			Route::get('', 'QuanLySinhVienController@index')->name('admin.quanlysinhvien.index');
+			Route::get('create', 'QuanLySinhVienController@create')->name('admin.quanlysinhvien.create');
+			Route::post('create', 'QuanLySinhVienController@store')->name('admin.quanlysinhvien.store');
+			Route::get('view/{id}','QuanLySinhVienController@view')->name('admin.quanlysinhvien.view');
 		});
 	});
 

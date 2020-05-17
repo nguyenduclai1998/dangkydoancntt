@@ -16,7 +16,7 @@ class QuanLyGiaoVienController extends Controller
 {
     public function index()
     {
-    	$giaovien  = User::with('thongtin','role')->where('users.role_id', 2)->paginate(5);
+    	$giaovien  = User::with('thongtin','role')->where('users.role_id', 2)->paginate(10);
     	$viewData = [
 			'giaovien' => $giaovien
 		];
@@ -69,7 +69,7 @@ class QuanLyGiaoVienController extends Controller
     public function view($id)
     {
     	$giaovien  = User::with('thongtin','role')->where('users.id', $id)->first();
-        //dd($giaovien->thongtin->avatar);
+
   		$viewData = [
 			'giaovien' => $giaovien
 		];
