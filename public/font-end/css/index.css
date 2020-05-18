@@ -326,7 +326,6 @@ nav.breadcrumb ol li>span {
     position: relative;
     margin: 0 0 10px;
     color: #cd2122;
-    z-index: 1;
 }
 
 .block .block {
@@ -351,7 +350,6 @@ nav.breadcrumb ol li>span {
     letter-spacing: 1px;
     color: #222;
     padding: 10px 0 10px;
-    z-index: 9;
 }
 
 .item-list ul li.view-list-item {
@@ -375,6 +373,11 @@ nav.breadcrumb ol li>span {
 .post-style-list .post-block .post-image img {
     height: auto;
     width: 100%;
+}
+
+.post-image.img{
+    height: auto;
+    max-width: 260px;
 }
 
 .post-style-list.small .post-title a {

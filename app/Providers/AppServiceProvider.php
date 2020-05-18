@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         $chuyennganh = ChuyenNganh::get();
         $linhvuc     = LinhVuc::get();
         $sinhvien    = User::where('role_id', 3)->get();
-
+        
         View::share('CHUYENNGANHS', $chuyennganh);
         View::share('LINHVUCS', $linhvuc);
         View::share('SINHVIENS', $sinhvien);

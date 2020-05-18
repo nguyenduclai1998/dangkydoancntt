@@ -61,7 +61,7 @@
 								<ul class="dropdown_content">
 									@if(isset($CHUYENNGANHS))
 										@foreach($CHUYENNGANHS as $cn)
-											<a href="{{ route('fontend.detai.index', $cn->id)}}" title="">{{$cn->tenchuyennganh}}</a>
+											<a href="{{ route('fontend.detai.index',['slug' => $cn->slug, 'id' => $cn->id])}}" title="">{{$cn->tenchuyennganh}}</a>
 										@endforeach
 									@endif
 								</ul>
