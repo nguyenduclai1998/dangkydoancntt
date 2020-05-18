@@ -77,7 +77,7 @@
 						<div class="col-xs-12 col-sm-3 item-teacher">
 							<div>
 								<div class="img-item">
-									<img src=" {{ asset('font-end/img/search-4.png')}}" alt="">
+									<img src="{{ asset('font-end/img/search-4.png')}}" alt="">
 								</div>
 								<p>Thống kê tổng hợp số liệu</p>
 							</div>
