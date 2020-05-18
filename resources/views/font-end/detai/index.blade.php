@@ -116,98 +116,10 @@
                                                                         <div class="post-content">
                                                                             <div class="post-title">
                                                                                 <a href="">
-                                                                                Thông báo mở lớp Đào tạo cấp chứng chỉ thẩm tra viên an toàn giao thông đường bộ<img src="http://www.utt.edu.vn/publics/template/portal/images/newicon_vi.gif" alt="hot news">                                                        </a>
+                                                                                Thông báo mở lớp Đào tạo cấp chứng chỉ thẩm tra viên an toàn giao thông đường bộ<img src="{{asset('font-end/img/newicon_vi.gif')}}" alt="hot news">                                                        </a>
                                                                             </div>
                                                                             <div class="post-meta">
                                                                                 <span class="post-created">10/05/2020 14:05</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="view-list-item" >
-                                                            <div class="views-field views-field-nothing">
-                                                                <div class="field-content">
-                                                                    <div class="post-block">
-                                                                        <div class="post-image">
-                                                                            <a href="">
-                                                                            <img src="{{asset('font-end/img/aa198226f6d778af0f29fcef70b6cbce.jpg')}}" alt="Thông báo mở lớp Bồi dưỡng chức danh nghề nghiệp Giảng viên hạng II, III" typeof="Image" />
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="post-content">
-                                                                            <div class="post-title">
-                                                                                <a href="">
-                                                                                Thông báo mở lớp Bồi dưỡng chức danh nghề nghiệp Giảng viên hạng II, III<img src="http://www.utt.edu.vn/publics/template/portal/images/newicon_vi.gif" alt="hot news">                                                        </a>
-                                                                            </div>
-                                                                            <div class="post-meta">
-                                                                                <span class="post-created">10/05/2020 14:05</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="view-list-item" >
-                                                            <div class="views-field views-field-nothing">
-                                                                <div class="field-content">
-                                                                    <div class="post-block">
-                                                                        <div class="post-image">
-                                                                            <a href="">
-                                                                            <img src="{{asset('font-end/img/aa198226f6d778af0f29fcef70b6cbce.jpg')}}" alt="Lịch công tác tuần 20 năm 2020 (từ 11/5/2020 đến 17/5/2020)" typeof="Image" />
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="post-content">
-                                                                            <div class="post-title">
-                                                                                <a href="">
-                                                                                Lịch công tác tuần 20 năm 2020 (từ 11/5/2020 đến 17/5/2020)<img src="http://www.utt.edu.vn/publics/template/portal/images/newicon_vi.gif" alt="hot news">                                                        </a>
-                                                                            </div>
-                                                                            <div class="post-meta">
-                                                                                <span class="post-created">09/05/2020 09:05</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="view-list-item" >
-                                                            <div class="views-field views-field-nothing">
-                                                                <div class="field-content">
-                                                                    <div class="post-block">
-                                                                        <div class="post-image">
-                                                                            <a href="">
-                                                                            <img src="{{asset('font-end/img/aa198226f6d778af0f29fcef70b6cbce.jpg')}}" alt="Thông báo chương trình học bổng toàn phần của chính phủ Ấn Độ dành cho sinh viên năm 2020" typeof="Image" />
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="post-content">
-                                                                            <div class="post-title">
-                                                                                <a href="">
-                                                                                Thông báo chương trình học bổng toàn phần của chính phủ Ấn Độ dành cho sinh viên năm 2020                                                        </a>
-                                                                            </div>
-                                                                            <div class="post-meta">
-                                                                                <span class="post-created">08/05/2020 17:05</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li class="view-list-item" >
-                                                            <div class="views-field views-field-nothing">
-                                                                <div class="field-content">
-                                                                    <div class="post-block">
-                                                                        <div class="post-image">
-                                                                            <a href="">
-                                                                            <img src="{{asset('font-end/img/aa198226f6d778af0f29fcef70b6cbce.jpg')}}" alt="Thông báo đề cử xét trao Giải thưởng Phụ nữ Việt Nam năm 2020" typeof="Image" />
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="post-content">
-                                                                            <div class="post-title">
-                                                                                <a href="">
-                                                                                Thông báo đề cử xét trao Giải thưởng Phụ nữ Việt Nam năm 2020                                                        </a>
-                                                                            </div>
-                                                                            <div class="post-meta">
-                                                                                <span class="post-created">08/05/2020 04:05</span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
