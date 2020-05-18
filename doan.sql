@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2020 at 09:51 AM
+-- Generation Time: May 17, 2020 at 11:40 AM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.3.15
+-- PHP Version: 7.3.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -62,15 +62,17 @@ CREATE TABLE `detai` (
   `chuyennganh_id` bigint(20) UNSIGNED NOT NULL,
   `linhvuc_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `sinhvien_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `detai`
 --
 
-INSERT INTO `detai` (`id`, `tendetai`, `mota`, `slug`, `user_id`, `chuyennganh_id`, `linhvuc_id`, `created_at`, `updated_at`) VALUES
-(3, 'Xây dựng phần mềm quản lý khối lượng giảng dạy của giảng viên khoa CNTT –Trường Đại học X', '<p><strong>X&acirc;y dựng phần mềm quản l&yacute; khối lượng giảng dạy của giảng vi&ecirc;n khoa CNTT &ndash;Trường Đại học X</strong></p>', 'xay-dung-phan-mem-quan-ly-khoi-luong-giang-day-cua-giang-vien-khoa-cntt-truong-dai-hoc-x-1588578193', 1, 2, 1, '2020-04-28 03:33:47', '2020-05-04 00:43:13');
+INSERT INTO `detai` (`id`, `tendetai`, `mota`, `slug`, `user_id`, `chuyennganh_id`, `linhvuc_id`, `created_at`, `updated_at`, `sinhvien_id`) VALUES
+(3, 'Xây dựng phần mềm quản lý khối lượng giảng dạy của giảng viên khoa CNTT –Trường Đại học X', '<p><strong>X&acirc;y dựng phần mềm quản l&yacute; khối lượng giảng dạy của giảng vi&ecirc;n khoa CNTT &ndash;Trường Đại học X</strong></p>', 'xay-dung-phan-mem-quan-ly-khoi-luong-giang-day-cua-giang-vien-khoa-cntt-truong-dai-hoc-x-1589678643', 1, 2, 1, '2020-04-28 03:33:47', '2020-05-16 18:24:03', NULL),
+(11, 'Xây dựng Website Trường Đại học Công nghiệp Việt Trì a', '<p>X&acirc;y dựng Website Trường Đại học C&ocirc;ng nghiệp Việt Tr&igrave; a</p>', 'xay-dung-website-truong-dai-hoc-cong-nghiep-viet-tri-a-1589679253', 2, 4, 4, '2020-05-16 18:20:24', '2020-05-16 18:34:13', 9);
 
 -- --------------------------------------------------------
 
@@ -150,7 +152,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2020_04_28_074926_create_table_table', 1),
-(5, '2020_04_28_083314_create_relationship_table', 1);
+(5, '2020_04_28_083314_create_relationship_table', 1),
+(6, '2020_05_15_162753_update_detai_table', 2);
 
 -- --------------------------------------------------------
 
@@ -202,8 +205,7 @@ CREATE TABLE `role` (
 INSERT INTO `role` (`id`, `rolename`, `created_at`, `updated_at`) VALUES
 (1, 'Quản trị viên', '2020-05-07 03:10:17', NULL),
 (2, 'Giáo viên', '2020-05-07 03:10:17', NULL),
-(3, 'Sinh viên', '2020-05-07 03:10:17', NULL),
-(4, 'guest', '2020-05-07 03:10:17', NULL);
+(3, 'Sinh viên', '2020-05-07 03:10:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -233,7 +235,10 @@ INSERT INTO `thongtin` (`id`, `ngaysinh`, `sdt`, `masv`, `gioitinh`, `avatar`, `
 (1, NULL, NULL, NULL, NULL, '', NULL, NULL, 1, '2020-04-28 01:48:59', '2020-04-28 01:48:59'),
 (2, '1998-07-25', 387588688, NULL, 'Nam', 'aa', 'Giáo sư', NULL, 2, '2020-04-30 19:13:10', '2020-04-30 19:13:10'),
 (9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 9, '2020-04-30 19:25:24', '2020-04-30 19:25:24'),
-(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 10, '2020-05-05 02:31:30', '2020-05-05 02:31:30');
+(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 10, '2020-05-05 02:31:30', '2020-05-05 02:31:30'),
+(12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 12, '2020-05-16 20:09:23', '2020-05-16 20:09:23'),
+(13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 13, '2020-05-17 01:50:48', '2020-05-17 01:50:48'),
+(14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 14, '2020-05-17 01:53:45', '2020-05-17 01:53:45');
 
 -- --------------------------------------------------------
 
@@ -275,18 +280,22 @@ CREATE TABLE `users` (
   `role_id` bigint(20) UNSIGNED DEFAULT 3,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `sinhvien_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Lai Nguyễn Đức', 'kenchivas1998@gmail.com', NULL, '$2y$10$YiIs1u/hZd0TKm2EsYuF0uWFXPUWmnxFPMJFg4ABZ.YN3uG1drRTm', 1, NULL, '2020-04-28 01:48:59', '2020-05-03 21:28:27'),
-(2, 'Lai Nguyễn Đức', 'nguyenduclai.utt@gmail.com', NULL, '$2y$10$bAlPE42qpVUtNqHdfsuTI.HC5Da2pQUCx17pkal1ci7lcZVPQR8aC', 2, NULL, '2020-04-30 19:13:10', '2020-04-30 19:13:10'),
-(9, 'Lai', 'williamlongworth@my.smccd.edu', NULL, '$2y$10$Osq/QgkLkuD/Ke07H9ikgOaSdHEcNir.ggO/8EhhP1G4dvR1Rctky', 2, NULL, '2020-04-30 19:25:24', '2020-04-30 19:25:24'),
-(10, 'test', 'kenchivas1998@gmail.comtest', NULL, '$2y$10$u3dHDw6ucIWgL5iL68XGsecXNr./JBFbVV89mGzSoXMxkMtmSKPXy', 2, NULL, '2020-05-05 02:31:30', '2020-05-05 02:31:30');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`, `sinhvien_id`) VALUES
+(1, 'Lai Nguyễn Đức', 'kenchivas1998@gmail.com', NULL, '$2y$10$YiIs1u/hZd0TKm2EsYuF0uWFXPUWmnxFPMJFg4ABZ.YN3uG1drRTm', 1, NULL, '2020-04-28 01:48:59', '2020-05-03 21:28:27', NULL),
+(2, 'Lai Nguyễn Đức', 'nguyenduclai.utt@gmail.com', NULL, '$2y$10$bAlPE42qpVUtNqHdfsuTI.HC5Da2pQUCx17pkal1ci7lcZVPQR8aC', 3, NULL, '2020-04-30 19:13:10', '2020-04-30 19:13:10', NULL),
+(9, 'Lai', 'williamlongworth@my.smccd.edu', NULL, '$2y$10$Osq/QgkLkuD/Ke07H9ikgOaSdHEcNir.ggO/8EhhP1G4dvR1Rctky', 3, NULL, '2020-04-30 19:25:24', '2020-04-30 19:25:24', NULL),
+(10, 'test', 'kenchivas1998@gmail.comtest', NULL, '$2y$10$u3dHDw6ucIWgL5iL68XGsecXNr./JBFbVV89mGzSoXMxkMtmSKPXy', 2, NULL, '2020-05-05 02:31:30', '2020-05-05 02:31:30', NULL),
+(12, 'nguyenduclai', 'nguyenduclai.utt1@gmail.com', NULL, '$2y$10$Ngo0s5mOo6ES7FU2A8GUtuwoHUj58CTe6uu8/Qcoxa/T4K5w0d34C', 3, NULL, '2020-05-16 20:09:23', '2020-05-16 20:09:23', NULL),
+(13, 'tester', 'tester.utt@gmail.com', NULL, '$2y$10$15Jbv5CGKE4/HkUDXdRDtOKEZJeqQkHV1mmVMGT1bimELp.kDR2OG', 3, NULL, '2020-05-17 01:50:48', '2020-05-17 01:50:48', NULL),
+(14, 'Giao vien 1', 'giaovien1@gmail.com', NULL, '$2y$10$O/N6GWRxDhXUqPuJo00xs.oFtbyYYdm2/vwl/F41/je5cAVUOiYpq', 2, NULL, '2020-05-17 01:53:45', '2020-05-17 01:53:45', NULL);
 
 --
 -- Indexes for dumped tables
@@ -305,7 +314,8 @@ ALTER TABLE `detai`
   ADD PRIMARY KEY (`id`),
   ADD KEY `detai_chuyennganh_id_foreign` (`chuyennganh_id`),
   ADD KEY `detai_linhvuc_id_foreign` (`linhvuc_id`),
-  ADD KEY `detai_user_id_foreign` (`user_id`);
+  ADD KEY `detai_user_id_foreign` (`user_id`),
+  ADD KEY `detai_sinhvien_id_foreign` (`sinhvien_id`);
 
 --
 -- Indexes for table `dexuatdetai`
@@ -393,7 +403,7 @@ ALTER TABLE `chuyennganh`
 -- AUTO_INCREMENT for table `detai`
 --
 ALTER TABLE `detai`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `dexuatdetai`
@@ -417,7 +427,7 @@ ALTER TABLE `linhvuc`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `nguyenvong`
@@ -435,7 +445,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `thongtin`
 --
 ALTER TABLE `thongtin`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tintuc`
@@ -447,7 +457,7 @@ ALTER TABLE `tintuc`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -459,6 +469,7 @@ ALTER TABLE `users`
 ALTER TABLE `detai`
   ADD CONSTRAINT `detai_chuyennganh_id_foreign` FOREIGN KEY (`chuyennganh_id`) REFERENCES `chuyennganh` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `detai_linhvuc_id_foreign` FOREIGN KEY (`linhvuc_id`) REFERENCES `linhvuc` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `detai_sinhvien_id_foreign` FOREIGN KEY (`sinhvien_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `detai_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --

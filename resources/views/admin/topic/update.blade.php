@@ -45,8 +45,8 @@
                         <label for="exampleFormControlSelect1">Chuyên ngành</label>
                         <select class="form-control" id="exampleFormControlSelect1" name="chuyennganh">
                             <option value="">--Chọn chuyên ngành--</option>
-                            @if(isset($chuyennganh))
-                                @foreach($chuyennganh as $cn)
+                            @if(isset($CHUYENNGANHS))
+                                @foreach($CHUYENNGANHS as $cn)
                                     <option value="{{$cn->id}}" {{$detai->chuyennganh_id == $cn->id ? "selected='seleted'" : "" }}>{{$cn->tenchuyennganh}}</option>
                                 @endforeach
                             @endif
@@ -67,6 +67,19 @@
                             @if(isset($LINHVUCS))
                                 @foreach($LINHVUCS as $lv)
                                     <option value="{{$lv->id}}" {{$detai->linhvuc_id == $lv->id ? "selected='seleted'" : "" }}>{{$lv->tenlinhvuc}}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Sinh viên đã đăng ký với giảng viên hướng dẫn</label>
+                        <label for="exampleFormControlSelect1" style="color:red; font-size: 12px" >*Nếu không sinh viên chưa đăng ký vui lòng bỏ qua phần này*</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="sinhvien">
+                            <option value="">--Chọn sinh viên--</option>
+                            @if(isset($SINHVIENS))
+                                @foreach($SINHVIENS as $sv)
+                                    <option value="{{$sv->id}}" {{$detai->sinhvien_id == $sv->id ? "selected='seleted'" : "" }}>{{$sv->name}}</option>
                                 @endforeach
                             @endif
                         </select>

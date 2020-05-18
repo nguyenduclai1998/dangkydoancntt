@@ -57,9 +57,11 @@
 							<li class="dropdown_menu" >
 								<a href="" class="height: 100%;display: inline-flex;align-items: center;">Đề tài</a>
 								<ul class="dropdown_content">
-									<a href="" title="">Hệ thống thông tin</a>
-									<a href="" title="">Hệ thống thông tin</a>
-									<a href="" title="">Hệ thống thông tin</a>
+									@if(isset($CHUYENNGANHS))
+										@foreach($CHUYENNGANHS as $cn)
+											<a href="" title="">{{$cn->tenchuyennganh}}</a>
+										@endforeach
+									@endif
 								</ul>
 							</li>
 							<li class=""><a href="">Tin tức</a></li>

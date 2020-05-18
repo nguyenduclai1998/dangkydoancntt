@@ -72,7 +72,20 @@
                             @endforeach
                         @endif
                     </select>
-                  </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Sinh viên đã đăng ký đề tài với giảng viên hướng dẫn</label>
+                    <label for="exampleFormControlSelect1" style="color:red; font-size: 12px" >*Nếu không sinh viên chưa đăng ký vui lòng bỏ qua phần này*</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="sinhvien">
+                        <option value="">--Chọn sinh viên--</option>
+                        @if(isset($SINHVIENS))
+                            @foreach($SINHVIENS as $sv)
+                                <option value="{{$sv->id}}">{{$sv->name}}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
             </div>
         </div>
         <div class="card-footer" style="padding: 0">
