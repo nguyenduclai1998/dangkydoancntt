@@ -77,7 +77,7 @@ class AdminTopicController extends AdminController
             if(isset($sinhvien_id)) {
                 $detai->tendetai        = $request->tendetai;
                 $detai->mota            = $request->mota;
-                $detai->slug            = Str::slug($request->tendetai."-".time());
+                $detai->slug            = Str::slug($request->tendetai);
                 $detai->chuyennganh_id  = $request->chuyennganh;
                 $detai->linhvuc_id      = $request->linhvuc;
                 $detai->user_id         = $id;
@@ -89,7 +89,7 @@ class AdminTopicController extends AdminController
 
             $detai->tendetai        = $request->tendetai;
             $detai->mota            = $request->mota;
-            $detai->slug            = Str::slug($request->tendetai."-".time());
+            $detai->slug            = Str::slug($request->tendetai);
             $detai->chuyennganh_id  = $request->chuyennganh;
             $detai->linhvuc_id      = $request->linhvuc;
             $detai->user_id         = $id;

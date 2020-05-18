@@ -101,7 +101,7 @@ class TinTucController extends Controller
     		$tintuc = new TinTuc();
     		$tintuc->tenbaiviet 		= $request->tenbaiviet;
     		$tintuc->noidung 		    = $request->noidung;
-    		$tintuc->slug 			    = Str::slug($request->tenbaiviet."-".time());
+    		$tintuc->slug 			    = Str::slug($request->tenbaiviet);
 			$tintuc->chuyennganh_id 	= $request->chuyennganh;
 			$tintuc->avatar				= $filenametostore;
     		$tintuc->user_id 	   	    = $id;

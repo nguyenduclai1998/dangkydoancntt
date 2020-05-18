@@ -11,6 +11,14 @@
 |
 */
 include 'route_admin.php';
+	
+	Route::group(['prefix' => 'users-auth', 'namespace' => 'Fontend\Auth'], function(){
+		Route::get('login', 'LoginController@getLogin')->name('get.fontend.login');
+		Route::post('login', 'LoginController@postLogin')->name('post.fontend.login');
+
+		Route::get('register', 'RegisterController@getRegister')->name('get.fontend.register');
+		Route::post('register', 'RegisterController@postRegister')->name('post.fontend.register');
+	});
 
 	Route::group(['prefix' => '', 'namespace' => 'fontend'], function() {
 		Route::get('/', function() {
@@ -18,7 +26,7 @@ include 'route_admin.php';
 		})->name('home.index');
 
 		Route::group(['prefix' => 'de-tai'], function() {
-
+			Route::get('/{slug}','DeTaiController@index')->name('fontend.detai.index');
 		});
 	});
 

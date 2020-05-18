@@ -1,6 +1,9 @@
 @extends('layouts.app_master_font_end')
 @section('content')
 <!-- Start contentMain -->
+	<div class="imgCover">
+		<img class="image-cover" src="{{ asset('font-end/img/cover.jpg')}}" alt="">
+	</div>
 	<section class="contentMain">
 		<!-- Main Teacher  -->
 		<div class="main-row mainTeacher">

@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Đăng nhập</title>
+        <title>Đăng ký</title>
         <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
         <link rel="stylesheet" href="https://anvui.vn/libs/bootstrap-4.4.1/css/bootstrap.min.css">
         <script src="https://anvui.vn/libs/jquery-3.4.1/jquery-3.4.1.min.js"></script>
@@ -13,19 +13,22 @@
                 <div class="row">
                     <div class="col-3"></div>
                     <div class="col-6">
-                        {{-- Hiển thị thông tin trạng thái tạo bài viết --}}
-                        @if (session('errors'))
-                            <div class="alert alert-danger">{{session('errors')}}</div>
+                        @if(count($errors)>0)
+                            <div class="alert alert-danger">
+                                @foreach ($errors->all() as $err)
+                                    {{$err}}<br>
+                                @endforeach
+                            </div>
                         @endif
-
-                        {{-- Hiển thị thông tin trạng thái tạo bài viết --}}
-                        @if (session('notify'))
-                            <div class="alert alert-info">{{session('notify')}}</div>
-                        @endif
-                        <form action="{{ route('post.admin.login')}}" id="login" method="POST">
-                        @csrf                     
-                            <h3>Đăng Nhập</h3>
+                        <form action="{{ route('post.admin.register')}}" id="register" method="POST">
+                        @csrf             
+                            <h3>Đăng Ký</h3>
                             <span class="error"></span>
+                            <div class="form-group">
+                                <label for="">Họ và tên</label>
+                                <input type="text" class="form-control" name="name" value="" placeholder="Họ và tên">
+                                <label for="name" class="error"></label>
+                            </div>
                             <div class="form-group">
                                 <label for="">Email</label>
                                 <input type="text" class="form-control" name="email" value="" placeholder="Email">
@@ -33,12 +36,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Mật khẩu</label>
-                                <input type="password" class="form-control" name="password" value="" placeholder="Mật khẩu">
+                                <input type="password" id="password" class="form-control" name="password" value="" placeholder="Mật khẩu">
                                 <label for="password" class="error"></label>
                             </div>
+
                             <div class="form-group">
-                                <button type="submit">Đăng nhập</button>
+                                <label for="">Xác nhận mật khẩu</label>
+                                <input type="password" id="confirmpassword" class="form-control" name="confirmpassword" value="" placeholder="Xác nhận mật khẩu">
+                                <label for="confirmpassword" class="error"></label>
                             </div>
+                            <div class="form-group">
+                                <button type="submit">Đăng ký</button>
+                            </div>
+                            <a href="{{ route('get.admin.login')}}">Đăng nhập</a>
                         </form>
                     </div>
                     <div class="col-3"></div>
@@ -76,8 +86,11 @@
         <script src=" https://anvui.vn/libs/bootstrap-4.4.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
         <script>
-            $("#login").validate({ 
+            $("#register").validate({ 
                 rules: {
+                    name: {
+                        required: true
+                    },
                     email: {
                         required: true,
                         email: true
@@ -85,9 +98,17 @@
                     password: {
                         required: true,
                         minlength: 8
+                    },
+                    confirmpassword: {
+                        required: true,
+                        minlength: 8,
+                        equalTo: "#password"
                     }
                 },
                 messages: {
+                    name: {
+                        required: "Vui lòng nhập họ tên."
+                    },
                     email: {
                         required: "Vui lòng nhập email.",
                         email: "Email chưa đúng định dạng."
@@ -96,6 +117,11 @@
                     password: {
                         required: "Vui lòng nhập mật khẩu.",
                         minlength: "Mật khẩu tối thiểu là 8 kí tự."
+                    },
+                    confirmpassword: {
+                        required: "Vui lòng nhập mật khẩu.",
+                        minlength: "Mật khẩu tối thiểu là 8 kí tự.",
+                        equalTo: 'Mật khẩu không khớp.'
                     }
                 } 
             

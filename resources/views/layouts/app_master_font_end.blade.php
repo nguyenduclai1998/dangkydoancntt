@@ -45,7 +45,9 @@
 		<div class="container">
 			<div class="navbarMain__wrap">
 				<img src="{{ asset('font-end/img/logo.png')}}" alt="Trường đại học Công nghệ giao thông vận tải">
-				<a href="" class="btn btn-default btn-login"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+				@if(!Auth::check())
+				<a href="{{ route('get.fontend.login')}}" class="btn btn-default btn-login"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+				@endif
 			</div>
 		</div>
 		<div class="navbarMain__menu">
@@ -59,7 +61,7 @@
 								<ul class="dropdown_content">
 									@if(isset($CHUYENNGANHS))
 										@foreach($CHUYENNGANHS as $cn)
-											<a href="" title="">{{$cn->tenchuyennganh}}</a>
+											<a href="{{ route('fontend.detai.index', $cn->id)}}" title="">{{$cn->tenchuyennganh}}</a>
 										@endforeach
 									@endif
 								</ul>
@@ -68,7 +70,11 @@
 							<li class=""><a href="">Liên hệ</a></li>
 						</ul>
 						<ul class="navbarMain__account">
-							<li class=""><a href="">Nguyễn Đức Lai</a></li>
+							@if(Auth::check())
+		                        <div class="info">
+		                            <li class=""><a href="">{{Auth::user()->name}}</a></li>
+		                        </div>
+	                        @endif
 						</ul>
 					</div>
 				</div>
@@ -85,9 +91,6 @@
 	</div>
 
 	<div class="site-overlay"></div>
-	<div class="imgCover">
-		<img class="image-cover" src="{{ asset('font-end/img/cover.jpg')}}" alt="">
-	</div>
 
 	<!-- End navbarMain -->
 	@yield('content')
