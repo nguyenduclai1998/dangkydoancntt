@@ -20,7 +20,7 @@ include 'route_admin.php';
 		Route::post('register', 'RegisterController@postRegister')->name('post.fontend.register');
 	});
 
-	Route::group(['prefix' => '', 'namespace' => 'fontend'], function() {
+	Route::group(['prefix' => '', 'namespace' => 'Fontend'], function() {
 		Route::get('/', function() {
 			return view('font-end.index');
 		})->name('home.index');
