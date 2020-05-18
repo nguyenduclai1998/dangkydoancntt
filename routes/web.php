@@ -15,5 +15,10 @@ include 'route_admin.php';
 	Route::group(['prefix' => '', 'namespace' => 'fontend'], function() {
 		Route::get('/', function() {
 			return view('font-end.index');
+		})->name('home.index');
+
+		Route::group(['prefix' => 'de-tai'], function() {
+
 		});
 	});
+
