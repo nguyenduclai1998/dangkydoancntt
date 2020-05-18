@@ -1,6 +1,9 @@
 @extends('layouts.app_master_font_end')
 @section('content')
 <!-- Start contentMain -->
+	<div class="imgCover">
+		<img class="image-cover" src="{{ asset('font-end/img/cover.jpg')}}" alt="">
+	</div>
 	<section class="contentMain">
 		<!-- Main Teacher  -->
 		<div class="main-row mainTeacher">
@@ -77,7 +80,7 @@
 						<div class="col-xs-12 col-sm-3 item-teacher">
 							<div>
 								<div class="img-item">
-									<img src=" {{ asset('font-end/img/search-4.png')}}" alt="">
+									<img src="{{ asset('font-end/img/search-4.png')}}" alt="">
 								</div>
 								<p>Thống kê tổng hợp số liệu</p>
 							</div>

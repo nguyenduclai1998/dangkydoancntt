@@ -400,9 +400,9 @@ nav.breadcrumb ol li>span {
     hyphens: auto;
     word-wrap: break-word;
 }
+
 .block {
     background: transparent;
-    margin-bottom: 30px;
 }
 
 .post-style-list.small .post-meta {
