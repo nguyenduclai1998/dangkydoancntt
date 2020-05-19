@@ -57,39 +57,40 @@
                                                 </div>
                                             </div>
                                             @foreach($detai as $dt)
-                                            <div id="block-gavias-edubiz-content" class="block block-system block-system-main-block no-title">
-                                                <div class="content block-content">
-                                                    <div class="views-element-container">
-                                                        <div class="post-style-list gva-view view-page">
-                                                            <div class="item-list">
-                                                                <ul>
-                                                                    <li class="view-list-item" >
-                                                                        <div class="views-field views-field-nothing">
-                                                                            <span class="field-content">
-                                                                                <div class="post-block">
-                                                                                    <div class="post-image img">
-                                                                                        <a href="l">
-                                                                                        <img src="{{asset('font-end/img/cover.jpg')}}">
-                                                                                        </a>
+                                                @if(!isset($dt->sinhvien_id))
+                                                <div id="block-gavias-edubiz-content" class="block block-system block-system-main-block no-title">
+                                                    <div class="content block-content">
+                                                        <div class="views-element-container">
+                                                            <div class="post-style-list gva-view view-page">
+                                                                <div class="item-list">
+                                                                    <ul>
+                                                                        <li class="view-list-item" >
+                                                                            <div class="views-field views-field-nothing">
+                                                                                <span class="field-content">
+                                                                                    <div class="post-block">
+                                                                                        <div class="post-image img">
+                                                                                            <a href="">
+                                                                                            <img style="max-width: 300px; height: auto;" src="{{asset('font-end/img/logo-utt.png')}}">
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <div class="post-content">
+                                                                                            <div class="post-title"><a href="{{ route('fontend.detai.view', ['slug' => $dt->slug, 'detai_slug' => $dt->detai_slug, 'id' => $dt->id])}}">{{$dt->tendetai}}</a></div>
+                                                                                            <div class="post-meta margin-bottom-10"><span class="post-created"> {{$dt->created_at}} </span></div>
+                                                                                            <div class="body hidden-xs">{!! Str::limit($dt->mota, 250) !!}</div>
+                                                                                            <div class="tags"></div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="post-content">
-                                                                                        <div class="post-title"><a href="{{ route('fontend.detai.view', ['slug' => $dt->slug, 'detai_slug' => $dt->detai_slug, 'id' => $dt->id])}}">{{$dt->tendetai}}</a></div>
-                                                                                        <div class="post-meta margin-bottom-10"><span class="post-created"> {{$dt->name}} </span></div>
-                                                                                        <div class="post-meta margin-bottom-10"><span class="post-created"> {{$dt->created_at}} </span></div>
-                                                                                        <div class="body hidden-xs">{!! Str::limit($dt->mota, 250) !!}</div>
-                                                                                        <div class="tags"></div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </span>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
+                                                                                </span>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <!-- Pagination -->
                                                             </div>
-                                                            <!-- Pagination -->
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                @endif
                                             @endforeach
                                         </div>
                                     </div>

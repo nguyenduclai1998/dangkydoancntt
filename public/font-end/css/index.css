@@ -377,7 +377,7 @@ nav.breadcrumb ol li>span {
 
 .post-image.img{
     height: auto;
-    max-width: 260px;
+    max-width: 300px;
 }
 
 .post-style-list.small .post-title a {
@@ -499,3 +499,13 @@ a.btn.btn-primary.topic-buttom {
 .topic-buttom.text-center {
     margin: 20px 0;
 }
+
+.post-meta {
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 15px;
+}
+
+.post-image.img img {
+    width: 156px!important;
+}
+   

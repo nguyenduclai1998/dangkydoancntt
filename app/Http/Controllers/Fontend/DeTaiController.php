@@ -12,7 +12,7 @@ class DeTaiController extends Controller
     public function index(Request $request)
     {
         $id = $request->id;
-    	$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'detai.chuyennganh_id', 'detai.slug as detai_slug', 'detai.created_at', 'users.name','chuyennganh.tenchuyennganh','chuyennganh.slug', 'linhvuc.tenlinhvuc')
+    	$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'detai.chuyennganh_id', 'detai.slug as detai_slug', 'detai.sinhvien_id', 'detai.created_at', 'users.name','chuyennganh.tenchuyennganh','chuyennganh.slug', 'linhvuc.tenlinhvuc')
     							   ->join('users', 'users.id', '=', 'detai.user_id')
                                    ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
     							   ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
@@ -33,6 +33,11 @@ class DeTaiController extends Controller
 			'detai' => $detai
 		];
     	return view('font-end.detai.view', $viewData);
+    }
+
+    public function topic(Request $request)
+    {
+    	dd('dang ky thanh cong.');
     }
 }
 

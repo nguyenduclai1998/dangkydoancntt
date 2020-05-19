@@ -52,8 +52,11 @@
                                                     <div class="field field--name-body field--type-text-with-summary field--label-hidden field__item">
                                                         <div class="block news-cat-title">
                                                             <h2 class="block-title">
-                                                                <span id="news-block-title" style="border-bottom:none;">{{$detai->tendetai}}</span>
+                                                                <span id="news-block-title" style="border-bottom:none; font-size: 22px!important">{{$detai->tendetai}}</span>
                                                             </h2>
+                                                            <div class="post-meta">
+                                                                <span class="post-created">{{$detai->created_at}}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -61,7 +64,7 @@
                                             <div class="topic-content">
                                                 {!! $detai->mota !!}
                                                 <div class="topic-buttom text-center">
-                                                    <a href="" class="btn btn-primary topic-buttom" style="background: #f4791e; border: #f4791e" title=""> Dang ky de tai</a>
+                                                    <a href="{{route('fontend.detai.dangkydetai', ['id' => $detai->id])}}" class="btn btn-primary topic-buttom" style="background: #f4791e; border: #f4791e" title=""> ĐĂNG KÝ ĐỀ TÀI</a>
                                                 </div>
                                             </div>
                                         </div>

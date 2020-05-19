@@ -34,6 +34,9 @@ include 'route_admin.php';
 	                ->where('detai_slug','[a-zA-Z0-9-_]+')
                 	->name('fontend.detai.view');
 
+            Route::get('dang-ky-de-tai-{id}.html', 'DeTaiController@topic')
+            		->name('fontend.detai.dangkydetai');
+
 		});
 	});
 
