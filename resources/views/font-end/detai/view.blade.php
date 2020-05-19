@@ -14,12 +14,14 @@
                                         <div class="content block-content">
                                             <div class="breadcrumb-links">
                                                 <div class="content-inner">
-                                                    <nav class="breadcrumb " role="navigation" aria-labelledby="system-breadcrumb">
+                                                    <nav class="breadcrumb " style="padding-left: 0!important; margin-bottom: 0;" role="navigation" aria-labelledby="system-breadcrumb">
                                                         <ol>
-                                                            <li>
-                                                                <a href="index.html">Trang chủ</a>
+                                                            <li class="title-topic">
+                                                                <a href="{{route('home.index')}}">Trang chủ</a>
                                                                 <span class="slash">»</span>
-                                                                <a href="detai.html">Đề tài</a>
+                                                                <a href="{{ route('fontend.detai.index',['slug' => $detai->chuyennganh->slug, 'id' => $detai->chuyennganh->id])}}">{{$detai->chuyennganh->tenchuyennganh}}</a>
+                                                                <span class="slash">»</span>
+                                                                <a href="">{{$detai->tendetai}}</a>
                                                             </li>
                                                         </ol>
                                                     </nav>
@@ -50,47 +52,18 @@
                                                     <div class="field field--name-body field--type-text-with-summary field--label-hidden field__item">
                                                         <div class="block news-cat-title">
                                                             <h2 class="block-title">
-                                                                <span id="news-block-title">ĐỀ TÀI TỐT NGHIỆP</span>
+                                                                <span id="news-block-title" style="border-bottom:none;">{{$detai->tendetai}}</span>
                                                             </h2>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            @foreach($detai as $dt)
-                                            <div id="block-gavias-edubiz-content" class="block block-system block-system-main-block no-title">
-                                                <div class="content block-content">
-                                                    <div class="views-element-container">
-                                                        <div class="post-style-list gva-view view-page">
-                                                            <div class="item-list">
-                                                                <ul>
-                                                                    <li class="view-list-item" >
-                                                                        <div class="views-field views-field-nothing">
-                                                                            <span class="field-content">
-                                                                                <div class="post-block">
-                                                                                    <div class="post-image img">
-                                                                                        <a href="l">
-                                                                                        <img src="{{asset('font-end/img/cover.jpg')}}">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div class="post-content">
-                                                                                        <div class="post-title"><a href="{{ route('fontend.detai.view', ['slug' => $dt->slug, 'detai_slug' => $dt->detai_slug, 'id' => $dt->id])}}">{{$dt->tendetai}}</a></div>
-                                                                                        <div class="post-meta margin-bottom-10"><span class="post-created"> {{$dt->name}} </span></div>
-                                                                                        <div class="post-meta margin-bottom-10"><span class="post-created"> {{$dt->created_at}} </span></div>
-                                                                                        <div class="body hidden-xs">{!! Str::limit($dt->mota, 250) !!}</div>
-                                                                                        <div class="tags"></div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </span>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <!-- Pagination -->
-                                                        </div>
-                                                    </div>
+                                            <div class="topic-content">
+                                                {!! $detai->mota !!}
+                                                <div class="topic-buttom text-center">
+                                                    <a href="" class="btn btn-primary topic-buttom" style="background: #f4791e; border: #f4791e" title=""> Dang ky de tai</a>
                                                 </div>
                                             </div>
-                                            @endforeach
                                         </div>
                                     </div>
                                 </div>

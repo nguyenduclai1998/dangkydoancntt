@@ -25,10 +25,14 @@ include 'route_admin.php';
 			return view('font-end.index');
 		})->name('home.index');
 
-		Route::group(['prefix' => 'de-tai'], function() {
+		Route::group(['prefix' => ''], function() {
 			Route::get('/{slug}-{id}.html', 'DeTaiController@index')
 	                ->where('slug','[a-zA-Z0-9-_]+')
                 	->name('fontend.detai.index');
+
+            Route::get('{slug}/{detai_slug}-{id}.html', 'DeTaiController@view')
+	                ->where('detai_slug','[a-zA-Z0-9-_]+')
+                	->name('fontend.detai.view');
 
 		});
 	});

@@ -479,3 +479,23 @@ li.dropdown_menu {
     display: inline-flex;
     align-items: center;
 }
+
+li.title-topic a {
+    color: #999999!important;
+    font-size: 14px!important;
+}
+
+.topic-content {
+    text-align: justify;
+}
+
+a.btn.btn-primary.topic-buttom {
+    min-width: 250px;
+    min-height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+}
+
+.topic-buttom.text-center {
+    margin: 20px 0;
+}
