@@ -107,7 +107,7 @@ class AdminTopicController extends AdminController
     	];
 
 
-    	return view('admin.topic.update', $viewDataDetai,);
+    	return view('admin.topic.update', $viewDataDetai);
     }
 
     public function update(Request $request, $id)
