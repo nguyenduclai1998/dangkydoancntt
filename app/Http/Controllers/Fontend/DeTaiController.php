@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\DeTai;
 use Illuminate\Support\Facades\DB;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class DeTaiController extends Controller
 {
@@ -28,16 +30,26 @@ class DeTaiController extends Controller
     {	
     	$id = $request->id;
     	$detai = DeTai::with('chuyennganh','linhvuc')->where('detai.id',$id)->first();
-    	// dd($detai);
+
     	$viewData = [
 			'detai' => $detai
 		];
     	return view('font-end.detai.view', $viewData);
     }
 
-    public function topic(Request $request)
+    public function getTopic(Request $request)
     {
-    	dd('dang ky thanh cong.');
+        $id = $request->id;
+        $detai = DeTai::with('chuyennganh','linhvuc')->where('detai.id',$id)->first();
+
+        //Lay thong tin user hien tai
+        $user_id = Auth::user()->id;
+        $thongtin = User::with('thongtin')->where('users.id', $user_id)->first();
+        $viewData = [
+            'detai'     => $detai,
+            'thongtin'  => $thongtin
+        ];
+    	return view('font-end.dangkydetai.index', $viewData);
     }
 }
 

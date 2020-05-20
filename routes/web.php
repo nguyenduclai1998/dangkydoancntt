@@ -25,18 +25,17 @@ include 'route_admin.php';
 			return view('font-end.index');
 		})->name('home.index');
 
-		Route::group(['prefix' => ''], function() {
+		Route::middleware(['web'])->group(function() {
 			Route::get('/{slug}-{id}.html', 'DeTaiController@index')
 	                ->where('slug','[a-zA-Z0-9-_]+')
                 	->name('fontend.detai.index');
-
             Route::get('{slug}/{detai_slug}-{id}.html', 'DeTaiController@view')
+	                ->where('slug','[a-zA-Z0-9-_]+')
 	                ->where('detai_slug','[a-zA-Z0-9-_]+')
                 	->name('fontend.detai.view');
 
-            Route::get('dang-ky-de-tai-{id}.html', 'DeTaiController@topic')
+            Route::get('/dang-ky-de-tai-{id}', 'DeTaiController@getTopic')
             		->name('fontend.detai.dangkydetai');
-
 		});
 	});
 
