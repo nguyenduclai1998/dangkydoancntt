@@ -64,7 +64,7 @@
                                             <div class="topic-content">
                                                 {!! $detai->mota !!}
                                                 <div class="topic-buttom text-center">
-                                                    <a href="{{route('fontend.detai.dangkydetai', ['id' => $detai->id])}}" class="btn btn-primary topic-buttom" style="background: #f4791e; border: #f4791e" title=""> ĐĂNG KÝ ĐỀ TÀI</a>
+                                                    <a href="{{route('fontend.detai.getDangkydetai', ['id' => $detai->id])}}" class="btn btn-primary topic-buttom" style="background: #f4791e; border: #f4791e" title=""> ĐĂNG KÝ ĐỀ TÀI</a>
                                                 </div>
                                             </div>
                                         </div>

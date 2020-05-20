@@ -25,7 +25,7 @@ include 'route_admin.php';
 			return view('font-end.index');
 		})->name('home.index');
 
-		Route::middleware(['web'])->group(function() {
+		Route::middleware(['check_login_user'])->group(function() {
 			Route::get('/{slug}-{id}.html', 'DeTaiController@index')
 	                ->where('slug','[a-zA-Z0-9-_]+')
                 	->name('fontend.detai.index');
@@ -35,7 +35,10 @@ include 'route_admin.php';
                 	->name('fontend.detai.view');
 
             Route::get('/dang-ky-de-tai-{id}', 'DeTaiController@getTopic')
-            		->name('fontend.detai.dangkydetai');
+            		->name('fontend.detai.getDangkydetai');
+
+            Route::post('/dang-ky-de-tai-{id}', 'DeTaiController@postTopic')
+            		->name('fontend.detai.postDangkydetai');
 		});
 	});
 

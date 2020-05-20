@@ -2,8 +2,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
-class CheckLoginAdmin
+class CheckLoginUser
 {
     /**
      * @param \Illuminate\Http\Request  $request
@@ -13,10 +14,10 @@ class CheckLoginAdmin
     
     public function handle($request, Closure $next)
     {
-        if(get_data_user('web')) {
+        if(Auth::check()) {
             return $next($request);
         }
 
-        return redirect()->to('/');
+        return redirect()->to('/users-auth/login');
     }
 } 

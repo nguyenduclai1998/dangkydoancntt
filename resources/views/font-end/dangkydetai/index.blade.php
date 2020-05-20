@@ -19,9 +19,7 @@
                                                             <li class="title-topic">
                                                                 <a href="{{route('home.index')}}">Trang chủ</a>
                                                                 <span class="slash">»</span>
-                                                                <a href=""></a>
-                                                                <span class="slash">»</span>
-                                                                <a href=""></a>
+                                                                <a href="">{{$detai->tendetai}}</a>
                                                             </li>
                                                         </ol>
                                                     </nav>
@@ -44,49 +42,59 @@
                     <div class="content-main-inner">
                         <div class="row">
                             <div id="page-main-content" class="main-content col-xs-12 col-md-9 sb-r">
-                                <div class="main-content-inner">
-                                    @if(Auth::check())
-                                    <div class="content-main">
-                                        <div class="form-group">
-                                            <label for="">Họ tên</label>
-                                            <input type="text" class="form-control" name="email" value="{{Auth::user()->name}}" disabled placeholder="Họ tên">
-                                            <label for="hoten" class="error"></label>
-                                        </div>
+                                <form action="{{ route('fontend.detai.postDangkydetai', ['id' => $detai->id]) }}" method="POST" style="padding: 0;">
+                                    @csrf
+                                    <div class="main-content-inner">
+                                        @if(Auth::check())
+                                        <div class="content-main">
+                                            <div class="form-group">
+                                                <label for="">Họ tên</label>
+                                                <input type="text" class="form-control" name="name" value="{{Auth::user()->name}}" disabled placeholder="Họ tên">
+                                                <label for="hoten" class="error"></label>
+                                            </div>
 
-                                        <div class="form-group">
-                                            <label for="">Mã sinh viên</label>
-                                            <input type="text" class="form-control" name="password" value="{{$thongtin->thongtin->masv}}" disabled placeholder="Mã sinh viên">
-                                            <label for="masv" class="error"></label>
-                                        </div>
+                                            <div class="form-group">
+                                                <label for="">Mã sinh viên</label>
+                                                <input type="text" class="form-control" name="masv" value="{{$thongtin->thongtin->masv}}" disabled placeholder="Mã sinh viên">
+                                                <label for="masv" class="error"></label>
+                                            </div>
 
-                                        <div class="form-group">
-                                            <label for="">Lớp</label>
-                                            <input type="text" class="form-control" name="password" value="{{$thongtin->thongtin->lop}}" disabled placeholder="Lớp">
-                                            <label for="masv" class="error"></label>
-                                        </div>
+                                            <div class="form-group">
+                                                <label for="">Lớp</label>
+                                                <input type="text" class="form-control" name="lop" value="{{$thongtin->thongtin->lop}}" disabled placeholder="Lớp">
+                                                <label for="masv" class="error"></label>
+                                            </div>
 
-                                        <div class="form-group">
-                                            <label for="">Đề tài</label>
-                                            <input type="text" class="form-control" name="password" value="{{$detai->tendetai}}" disabled placeholder="Đề tài">
-                                            <label for="masv" class="error"></label>
-                                        </div>
+                                            <div class="form-group">
+                                                <label for="">Đề tài</label>
+                                                <input type="text" class="form-control" name="detai" value="{{$detai->tendetai}}" disabled placeholder="Đề tài">
+                                                <label for="masv" class="error"></label>
+                                            </div>
 
-                                        <div class="form-group">
-                                            <label for="">Nguyện vọng</label>
-                                            <select style="height: 40px;" class="form-control">
-                                                <option>Nguyện vọng 1</option>
-                                                <option>Nguyện vọng 2</option>
-                                            </select>
-                                        </div>
+                                            <div class="form-group">
+                                                <label for="">Đề tài</label>
+                                                <input type="text" class="form-control" name="linhvuc" value="{{$detai->linhvuc->tenlinhvuc}}" disabled placeholder="Đề tài">
+                                                <label for="masv" class="error"></label>
+                                            </div>
 
-                                        <div class="topic-content">
-                                            <div class="topic-buttom text-center">
-                                                <button type="submit" class="btn btn-primary topic-buttom" style="background: #f4791e; border: #f4791e">ĐĂNG KÝ ĐỀ TÀI</button>
+                                            <div class="form-group">
+                                                <label for="">Nguyện vọng</label>
+                                                <select style="height: 40px;" class="form-control" name="nguyenvong">
+                                                    <option value="">--Chọn nguyện vọng--</option>
+                                                    <option value="1">Nguyện vọng 1</option>
+                                                    <option value="2">Nguyện vọng 2</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="topic-content">
+                                                <div class="topic-buttom text-center">
+                                                    <button type="submit" class="btn btn-primary topic-buttom" style="background: #f4791e; border: #f4791e">ĐĂNG KÝ ĐỀ TÀI</button>
+                                                </div>
                                             </div>
                                         </div>
+                                        @endif
                                     </div>
-                                    @endif
-                                </div>
+                                </form>
                             </div>
                             <!-- Sidebar Right -->
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 sidebar sidebar-right theiaStickySidebar">

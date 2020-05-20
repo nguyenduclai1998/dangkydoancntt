@@ -22,17 +22,23 @@
 					<li class="pushy-submenu">
 						<button>Đề tài</button>
 						<ul>
-							<li class="pushy-link"><a href="#">Hệ thống thông tin</a></li>
-	                        <li class="pushy-link"><a href="#">Truyền thông mạng máy tính</a></li>
-	                        <li class="pushy-link"><a href="#">Truyền thông mạng máy tính</a></li>
+							@if(isset($CHUYENNGANHS))
+								@foreach($CHUYENNGANHS as $cn)
+									<li class="pushy-link"><a href="{{ route('fontend.detai.index',['slug' => $cn->slug, 'id' => $cn->id])}}" title="">{{$cn->tenchuyennganh}}</a></li>
+								@endforeach
+							@endif
 						</ul>
 					</li>
 					<li class="pushy-link"><a href="#">Tin tức</a></li>
 					<li class="pushy-link"><a href="#">Liên hệ</a></li>
-					<li class="pushy-link"><a href="#">Đăng nhập</a></li>
+					@if(!Auth::check())
+					<li class="pushy-link"><a href="{{ route('get.fontend.login')}}">Đăng nhập</a></li>
+					@endif
 					<!-- Submenu -->
 					<li class="pushy-submenu">
-						<button>Nguyễn Đức Lai</button>
+						@if(Auth::check())
+						<button>{{Auth::user()->name}}</button>
+						@endif
 						<ul>
 							<li class="pushy-link"><a href="#">Thông tin</a></li>
 							<li class="pushy-link"><a href="#">Đăng xuất</a></li>

@@ -16,8 +16,10 @@ class LoginController extends Controller
 
     public function postLogin(Request $request)
     {
-    	$credentials = $request->only('email','password');
-    	if(Auth::attempt($credentials)) {
+        $email      = $request->email;
+        $password   = $request->password;
+
+    	if(Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 3])) {
     		return redirect()->intended('');
     	}
 

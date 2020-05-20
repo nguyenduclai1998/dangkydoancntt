@@ -39,17 +39,34 @@ class DeTaiController extends Controller
 
     public function getTopic(Request $request)
     {
-        $id = $request->id;
-        $detai = DeTai::with('chuyennganh','linhvuc')->where('detai.id',$id)->first();
+        $id         = $request->id;
+        $detai      = DeTai::with('chuyennganh','linhvuc')->where('detai.id',$id)->first();
 
         //Lay thong tin user hien tai
-        $user_id = Auth::user()->id;
-        $thongtin = User::with('thongtin')->where('users.id', $user_id)->first();
-        $viewData = [
+        $user_id    = Auth::id();
+        $thongtin   = User::with('thongtin')->where('users.id', $user_id)->first();
+        $viewData   = [
             'detai'     => $detai,
             'thongtin'  => $thongtin
         ];
     	return view('font-end.dangkydetai.index', $viewData);
+    }
+
+    public function postTopic(Request $request)
+    {
+        $user_id    = Auth::id();
+        $detai_id   = $request->id;
+        $linhvuc    = $request->linhvuc;
+        $nguyenvong = $request->nguyenvong;
+
+        $detai = array([
+            'user_id'       => $user_id,
+            'detai'         => $detai_id,
+            'linhvuc'       => $linhvuc,
+            'nguyenvong'    => $nguyenvong
+        ]);
+
+        dd($detai);
     }
 }
 
