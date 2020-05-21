@@ -68,7 +68,8 @@ class DeTaiController extends Controller
 
         if(count($checkNguyenvong) < 2)
         {
-            if($checkNguyenvong[0]->loainguyenvong == $nguyenvong) {
+            $Nguyenvong = NguyenVong::where('user_id', $user_id)->first();
+            if($Nguyenvong->loainguyenvong == $nguyenvong) {
                 toastr()->error('Bạn đã đăng ký nguyện vọng này trước đó.');
                 return redirect()->back();
             } else {
