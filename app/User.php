@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Admin\Role', 'role_id');
     }
+
+    public function nguyenvong()
+    {
+        return $this->hasMany('App\Models\Admin\NguyenVong');
+    }
 }

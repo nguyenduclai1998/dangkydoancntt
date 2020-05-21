@@ -42,7 +42,7 @@
                     <div class="content-main-inner">
                         <div class="row">
                             <div id="page-main-content" class="main-content col-xs-12 col-md-9 sb-r">
-                                <form action="{{ route('fontend.detai.postDangkydetai', ['id' => $detai->id]) }}" method="POST" style="padding: 0;">
+                                <form action="{{ route('fontend.detai.postDangkydetai', ['id' => $detai->id, 'linhvuc_id' => $detai->linhvuc->id]) }}" method="POST" style="padding: 0;" id="dangkydetai">
                                     @csrf
                                     <div class="main-content-inner">
                                         @if(Auth::check())
@@ -72,7 +72,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="">Đề tài</label>
+                                                <label for="">Lĩnh vực</label>
                                                 <input type="text" class="form-control" name="linhvuc" value="{{$detai->linhvuc->tenlinhvuc}}" disabled placeholder="Đề tài">
                                                 <label for="masv" class="error"></label>
                                             </div>
@@ -143,5 +143,21 @@
         </div>
     </section>
     <!-- End Content  -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#dangkydetai").validate({
+                rules: {
+                    nguyenvong: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    nguyenvong: {
+                        required: "Nguyện vọng không được bỏ trống.",
+                    },
+                }
+            });
+        });
+    </script>
 @endif
 @stop

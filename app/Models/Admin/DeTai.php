@@ -31,4 +31,9 @@ class DeTai extends Model
     {
         return $this->belongsTo('App\Models\Admin\LinhVuc');
     }
+
+    public function dangkydetai()
+    {
+       return $this->hasOne('App\Models\Admin\NguyenVong'); 
+    }
 }

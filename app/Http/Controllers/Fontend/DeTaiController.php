@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Fontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\DeTai;
+use App\Models\Admin\DeXuatDeTai;
+use App\Models\Admin\LinhVuc;
+use App\Models\Admin\NguyenVong;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -56,17 +59,32 @@ class DeTaiController extends Controller
     {
         $user_id    = Auth::id();
         $detai_id   = $request->id;
-        $linhvuc    = $request->linhvuc;
+        $linhvuc    = $request->linhvuc_id;
         $nguyenvong = $request->nguyenvong;
 
-        $detai = array([
-            'user_id'       => $user_id,
-            'detai'         => $detai_id,
-            'linhvuc'       => $linhvuc,
-            'nguyenvong'    => $nguyenvong
-        ]);
+        //Check xem user da co bao nhieu ban ghi trong database.
+        $checkNguyenvong = NguyenVong::where('user_id', $user_id)->get();
+        $detai = new NguyenVong();
 
-        dd($detai);
+        if(count($checkNguyenvong) < 2)
+        {
+            if($checkNguyenvong[0]->loainguyenvong == $nguyenvong) {
+                toastr()->error('Bạn đã đăng ký nguyện vọng này trước đó.');
+                return redirect()->back();
+            } else {
+                $detai->user_id         = $user_id;
+                $detai->detai_id        = $detai_id;
+                $detai->linhvuc_id      = $linhvuc;
+                $detai->loainguyenvong  = $nguyenvong;
+                $detai->save();
+
+                toastr()->success('Đăng ký đề tài thành công.');
+                return redirect()->back();
+            }
+        } else {
+            toastr()->error('Bạn đã đăng ký 2 nguyện vọng.');
+            return redirect()->back();
+        }
     }
 }
 
