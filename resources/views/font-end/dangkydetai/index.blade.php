@@ -19,6 +19,8 @@
                                                             <li class="title-topic">
                                                                 <a href="{{route('home.index')}}">Trang chủ</a>
                                                                 <span class="slash">»</span>
+                                                                <a href="">{{$detai->chuyennganh->tenchuyennganh}}</a>
+                                                                <span class="slash">»</span>
                                                                 <a href="">{{$detai->tendetai}}</a>
                                                             </li>
                                                         </ol>

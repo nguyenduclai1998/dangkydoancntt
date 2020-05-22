@@ -69,10 +69,7 @@ class DeTaiController extends Controller
         if(count($checkNguyenvong) < 2)
         {
             $Nguyenvong = NguyenVong::where('user_id', $user_id)->first();
-            if($Nguyenvong->loainguyenvong == $nguyenvong) {
-                toastr()->error('Bạn đã đăng ký nguyện vọng này trước đó.');
-                return redirect()->back();
-            } else {
+            if($Nguyenvong == null || $Nguyenvong->loainguyenvong != $nguyenvong ) {
                 $detai->user_id         = $user_id;
                 $detai->detai_id        = $detai_id;
                 $detai->linhvuc_id      = $linhvuc;
@@ -80,6 +77,9 @@ class DeTaiController extends Controller
                 $detai->save();
 
                 toastr()->success('Đăng ký đề tài thành công.');
+                return redirect()->back();
+            }elseif($Nguyenvong->loainguyenvong == $nguyenvong) {
+                toastr()->error('Bạn đã đăng ký nguyện vọng này trước đó.');
                 return redirect()->back();
             }
         } else {

@@ -38,7 +38,7 @@
         </div>
 
         <div role="main" class="main main-page">
-            <div class="clearfix"></div>
+
             <div id="content" class="content content-full">
                 <div class="container">
                     <div class="content-main-inner">
@@ -111,6 +111,7 @@
                                 </div>
                                 <!-- End Sidebar Right -->
                             </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
