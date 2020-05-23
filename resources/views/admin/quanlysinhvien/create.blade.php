@@ -39,6 +39,11 @@
             <label for="name" class="error"></label>
         </div>
         <div class="form-group">
+            <label for="">Mã sinh viên</label>
+            <input type="text" class="form-control" name="masv" value="" placeholder="Mã sinh viên">
+            <label for="masv" class="error"></label>
+        </div>
+        <div class="form-group">
             <label for="">Email</label>
             <input type="text" class="form-control" name="email" value="" placeholder="Email">
             <label for="email" class="error"></label>

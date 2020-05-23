@@ -37,57 +37,64 @@
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary" style="font-size: .875rem;"><a href="{{ route('admin.quanlysinhvien.create')}}" style="color: #fff">Thêm mới </a><i class="fas fa-plus"></i></button>
             </div>
+            <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="file" class="form-control">
+                <br>
+                <button class="btn btn-success">Import User Data</button>
+            </form>
             <section class="content">
                 <div class="card-body pb-0">
                     <div class="row d-flex align-items-stretch">
-                        @if(isset($sinhvien))
-                            @foreach($sinhvien as $sv)
-                                <div class="col-12 col-sm-3 col-md-3 d-flex align-items-stretch">
-                                    <div class="card bg-light">
-                                        <div class="card-header text-muted border-bottom-0">
-                                            {{$sv->role->rolename}}
-                                        </div>
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-7">
-                                                    <h2 class="lead"><b>{{$sv->name}}</b></h2>
-                                                    <p class="text-muted text-sm"><b>Email: </b>{{$sv->email}}</p>
-                                                    <p class="text-muted text-sm"><b>Ngày sinh: </b>{{$sv->thongtin->ngaysinh}}</p>
-                                                    <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Học hàm: {{$sv->thongtin->hocham}}</li>
-                                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: {{$sv->thongtin->sdt}}</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-5 text-center">
-                                                    @if($sv->thongtin->avatar == null)
-                                                        <img style="max-width: 128px; height: auto;" src="{{ asset('admin/dist/img/default-avatar.png')}}" alt="" class="img-circle img-fluid">
-                                                    @else
-                                                        <img style="max-width: 128px; height: auto;" src="{{ asset('admin/dist/img/user1-128x128.jpg')}}" alt="" class="img-circle img-fluid">
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="text-right">
-                                                <a href=" {{ route('admin.quanlysinhvien.view', $sv->id)}}" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> View Profile
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
+                        <table id="usersTable" class="table table table-striped table-bordered" class="display" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Họ và tên</th>
+                                    <th scope="col">Mã sinh viên</th>
+                                    <th scope="col">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(isset($sinhvien))
+                                    @foreach($sinhvien as $k => $sv)
+                                        <tr>
+                                            <th scope="row">{{$k + 1}}</th>
+                                            <td>{{$sv->name}}</td>
+                                            <td>{{$sv->masv}}</td>
+                                            <td>{{$sv->email}}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </section>
         </div>
         <!-- /.card -->
-        <div>
-            {{ $sinhvien->links() }}
-        </div>
     </div>
 </div>
+
+@push('scripts')
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#usersTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>
+@endpush
 <style type="text/css">
     .card.bg-light {
         width: 100%;

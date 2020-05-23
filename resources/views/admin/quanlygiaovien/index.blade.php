@@ -42,7 +42,7 @@
                     <div class="row d-flex align-items-stretch">
                         @if(isset($giaovien))
                             @foreach($giaovien as $gv)
-                                <div class="col-12 col-sm-3 col-md-3 d-flex align-items-stretch">
+                                <div class="col-12 col-sm-4 col-md-4 d-flex align-items-stretch">
                                     <div class="card bg-light">
                                         <div class="card-header text-muted border-bottom-0">
                                             {{$gv->role->rolename}}

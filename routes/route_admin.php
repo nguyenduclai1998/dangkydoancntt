@@ -8,12 +8,21 @@
 		Route::post('register','RegisterController@postRegister')->name('post.admin.register');
 	});
 
+	//Import and Export file 
+	Route::get('export', 'HomeController@export')->name('export');
+	Route::get('importExportView', 'HomeController@importExportView')->name('importview');
+	Route::post('import', 'HomeController@import')->name('import');
+
 	Route::group(['prefix' => 'quan-tri', 'namespace' => 'Admin', 'middleware' => 'check_login_admin'], function(){
 		Route::get('/', function () {
 		    return view('admin.index');
 		})->name('admin.index');
 
+		//Route upload anh trong bai viet
 		Route::post('image-upload', 'ImageUploadController@imageUpload')->name('admin.image.upload');
+
+		//Route import and export file excel.
+		
 
 		Route::group(['prefix' => 'de-tai'], function(){
 			Route::get('','AdminTopicController@deTai')->name('admin.topic.detai');

@@ -11,12 +11,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Yajra\Datatables\Datatables;
 
 class QuanLySinhVienController extends Controller
 {
     public function index()
     {
-    	$sinhvien  = User::with('thongtin','role')->where('users.role_id', 3)->paginate(10);
+    	$sinhvien  = User::with('thongtin','role')->where('users.role_id', 3)->get();
     	$viewData = [
 			'sinhvien' => $sinhvien
 		];
@@ -47,6 +48,7 @@ class QuanLySinhVienController extends Controller
     		$user = new User();
     		$user->name 	= $request->name;
     		$user->email 	= $request->email;
+            $user->masv     = $request->masv;
     		$user->password = bcrypt($request->password);
     		$user->role_id 	= $role_id;
 

@@ -3,7 +3,6 @@ $(document).ready(function() {
 		rules: {
 			email: {
 				required: true,
-				email: true
 			},
 			password: {
 				required: true,
@@ -13,7 +12,6 @@ $(document).ready(function() {
 		messages: {
 			email: {
 				required: "Email không được bỏ trống.",
-				email: "Địa chỉ email chưa đúng định dạng."
 			},
 			password: {
 				required: "Mật khẩu không được bỏ trống.",
@@ -101,6 +99,9 @@ $("#register").validate({
             required: true,
             email: true
         },
+        masv: {
+            required: true
+        },
         password: {
             required: true,
             minlength: 8
@@ -119,7 +120,9 @@ $("#register").validate({
             required: "Vui lòng nhập email.",
             email: "Email chưa đúng định dạng."
         },
-        
+        masv: {
+            required: "Mã sinh viên không được để trống."
+        },
         password: {
             required: "Vui lòng nhập mật khẩu.",
             minlength: "Mật khẩu tối thiểu là 8 kí tự."

@@ -19,12 +19,41 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap&subset=vietnamese">
 
         <!-- DataTables CSS -->
+        <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}"></script>
         <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
-        <script src="{{ asset('admin/ckeditor/ckeditor.js')}}"></script>        
+        <script src="{{ asset('admin/ckeditor/ckeditor.js')}}"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+        @toastr_css        
     </head>
     <style type="text/css">
-        label.error {color: red;}
+        label.error {
+            color: red;
+        }
+        .dataTables_length {
+            margin-bottom: 16px;
+        }
+
+        .dataTables_length select {
+            background-color: #fff;
+            padding: 5px 10px;
+        }
+
+        .dataTables_filter { margin-bottom: 16px; }
+        .dataTables_filter input {
+            padding: 5px 10px;
+            border: 1px solid #dee2e6;
+        }
+        .dataTable thead th{
+            border-bottom: 2px solid #dee2e6!important;
+        }
+        table.dataTable.no-footer {
+            border-bottom: 1px solid #dee2e6!important;
+        }
+        div#usersTable_wrapper {
+            width: 100%;
+        }
     </style>
     <body class="hold-transition sidebar-mini layout-navbar-fixed">
         <!-- Site wrapper -->
@@ -307,7 +336,7 @@
         </div>
         <!-- ./wrapper -->
         <!-- jQuery -->
-        <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}"></script>
+        
         <!-- Bootstrap 4 -->
         <script src="{{asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <!-- AdminLTE App -->
@@ -316,13 +345,10 @@
         <script src="{{asset('admin/dist/js/demo.js')}}"></script>
         <script src="{{asset('admin/js/main.js')}}"></script>
         <!-- jQuery -->
-        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
          
         <!-- DataTables -->
-        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
         <!-- Validate Jquery -->
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
         <script src="{{asset('admin/dist/js/validate.js')}}"></script>
         <script type="text/javascript">
@@ -332,4 +358,10 @@
             });
         </script>
     </body>
+
+    @toastr_js
+    @toastr_render
+
+    @stack('scripts')
+    
 </html>
