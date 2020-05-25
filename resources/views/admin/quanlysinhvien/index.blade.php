@@ -52,7 +52,8 @@
                                     <th scope="col">STT</th>
                                     <th scope="col">Họ và tên</th>
                                     <th scope="col">Mã sinh viên</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">Lớp</th>
+                                    <th scope="col">Ghi chú</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,8 +62,9 @@
                                         <tr>
                                             <th scope="row">{{$k + 1}}</th>
                                             <td>{{$sv->name}}</td>
-                                            <td>{{$sv->masv}}</td>
-                                            <td>{{$sv->email}}</td>
+                                            <td>{{$sv->thongtin->masv}}</td>
+                                            <td>{{$sv->thongtin->lop}}</td>
+                                            <td>{{$sv->thongtin->ghichu}}</td>
                                         </tr>
                                     @endforeach
                                 @endif
