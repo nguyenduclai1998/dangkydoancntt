@@ -156,7 +156,7 @@
                                     </p>
                                 </a>
                             </li>
-
+                            @if(Auth::check() && Auth::user()->role_id == 1)
                             <li class="nav-item has-treeview">
                                 <a href="{{ route('admin.quanlygiaovien.index')}}" class="nav-link">
                                     <i class="nav-icon fas fa-table"></i>
@@ -174,7 +174,7 @@
                                     </p>
                                 </a>
                             </li>
-
+                            @endif
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-book"></i>

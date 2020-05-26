@@ -13,12 +13,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminTopicController extends AdminController
 {
-	public function deTai(DeTai $deTai)
+	public function deTai()
 	{
+        $user_id = Auth::user()->id;
 		$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
 											->join('users', 'users.id', '=', 'detai.user_id')
                                             ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
 											->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
+                                            ->where('detai.user_id', $user_id)
                                             ->paginate(10);
 		$viewData = [
 			'detai' => $detai
@@ -26,25 +28,21 @@ class AdminTopicController extends AdminController
 		return view('admin.topic.index', $viewData);
 	}
 
-    public function show($id, DeTai $deTai)
+    public function show($id)
     {
-        $user = Auth::user();
+        $user_id = Auth::user()->id;
     	$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
     							   ->join('users', 'users.id', '=', 'detai.user_id')
                                    ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
     							   ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
                                    ->where('chuyennganh.id', $id)
+                                   ->where('detai.user_id', $user_id)
                                    ->paginate(10);
 
-        if ($user->can('view', $deTai)) {
-            $viewData = [
-                'detai' => $detai
-            ];
-            return view('admin.topic.index', $viewData);
-        } else {
-            dd('Người dùng không được quyền xem.');
-        }
-
+        $viewData = [
+            'detai' => $detai
+        ];
+        return view('admin.topic.index', $viewData);
     }
 
     public function create()
@@ -78,55 +76,46 @@ class AdminTopicController extends AdminController
     	}else {
             // Lấy thông tin người dùng thêm mới đề tài
             $user = Auth::user();
+            $id = Auth::id();
+            $detai = new DeTai();
+            $sinhvien_id            = $request->sinhvien;
 
-            if ($user->can('create', $deTai)) {
-                $id = Auth::id();
-                $detai = new DeTai();
-                $sinhvien_id            = $request->sinhvien;
-
-                if(isset($sinhvien_id)) {
-                    $detai->tendetai        = $request->tendetai;
-                    $detai->mota            = $request->mota;
-                    $detai->slug            = Str::slug($request->tendetai);
-                    $detai->chuyennganh_id  = $request->chuyennganh;
-                    $detai->linhvuc_id      = $request->linhvuc;
-                    $detai->user_id         = $id;
-                    $detai->sinhvien_id     = $sinhvien_id;
-                    $detai->save();
-
-                    return redirect()->back()->with('notify','Thêm mới thành công.');
-                }
-
+            if(isset($sinhvien_id)) {
                 $detai->tendetai        = $request->tendetai;
                 $detai->mota            = $request->mota;
                 $detai->slug            = Str::slug($request->tendetai);
                 $detai->chuyennganh_id  = $request->chuyennganh;
                 $detai->linhvuc_id      = $request->linhvuc;
                 $detai->user_id         = $id;
+                $detai->sinhvien_id     = $sinhvien_id;
                 $detai->save();
 
                 return redirect()->back()->with('notify','Thêm mới thành công.');
-            } else {
-                dd('Người dùng không được quyền xem.');
             }
+
+            $detai->tendetai        = $request->tendetai;
+            $detai->mota            = $request->mota;
+            $detai->slug            = Str::slug($request->tendetai);
+            $detai->chuyennganh_id  = $request->chuyennganh;
+            $detai->linhvuc_id      = $request->linhvuc;
+            $detai->user_id         = $id;
+            $detai->save();
+
+            return redirect()->back()->with('notify','Thêm mới thành công.');
     	}
     }
 
-    public function edit($id, DeTai $deTai)
+    public function edit($id)
     {
         $detai = DeTai::find($id);
 
         $user = Auth::user();
 
-        if ($user->can('update', $deTai)) {
-            $viewDataDetai = [
-                'detai' => $detai
-            ];
+        $viewDataDetai = [
+            'detai' => $detai
+        ];
 
-            return view('admin.topic.update', $viewDataDetai);
-        } else {
-            dd('Người dùng không được quyền xem.');
-        }
+        return view('admin.topic.update', $viewDataDetai);
     }
 
     public function update(Request $request, $id)

@@ -36,13 +36,21 @@
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary" style="font-size: .875rem;"><a href="{{ route('admin.quanlysinhvien.create')}}" style="color: #fff">Thêm mới </a><i class="fas fa-plus"></i></button>
-            </div>
-            <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="file" name="file" class="form-control">
-                <br>
-                <button class="btn btn-success">Import User Data</button>
-            </form>
+                    <div class="input-group mb-3" style="margin-top: 1rem!important">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile02">
+                            <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                        </div>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="inputGroupFileAddon02">Upload</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Upload</button>
+                </form>
+            </div>
+
             <section class="content">
                 <div class="card-body pb-0">
                     <div class="row d-flex align-items-stretch">
@@ -91,7 +99,7 @@
         $('#usersTable').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
+                'excel', 'pdf', 'print'
             ]
         });
     });

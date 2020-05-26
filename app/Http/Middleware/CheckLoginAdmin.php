@@ -15,6 +15,10 @@ class CheckLoginAdmin
     public function handle($request, Closure $next)
     {
         if(Auth::check()) {
+            $user = Auth::user();
+            if( $user->role_id == 3 ) {
+                return redirect()->route('home.index');
+            }
             return $next($request);
         }
 

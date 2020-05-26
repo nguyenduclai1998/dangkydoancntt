@@ -65,7 +65,7 @@
                 @if($tintuc->avatar == null)
                     <div class="imagePreview"></div>
                 @else 
-                    <div class="imagePreview" style="background: url({{env('url_image').$tintuc->avatar}}); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
+                    <div class="imagePreview" style="background: url('{{env('url_image').$tintuc->avatar}}'); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
                 @endif
                         <label class="btn btn-primary uploadImage"> Upload
                             <input type="file" class="uploadFile img" value="Upload Photo" name="upload" style="width: 0px;height: 0px;overflow: hidden;">

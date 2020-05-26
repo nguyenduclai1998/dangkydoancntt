@@ -25,9 +25,11 @@ class LoginController extends Controller
     {
     	$email = $request->email;
         $password = $request->password;
-    	if(Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 1, 'role_id' => 2])) {
+    	if(Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 1])) {
     		return redirect()->intended('/quan-tri');
-    	} elseif (Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 3])) {
+    	} elseif (Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 2])) {
+            return redirect()->intended('/quan-tri');
+        }elseif (Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 3])) {
             return redirect()->intended('');
         }
 
