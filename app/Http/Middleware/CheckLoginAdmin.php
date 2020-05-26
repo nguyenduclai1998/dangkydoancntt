@@ -18,6 +18,6 @@ class CheckLoginAdmin
             return $next($request);
         }
 
-        return redirect()->to('/admin-auth/login');
+        return redirect()->to('/users-auth/login');
     }
 } 

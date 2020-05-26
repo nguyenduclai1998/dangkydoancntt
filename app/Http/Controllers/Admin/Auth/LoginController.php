@@ -23,13 +23,13 @@ class LoginController extends Controller
 
     public function postLogin(Request $request)
     {
-
-    	$credentials = $request->only('email','password');
-    	if(Auth::attempt($credentials)) {
-            $role  = User::role($request->email);
-            dd($role);
+    	$email = $request->email;
+        $password = $request->password;
+    	if(Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 1, 'role_id' => 2])) {
     		return redirect()->intended('/quan-tri');
-    	}
+    	} elseif (Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 3])) {
+            return redirect()->intended('');
+        }
 
     	return redirect()->back()->with('errors', 'Email hoặc mật khẩu không đúng.');
     }

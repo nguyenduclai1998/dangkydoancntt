@@ -32,7 +32,7 @@ class UsersImport implements ToCollection
         if( count(array_unique($msvs)) != count($msvs) ) {
             return [
                 'status' => false,
-                'msg' => 'Ma sinh vien bi trung'
+                'msg' => 'Mã sinh viên bị trùng.'
             ];
         }
 
@@ -50,6 +50,7 @@ class UsersImport implements ToCollection
         
             try{
                 \DB::beginTransaction();
+
                 foreach ($rows as $row) 
                 {
                     $user = User::create([

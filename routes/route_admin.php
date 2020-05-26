@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	Route::group(['prefix' => 'admin-auth', 'namespace' => 'Admin\Auth' ], function(){
 		Route::get('login','LoginController@getLogin')->name('get.admin.login');
@@ -9,7 +9,7 @@
 		Route::post('register','RegisterController@postRegister')->name('post.admin.register');
 	});
 
-	//Import and Export file 
+	//Import and Export file
 	Route::get('export', 'HomeController@export')->name('export');
 	Route::get('importExportView', 'HomeController@importExportView')->name('importview');
 	Route::post('import', 'HomeController@import')->name('import');
@@ -23,12 +23,12 @@
 		Route::post('image-upload', 'ImageUploadController@imageUpload')->name('admin.image.upload');
 
 		//Route import and export file excel.
-		
+
 
 		Route::group(['prefix' => 'de-tai'], function(){
 			Route::get('','AdminTopicController@deTai')->name('admin.topic.detai');
 			Route::get('/create','AdminTopicController@create')->name('admin.topic.create');
-			Route::get('/{id}','AdminTopicController@index')->name('admin.topic.index');
+			Route::get('/{id}','AdminTopicController@show')->name('admin.topic.index');
 			Route::post('create','AdminTopicController@store')->name('admin.topic.store');
 			Route::get('edit/{id}','AdminTopicController@edit')->name('admin.topic.edit');
 			Route::post('update/{id}','AdminTopicController@update')->name('admin.topic.update');
@@ -82,4 +82,3 @@
 		});
 	});
 
-	

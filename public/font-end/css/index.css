@@ -572,4 +572,7 @@ button {
     border-radius: 27px;
     border: none;
 }
-   
+
+.info {
+    height: 50px;
+   }

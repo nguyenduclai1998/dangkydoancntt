@@ -42,7 +42,7 @@
 						@endif
 						<ul>
 							<li class="pushy-link"><a href="#">Thông tin</a></li>
-							<li class="pushy-link"><a href="#">Đăng xuất</a></li>
+							<li class="pushy-link"><a href="{{ route('post.admin.logout')}}">Đăng xuất</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -65,7 +65,7 @@
 							<ul class="navbarMain__menu__wrap">
 								<li class=""><a href="">Trang chủ</a></li>
 								<li class="dropdown_menu" >
-									<a href="" class="height: 100%;display: inline-flex;align-items: center;">Đề tài</a>
+									<a href="" class="">Đề tài</a>
 									<ul class="dropdown_content">
 										@if(isset($CHUYENNGANHS))
 											@foreach($CHUYENNGANHS as $cn)
@@ -80,7 +80,13 @@
 							<ul class="navbarMain__account">
 								@if(Auth::check())
 			                        <div class="info">
-			                            <li class=""><a href="">{{Auth::user()->name}}</a></li>
+			                            <li class="dropdown_menu" >
+											<a href="" class="">{{Auth::user()->name}}</a>
+											<ul class="dropdown_content" style="min-width: 130px;">
+												<a href="">Thông tin</a>
+												<a href="{{ route('post.admin.logout')}}">Đăng xuất</a>
+											</ul>
+										</li>
 			                        </div>
 		                        @endif
 							</ul>

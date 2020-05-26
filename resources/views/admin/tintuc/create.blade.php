@@ -54,7 +54,7 @@
 
             <div class="mb-3 col-sm-12 col-md-8 col-lg-8 content">
                 <label for="formGroupExampleInput">Mô tả</label>
-                <textarea class="textarea" placeholder="Mô tả" id="content" name="noidung" 
+                <textarea class="textarea" placeholder="Mô tả" id="content" name="noidung"
                     style="width: 100%; height: 400px!important; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
             </div>
 
