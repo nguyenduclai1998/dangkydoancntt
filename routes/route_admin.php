@@ -3,6 +3,7 @@
 	Route::group(['prefix' => 'admin-auth', 'namespace' => 'Admin\Auth' ], function(){
 		Route::get('login','LoginController@getLogin')->name('get.admin.login');
 		Route::post('login','LoginController@postLogin')->name('post.admin.login');
+		Route::get('logout','LoginController@logOut')->name('post.admin.logout');
 
 		Route::get('register','RegisterController@getRegister')->name('get.admin.register');
 		Route::post('register','RegisterController@postRegister')->name('post.admin.register');

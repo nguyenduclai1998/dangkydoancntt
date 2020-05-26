@@ -33,7 +33,7 @@
 					<li class="pushy-link"><a href="#">Tin tức</a></li>
 					<li class="pushy-link"><a href="#">Liên hệ</a></li>
 					@if(!Auth::check())
-					<li class="pushy-link"><a href="{{ route('get.fontend.login')}}">Đăng nhập</a></li>
+					<li class="pushy-link"><a href="{{ route('get.admin.login')}}">Đăng nhập</a></li>
 					@endif
 					<!-- Submenu -->
 					<li class="pushy-submenu">
@@ -54,7 +54,7 @@
 				<div class="navbarMain__wrap">
 					<img src="{{ asset('font-end/img/logo.png')}}" alt="Trường đại học Công nghệ giao thông vận tải">
 					@if(!Auth::check())
-					<a href="{{ route('get.fontend.login')}}" class="btn btn-default btn-login"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+					<a href="{{ route('get.admin.login')}}" class="btn btn-default btn-login"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
 					@endif
 				</div>
 			</div>

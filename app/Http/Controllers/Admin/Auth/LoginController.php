@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Providers\RouteServiceProvider;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -25,9 +26,17 @@ class LoginController extends Controller
 
     	$credentials = $request->only('email','password');
     	if(Auth::attempt($credentials)) {
+            $role  = User::role($request->email);
+            dd($role);
     		return redirect()->intended('/quan-tri');
     	}
 
     	return redirect()->back()->with('errors', 'Email hoặc mật khẩu không đúng.');
+    }
+
+    public function logOut()
+    {
+        Auth::logout();
+        return redirect()->to('/users-auth/login');
     }
 }

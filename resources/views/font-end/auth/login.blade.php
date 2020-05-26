@@ -22,7 +22,7 @@
                         @if (session('notify'))
                             <div class="alert alert-info">{{session('notify')}}</div>
                         @endif
-                        <form action="{{ route('post.fontend.login')}}" id="login" method="POST">
+                        <form action="{{ route('post.admin.login')}}" id="login" method="POST">
                         @csrf                     
                             <h3>Đăng Nhập</h3>
                             <span class="error"></span>
