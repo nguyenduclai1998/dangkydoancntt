@@ -20,7 +20,7 @@ class AdminTopicController extends AdminController
 											->join('users', 'users.id', '=', 'detai.user_id')
                                             ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
 											->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
-                                            ->where('detai.user_id', $user_id)
+                                            // ->where('detai.user_id', $user_id)
                                             ->paginate(10);
 		$viewData = [
 			'detai' => $detai

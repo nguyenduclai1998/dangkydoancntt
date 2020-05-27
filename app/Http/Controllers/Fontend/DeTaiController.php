@@ -70,6 +70,10 @@ class DeTaiController extends Controller
         {
             $Nguyenvong = NguyenVong::where('user_id', $user_id)->first();
             if($Nguyenvong == null || $Nguyenvong->loainguyenvong != $nguyenvong ) {
+                if($Nguyenvong->detai_id == $detai_id) {
+                    toastr()->error('Bạn đã đăng ký đề tài này trước đó.');
+                    return redirect()->back();
+                }
                 $detai->user_id         = $user_id;
                 $detai->detai_id        = $detai_id;
                 $detai->linhvuc_id      = $linhvuc;

@@ -25,6 +25,10 @@
         <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap&subset=vietnamese" rel="stylesheet">
         <script src="{{ asset('admin/ckeditor/ckeditor.js')}}"></script>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+        <!-- Select2 from a CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
         @toastr_css        
     </head>
     <style type="text/css">
@@ -197,6 +201,7 @@
                                     
                                 </ul>
                             </li>
+                            @if(Auth::check() && Auth::user()->role_id == 1)
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon far fa-plus-square"></i>
@@ -218,6 +223,7 @@
                                     @endif
                                 </ul>
                             </li>
+                            @endif
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
@@ -266,6 +272,12 @@
             CKEDITOR.replace( 'content', {
                 filebrowserUploadUrl: "{{route('admin.image.upload', ['_token' => csrf_token() ])}}",
                 filebrowserUploadMethod: 'form',
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.sinhvien-select').select2();
             });
         </script>
     </body>
