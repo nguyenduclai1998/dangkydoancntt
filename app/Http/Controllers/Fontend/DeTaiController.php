@@ -24,9 +24,16 @@ class DeTaiController extends Controller
     							   ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
                                    ->where('detai.chuyennganh_id', $id)
     							   ->paginate(10);
+        foreach ($detai as $dt) {
+            $detai_id = $dt->id;
+            $subscribers = NguyenVong::where('detai_id', $detai_id)->get();
+            // dd($subscribers);
+        }
+        // dd($subscribers);
 
     	$viewData = [
-			'detai' => $detai
+			'detai' => $detai,
+            'subscribers' => $subscribers
 		];
     	return view('font-end.detai.index', $viewData);
     }

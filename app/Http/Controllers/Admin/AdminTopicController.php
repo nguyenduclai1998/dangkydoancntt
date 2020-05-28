@@ -16,13 +16,25 @@ class AdminTopicController extends AdminController
 	public function deTai(DeTai $deTai)
 	{
         $user_id = Auth::user()->id;
-		$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
-											->join('users', 'users.id', '=', 'detai.user_id')
+        $user_role = Auth::user()->role_id;
+
+
+        if($user_role == 1)
+        {
+            $detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
+                                            ->join('users', 'users.id', '=', 'detai.user_id')
                                             ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
-											->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
+                                            ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
+                                            ->paginate(10);
+        }else {
+            $detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
+                                            ->join('users', 'users.id', '=', 'detai.user_id')
+                                            ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
+                                            ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
                                             ->where('detai.user_id', $user_id)
                                             ->paginate(10);
-        // $this->authorize('view', $deTai);
+        }
+		
 		$viewData = [
 			'detai' => $detai
 		];
@@ -32,14 +44,27 @@ class AdminTopicController extends AdminController
     public function show($id)
     {
         $user_id = Auth::user()->id;
-    	$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
-    							   ->join('users', 'users.id', '=', 'detai.user_id')
+        $user_role = Auth::user()->role_id;
+
+
+        if($user_role == 1)
+        {
+            $detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
+                                   ->join('users', 'users.id', '=', 'detai.user_id')
                                    ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
-    							   ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
+                                   ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
+                                   ->where('chuyennganh.id', $id)
+                                   ->paginate(10);
+        }else {
+           $detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
+                                   ->join('users', 'users.id', '=', 'detai.user_id')
+                                   ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
+                                   ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
                                    ->where('chuyennganh.id', $id)
                                    ->where('detai.user_id', $user_id)
                                    ->paginate(10);
-
+        }
+    	
         $viewData = [
             'detai' => $detai
         ];
