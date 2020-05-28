@@ -75,7 +75,9 @@
                                                                                         </div>
                                                                                         <div class="post-content">
                                                                                             <div class="post-title"><a href="{{ route('fontend.detai.view', ['slug' => $dt->slug, 'detai_slug' => $dt->detai_slug, 'id' => $dt->id])}}">{{$dt->tendetai}}</a></div>
-                                                                                            <div class="post-meta margin-bottom-10"><span class="post-created"> {{$dt->created_at}} </span></div>
+                                                                                            <div class="post-meta margin-bottom-10">
+                                                                                                <span class="post-created">Lượt xem: {{$dt->view}}</span>
+                                                                                            </div>
                                                                                             <div class="body hidden-xs">{!! Str::limit($dt->mota, 250) !!}</div>
                                                                                             <div class="tags"></div>
                                                                                         </div>

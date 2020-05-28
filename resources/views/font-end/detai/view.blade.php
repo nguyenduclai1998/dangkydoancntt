@@ -55,7 +55,8 @@
                                                                 <span id="news-block-title" style="border-bottom:none; font-size: 22px!important">{{$detai->tendetai}}</span>
                                                             </h2>
                                                             <div class="post-meta">
-                                                                <span class="post-created">{{$detai->created_at}}</span>
+                                                                <span class="post-created">Số người đăng ký: {{count($subscribers)}} </span>
+                                                                <span class="post-created"> | Lượt xem: {{$detai->view}}</span>
                                                             </div>
                                                         </div>
                                                     </div>

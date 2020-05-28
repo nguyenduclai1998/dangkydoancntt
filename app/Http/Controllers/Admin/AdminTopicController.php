@@ -13,15 +13,16 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminTopicController extends AdminController
 {
-	public function deTai()
+	public function deTai(DeTai $deTai)
 	{
         $user_id = Auth::user()->id;
 		$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
 											->join('users', 'users.id', '=', 'detai.user_id')
                                             ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
 											->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
-                                            // ->where('detai.user_id', $user_id)
+                                            ->where('detai.user_id', $user_id)
                                             ->paginate(10);
+        // $this->authorize('view', $deTai);
 		$viewData = [
 			'detai' => $detai
 		];

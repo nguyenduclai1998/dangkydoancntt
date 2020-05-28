@@ -32,7 +32,6 @@ class HomeController extends Controller
     public function import(Request $request) 
     {
     	$data = $request->except('_token');
-
     	$messages = [
     		'file.required'	=> "Trường này không được để trống.",
     		'file.file' 	=> "File chưa đúng định dạng"

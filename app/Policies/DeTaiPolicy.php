@@ -30,8 +30,8 @@ class DeTaiPolicy
      */
     public function view(User $user, DeTai $deTai)
     {
-
-        return true;
+        dd($user->id,  $deTai->user_id);
+        return $user->id === $deTai->user_id;
     }
 
     /**

@@ -11,18 +11,20 @@ use App\Models\Admin\NguyenVong;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DeTaiController extends Controller
 {
     public function index(Request $request)
     {
         $id = $request->id;
-    	$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'detai.chuyennganh_id', 'detai.slug as detai_slug', 'detai.sinhvien_id', 'detai.created_at', 'users.name','chuyennganh.tenchuyennganh','chuyennganh.slug', 'linhvuc.tenlinhvuc')
+    	$detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'detai.view', 'detai.chuyennganh_id', 'detai.slug as detai_slug', 'detai.sinhvien_id', 'detai.created_at', 'users.name','chuyennganh.tenchuyennganh','chuyennganh.slug', 'linhvuc.tenlinhvuc')
     							   ->join('users', 'users.id', '=', 'detai.user_id')
                                    ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
     							   ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
                                    ->where('detai.chuyennganh_id', $id)
-    							   ->paginate(5);
+    							   ->paginate(10);
+
     	$viewData = [
 			'detai' => $detai
 		];
@@ -31,11 +33,20 @@ class DeTaiController extends Controller
 
     public function view(Request $request)
     {	
-    	$id = $request->id;
-    	$detai = DeTai::with('chuyennganh','linhvuc')->where('detai.id',$id)->first();
+    	$detai_id = $request->id;
+    	$detai = DeTai::with('chuyennganh','linhvuc')->where('detai.id',$detai_id)->first();
+
+        $topicKey = 'detai_'.$detai_id;
+        if (!Session::has($topicKey)) {
+            DeTai::where('id', $detai_id)->increment('view');
+            Session::put($topicKey, 1);
+        }
+
+        $subscribers = NguyenVong::where('detai_id', $detai_id)->get();
 
     	$viewData = [
-			'detai' => $detai
+			'detai'       => $detai,
+            'subscribers' => $subscribers
 		];
     	return view('font-end.detai.view', $viewData);
     }
@@ -70,7 +81,7 @@ class DeTaiController extends Controller
         {
             $Nguyenvong = NguyenVong::where('user_id', $user_id)->first();
             if($Nguyenvong == null || $Nguyenvong->loainguyenvong != $nguyenvong ) {
-                if($Nguyenvong->detai_id == $detai_id) {
+                if(isset($Nguyenvong->detai_id)  && $Nguyenvong->detai_id == $detai_id) {
                     toastr()->error('Bạn đã đăng ký đề tài này trước đó.');
                     return redirect()->back();
                 }

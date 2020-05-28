@@ -35,12 +35,13 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary" style="font-size: .875rem;"><a href="{{ route('admin.quanlysinhvien.create')}}" style="color: #fff">Thêm mới </a><i class="fas fa-plus"></i></button>
+                <button type="submit" class="btn btn-primary" style="font-size: .875rem;"><a href="{{ route('admin.quanlysinhvien.create')}}" style="color: #fff">Thêm mới </a><i class="fas fa-plus"></i></button><br>
+                <h3 class="card-title" style="margin: 10px 0px">Import file Excel</h3>
                 <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <div class="input-group mb-3" style="margin-top: 1rem!important">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile02">
+                            <input type="file" class="custom-file-input" name="file" id="inputGroupFile02">
                             <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
                         </div>
                         <div class="input-group-append">
@@ -109,6 +110,14 @@
     .card.bg-light {
         width: 100%;
     }
+
+    button.dt-button {
+        height: 35px;
+        width: 70px;
+        font-weight: 500;
+        border-radius: 1px;
+        margin-left: 6px;
+}
 </style>
 <!-- /.row -->
 @endif
