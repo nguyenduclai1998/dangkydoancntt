@@ -69,8 +69,8 @@
                                                                                 <span class="field-content">
                                                                                     <div class="post-block">
                                                                                         <div class="post-image img">
-                                                                                            <a href="">
-                                                                                            <img style="max-width: 300px; height: auto;" src="{{asset('font-end/img/logo-utt.png')}}">
+                                                                                            <a href="{{ route('fontend.detai.view', ['slug' => $dt->slug, 'detai_slug' => $dt->detai_slug, 'id' => $dt->id])}}">
+                                                                                                <img style="max-width: 300px; height: auto;" src="{{asset('font-end/img/logo-utt.png')}}">
                                                                                             </a>
                                                                                         </div>
                                                                                         <div class="post-content">
@@ -139,6 +139,9 @@
                                 <!-- End Sidebar Right -->
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        {{ $detai->links() }}
                     </div>
                 </div>
             </div>

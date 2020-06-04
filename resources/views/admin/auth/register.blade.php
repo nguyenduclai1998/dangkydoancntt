@@ -93,7 +93,6 @@
                     },
                     email: {
                         required: true,
-                        email: true
                     },
                     password: {
                         required: true,
@@ -111,7 +110,6 @@
                     },
                     email: {
                         required: "Vui lòng nhập email.",
-                        email: "Email chưa đúng định dạng."
                     },
                     
                     password: {

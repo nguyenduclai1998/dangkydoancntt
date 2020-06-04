@@ -80,7 +80,6 @@
                 rules: {
                     email: {
                         required: true,
-                        email: true
                     },
                     password: {
                         required: true,
@@ -90,7 +89,6 @@
                 messages: {
                     email: {
                         required: "Vui lòng nhập email.",
-                        email: "Email chưa đúng định dạng."
                     },
                     
                     password: {

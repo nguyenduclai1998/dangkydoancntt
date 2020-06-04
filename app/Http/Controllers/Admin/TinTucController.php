@@ -99,11 +99,21 @@ class TinTucController extends Controller
     		// Lấy thông tin người dùng thêm mới đề tài
     		$id = Auth::id();
     		$tintuc = new TinTuc();
+
+    		if(isset($filenametostore)) {
+    			$tintuc->tenbaiviet 		= $request->tenbaiviet;
+	    		$tintuc->noidung 		    = $request->noidung;
+	    		$tintuc->slug 			    = Str::slug($request->tenbaiviet);
+				$tintuc->chuyennganh_id 	= $request->chuyennganh;
+				$tintuc->avatar				= $filenametostore;
+	    		$tintuc->user_id 	   	    = $id;
+	    		$tintuc->save();
+    		}
+
     		$tintuc->tenbaiviet 		= $request->tenbaiviet;
     		$tintuc->noidung 		    = $request->noidung;
     		$tintuc->slug 			    = Str::slug($request->tenbaiviet);
 			$tintuc->chuyennganh_id 	= $request->chuyennganh;
-			$tintuc->avatar				= $filenametostore;
     		$tintuc->user_id 	   	    = $id;
     		$tintuc->save();
 

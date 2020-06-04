@@ -13,6 +13,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	@toastr_css
 </head>
+<style type="text/css">
+	button.toast-close-button {
+    position: absolute;
+}
+</style>
 <body>
 	<div class="fullscreeen">
 			<!-- Pushy Menu -->
@@ -30,7 +35,7 @@
 							@endif
 						</ul>
 					</li>
-					<li class="pushy-link"><a href="#">Tin tức</a></li>
+					<li class="pushy-link"><a href="{{ route('get.fontend.news')}}">Tin tức</a></li>
 					<li class="pushy-link"><a href="#">Liên hệ</a></li>
 					@if(!Auth::check())
 					<li class="pushy-link"><a href="{{ route('get.admin.login')}}">Đăng nhập</a></li>
@@ -41,7 +46,9 @@
 						<button>{{Auth::user()->name}}</button>
 						@endif
 						<ul>
-							<li class="pushy-link"><a href="#">Thông tin</a></li>
+							<li class="pushy-link"><a href="{{ route('get.fontend.info')}}">Cập nhật thông tin</a></li>
+							<li class="pushy-link"><a href="{{ route('get.fontend.changepassword')}}">Đổi mật khẩu</a></li>
+							<li class="pushy-link"><a href="{{ route('get.fontend.registerResult')}}">Kết quả đăng ký</a></li>
 							<li class="pushy-link"><a href="{{ route('post.admin.logout')}}">Đăng xuất</a></li>
 						</ul>
 					</li>
@@ -74,7 +81,7 @@
 										@endif
 									</ul>
 								</li>
-								<li class=""><a href="">Tin tức</a></li>
+								<li class=""><a href="{{ route('get.fontend.news')}}">Tin tức</a></li>
 								<li class=""><a href="">Liên hệ</a></li>
 							</ul>
 							<ul class="navbarMain__account">
@@ -82,8 +89,10 @@
 			                        <div class="info">
 			                            <li class="dropdown_menu" >
 											<a href="" class="">{{Auth::user()->name}}</a>
-											<ul class="dropdown_content" style="min-width: 130px;">
-												<a href="">Thông tin</a>
+											<ul class="dropdown_content" style="min-width: 200px;">
+												<a href="{{ route('get.fontend.info')}}">Cập nhật thông tin</a>
+												<a href="{{ route('get.fontend.changepassword')}}">Đổi mật khẩu</a>
+												<a href="{{ route('get.fontend.registerResult')}}">Kết quả đăng ký</a>
 												<a href="{{ route('post.admin.logout')}}">Đăng xuất</a>
 											</ul>
 										</li>
@@ -130,7 +139,7 @@
 
 								<div class="field field--name-body field--type-text-with-summary field--label-hidden field__item">
 									<div class="text-center">
-										Copyright © 2018 Đại học Công nghệ Giao thông vận tải
+										Copyright © 2020 by <a href="https://www.facebook.com/nguyenduclai" target="_blank">Nguyễn Đức Lai</a>
 									</div>
 								</div>
 

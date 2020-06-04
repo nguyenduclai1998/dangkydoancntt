@@ -27,7 +27,7 @@
                             <h3>Đăng Nhập</h3>
                             <span class="error"></span>
                             <div class="form-group">
-                                <label for="">Email</label>
+                                <label for="">Email hoặc mã sinh viên</label>
                                 <input type="text" class="form-control" name="email" value="" placeholder="Email">
                                 <label for="email" class="error"></label>
                             </div>
@@ -80,7 +80,6 @@
                 rules: {
                     email: {
                         required: true,
-                        email: true
                     },
                     password: {
                         required: true,
@@ -89,8 +88,7 @@
                 },
                 messages: {
                     email: {
-                        required: "Vui lòng nhập email.",
-                        email: "Email chưa đúng định dạng."
+                        required: "Vui lòng nhập email hoặc mã sinh viên.",
                     },
                     
                     password: {

@@ -23,17 +23,19 @@ class LoginController extends Controller
 
     public function postLogin(Request $request)
     {
-    	$email = $request->email;
-        $password = $request->password;
-    	if(Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 1])) {
+    	$email     = $request->email;
+        $password  = $request->password;
+        //Login to website with email or masv.
+        $fieldType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'masv';
+    	if(Auth::attempt([$fieldType => $email, 'password' => $password, 'role_id' => 1])) {
     		return redirect()->intended('/quan-tri');
-    	} elseif (Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 2])) {
+    	} elseif (Auth::attempt([$fieldType => $email, 'password' => $password, 'role_id' => 2])) {
             return redirect()->intended('/quan-tri');
-        }elseif (Auth::attempt(['email' => $email, 'password' => $password, 'role_id' => 3])) {
+        }elseif (Auth::attempt([$fieldType => $email, 'password' => $password, 'role_id' => 3])) {
             return redirect()->intended('');
         }
 
-    	return redirect()->back()->with('errors', 'Email hoặc mật khẩu không đúng.');
+    	return redirect()->back()->with('errors', 'Tên đăng nhập hoặc mật khẩu không đúng.');
     }
 
     public function logOut()

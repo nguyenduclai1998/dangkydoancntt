@@ -57,7 +57,7 @@
 
                                             <div class="form-group">
                                                 <label for="">Mã sinh viên</label>
-                                                <input type="text" class="form-control" name="masv" value="{{$thongtin->thongtin->masv}}" disabled placeholder="Mã sinh viên">
+                                                <input type="text" class="form-control" name="masv" value="{{$thongtin->masv}}" disabled placeholder="Mã sinh viên">
                                                 <label for="masv" class="error"></label>
                                             </div>
 

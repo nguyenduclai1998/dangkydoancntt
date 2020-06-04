@@ -11,8 +11,10 @@ class ThongTin extends Model
     	'id',
     	'ngaysinh',
     	'sdt',
-    	'masv',
     	'gioitinh',
+        'hocham',
+        'lop',
+        'ghichu',
         'avatar',
         'user_id'
     ];

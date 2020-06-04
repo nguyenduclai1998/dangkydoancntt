@@ -54,13 +54,13 @@ class UsersImport implements ToCollection
                 foreach ($rows as $row) 
                 {
                     $user = User::create([
-                        'name' => $row[1],
-                        'password' => \Hash::make('12345678'),
+                        'name'      => $row[1],
+                        'password'  => \Hash::make('12345678'),
+                        'masv'      => $row[0],
                     ]);
                     $id = $user->id;
                     ThongTin::create([
                         'user_id' => $id,
-                        'masv'    => $row[0],
                         'lop'     => $row[2],
                         'ghichu'  => $row[5]
                     ]);

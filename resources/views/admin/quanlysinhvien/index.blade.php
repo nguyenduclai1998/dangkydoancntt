@@ -71,7 +71,7 @@
                                         <tr>
                                             <th scope="row">{{$k + 1}}</th>
                                             <td>{{$sv->name}}</td>
-                                            <td>{{$sv->thongtin->masv}}</td>
+                                            <td>{{$sv->masv}}</td>
                                             <td>{{$sv->thongtin->lop}}</td>
                                             <td>{{$sv->thongtin->ghichu}}</td>
                                         </tr>
