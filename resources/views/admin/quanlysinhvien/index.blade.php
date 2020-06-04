@@ -63,6 +63,7 @@
                                     <th scope="col">Mã sinh viên</th>
                                     <th scope="col">Lớp</th>
                                     <th scope="col">Ghi chú</th>
+                                    <th scope="col">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,6 +75,7 @@
                                             <td>{{$sv->masv}}</td>
                                             <td>{{$sv->thongtin->lop}}</td>
                                             <td>{{$sv->thongtin->ghichu}}</td>
+                                            <td><a href="{{ route('admin.quanlysinhvien.view', ['id' => $sv->id])}}">Xem chi tiết</a></td>
                                         </tr>
                                     @endforeach
                                 @endif

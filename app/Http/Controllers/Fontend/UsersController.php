@@ -25,6 +25,7 @@ class UsersController extends Controller
     public function postInfo(Request $request)
     {
     	try {
+             \DB::beginTransaction();
     		$user_id = Auth::id();
 
     		$thongtin = new ThongTin();
@@ -41,10 +42,11 @@ class UsersController extends Controller
     		$thongtin->ngaysinh = $request->birthday;;
     		$thongtin->sdt 		= $request->phonenumber;
     		$thongtin->update();
-
+            \DB::commit();
     		toastr()->success('Cập nhật thông tin thành công.');
             return redirect()->back();
-    	} catch (Exception $e) {
+    	} catch (\Exception $e) {
+            \DB::rollback(); 
     		toastr()->error('Đã xảy ra lỗi, vui lòng kiểm tra lại.');
             return redirect()->back();
     	}

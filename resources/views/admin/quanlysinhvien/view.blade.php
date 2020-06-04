@@ -58,21 +58,91 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
-                            <li class="nav-item"><a class="nav-link" style="background-color: #007bff; color: #fff;" href="#activity" data-toggle="tab">Cấp quyền</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Kết quả đăng ký đồ án</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Kết quả phân đồ án</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Reset mật khẩu</a></li>
                         </ul>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
-                        <div class="tab-content">
-                            <div class="tab-pane" id="activity">
-                                
+                    </div><!-- /.card-header -->
+                        <div class="card-body" style="padding: 0">
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="activity">
+                                    <!-- Post -->
+                                    <div class="content">
+                                        @if(isset($nguyenvong))
+                                        <table class="table">
+                                            <thead class="thead-inverse">
+                                                <tr>
+                                                    <th scope="col">Nguyện vọng</th>
+                                                    <th scope="col">Tên đề tài</th>
+                                                    <th scope="col">Lĩnh vực</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    @foreach($nguyenvong as $nv)
+                                                    <tr>
+                                                        <th scope="row">Nguyện vọng {{$nv->loainguyenvong}}</th>
+                                                        <td>{{$nv->detai->tendetai}}</td>
+                                                        <td>{{$nv->linhvuc->tenlinhvuc}}</td>
+                                                    </tr>
+                                                    @endforeach
+                                            </tbody>
+                                        </table> 
+                                        @endif
+                                    </div>
+                                    <!-- /.post -->
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="timeline">
+                                    <div class="content">
+                                        @if(isset($finalResult))
+                                        <table class="table">
+                                            <thead class="thead-inverse">
+                                                <tr>
+                                                    <th scope="col">Nguyện vọng</th>
+                                                    <th scope="col">Tên đề tài</th>
+                                                    <th scope="col">Lĩnh vực</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($finalResult as $fr)
+                                                    <tr>
+                                                        <th scope="row">Nguyện vọng {{$fr->loainguyenvong}}</th>
+                                                        <td>{{$fr->detai->tendetai}}</td>
+                                                        <td>{{$fr->linhvuc->tenlinhvuc}}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table> 
+                                        @endif
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="settings">
+                                    <form class="form-horizontal" action="{{ route('admin.quanlysinhvien.resetpassword',['user_id' => $sinhvien->id])}}" method="POST" id="resetPassword">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="">Mật khẩu mới</label>
+                                            <input id="newPassword" type="password" class="form-control" name="newPassword" placeholder="Mật khẩu mới">
+                                            <label for="masv" class="error"></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Xác nhận mật khẩu</label>
+                                            <input type="password" class="form-control" name="confirmPassword" placeholder="Xác nhận lại mật khẩu">
+                                            <label for="masv" class="error"></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-danger">Reset mật khẩu</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.tab-pane -->
                             </div>
-                            
-                            <!-- /.tab-pane -->
+                            <!-- /.tab-content -->
                         </div>
-                        <!-- /.tab-content -->
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card-body -->
                 </div>
                 <!-- /.nav-tabs-custom -->
             </div>

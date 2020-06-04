@@ -135,3 +135,30 @@ $("#register").validate({
     } 
 
 });
+
+$(document).ready(function() {
+    $("#resetPassword").validate({
+        rules: {
+            newPassword: {
+                required: true,
+                minlength: 8
+            },
+            confirmPassword: {
+                required: true,
+                minlength: 8,
+                equalTo: "#newPassword",
+            }
+        },
+        messages: {
+            newPassword: {
+                required: "Mật khẩu không được để trống.",
+                minlength:  "Mật khẩu tối thiểu là 8 kí tự."
+            },
+            confirmPassword: {
+                required: "Mật khẩu không được để trống.",
+                minlength: "Mật khẩu tối thiểu là 8 kí tự.",
+                equalTo: "Mật khẩu không trùng nhau."
+            }
+        }
+    });
+});

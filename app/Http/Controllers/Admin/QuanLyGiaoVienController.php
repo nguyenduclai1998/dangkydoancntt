@@ -32,11 +32,11 @@ class QuanLyGiaoVienController extends Controller
     {
     	$data = $request->except('_token');
     	$messages = [
-    		'email.unique'	=> "Tài khoản email đã tồn tại."
+    		'email.unique'	=> "Tài khoản email đã tồn tại.",
     	];
 
     	$validator = Validator::make($data,[
-    		'email'	=> 'unique:users'
+    		'email'	=> 'unique:users',
     	], $messages);
 
     	if($validator->fails()) {
@@ -47,6 +47,7 @@ class QuanLyGiaoVienController extends Controller
     		$user = new User();
     		$user->name 	= $request->name;
     		$user->email 	= $request->email;
+            $user->masv     = $request->masv;
     		$user->password = bcrypt($request->password);
     		$user->role_id 	= $role_id;
 

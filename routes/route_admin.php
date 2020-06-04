@@ -79,6 +79,7 @@
 			Route::get('create', 'QuanLySinhVienController@create')->name('admin.quanlysinhvien.create');
 			Route::post('create', 'QuanLySinhVienController@store')->name('admin.quanlysinhvien.store');
 			Route::get('view/{id}','QuanLySinhVienController@view')->name('admin.quanlysinhvien.view');
+			Route::post('reset-password/{user_id}', 'QuanLySinhVienController@resetPassword')->name('admin.quanlysinhvien.resetpassword');
 		});
 	});
 

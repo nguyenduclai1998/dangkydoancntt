@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\ThongTin;
+use App\Models\Admin\NguyenVong;
 use App\Models\Admin\Role;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -34,11 +35,13 @@ class QuanLySinhVienController extends Controller
     {
     	$data = $request->except('_token');
     	$messages = [
-    		'email.unique'	=> "Tài khoản email đã tồn tại."
+    		'email.unique'	=> "Tài khoản email đã tồn tại.",
+            'masv.unique'   => "Mã sinh viên đã tồn tại."
     	];
 
     	$validator = Validator::make($data,[
-    		'email'	=> 'unique:users'
+    		'email'	=> 'unique:users',
+            'masv'  => 'unique:users',
     	], $messages);
 
     	if($validator->fails()) {
@@ -66,11 +69,25 @@ class QuanLySinhVienController extends Controller
 
     public function view($id)
     {
-    	$sinhvien  = User::with('thongtin','role')->where('users.id', $id)->first();
-
+    	$sinhvien      = User::with('thongtin','role')->where('users.id', $id)->first();
+        $nguyenvong    = NguyenVong::with('linhvuc', 'detai')->where('user_id', $id)->where('trangthai', 0)->get();
+        $finalResult   = NguyenVong::with('linhvuc', 'detai')->where('user_id', $id)->where('trangthai', 1)->get();
   		$viewData = [
-			'sinhvien' => $sinhvien
+			'sinhvien'   => $sinhvien,
+            'nguyenvong' => $nguyenvong,
+            'finalResult'=> $finalResult
 		];
     	return view('admin.quanlysinhvien.view', $viewData);
+    }
+
+    public function resetPassword(Request $request, $user_id)
+    {
+        $user = new User();
+        $user = User::find($user_id);
+        $user->password = bcrypt($request->newPassword);
+        $user->update();
+
+        toastr()->success('Reset mật khẩu thành công.');
+        return redirect()->back();
     }
 }
