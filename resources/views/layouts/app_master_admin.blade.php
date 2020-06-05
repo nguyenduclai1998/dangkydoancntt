@@ -58,6 +58,49 @@
         div#usersTable_wrapper {
             width: 100%;
         }
+
+        .dropdown {
+            float:left;
+        }
+
+        .dropdown .dropbtn {
+          font-size: 16px;  
+          border: none;
+          outline: none;
+          color: white;
+          background-color: inherit;
+          font-family: inherit;
+          margin: 0;
+        }
+
+        .dropdown-content {
+           display: none; 
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+
+        .dropdown-content a:hover {
+          background-color: #3e84e0;
+            color:white;
+            box-shadow:2px 12px 20px 2px rgba(0,0,0,.5);
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+        .dropdown-content a {
+          float: none;
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+          text-align: left;
+        }
+
     </style>
     <body class="hold-transition sidebar-mini layout-navbar-fixed">
         <!-- Site wrapper -->
@@ -71,37 +114,32 @@
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href="{{ route('admin.index')}}" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item d-none d-sm-inline-block">
-                        <a href="#" class="nav-link">Contact</a>
-                    </li>
+                    </li>   
                 </ul>
-                <!-- SEARCH FORM -->
-                <form class="form-inline ml-3">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                            </button>
+                <!-- Right navbar links -->
+                <ul class="navbar-nav ml-auto" style="margin-right: 95px;">
+                    <div class="dropdown">
+                         <div class="image">
+                            <button class="dropbtn" style="border: none;"><img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" style="width: 33.59px; height: auto;" class="img-circle elevation-2" alt="User Image"></button><span>{{Auth::user()->name}}</span>
+                            <div class="dropdown-content">
+                                <a href="">Cập nhật thông tin</a>
+                                <a href="">Đổi mật khẩu</a>
+                                <a href="{{ route('post.admin.logout')}}"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                            </div>
                         </div>
                     </div>
-                </form>
-                <!-- Right navbar links -->
-                <ul class="navbar-nav ml-auto">
-                    <a href="{{ route('post.admin.logout')}}"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
                 </ul>
             </nav>
             <!-- /.navbar -->
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 100vh; position: fixed; margin-top: 0px">
                 <!-- Brand Logo -->
-                <a href="../../index3.html" class="brand-link elevation-4">
-                <img src="{{asset('admin/dist/img/AdminLTELogo.png')}}"
+                <a href="{{ route('admin.index')}}" class="brand-link elevation-4">
+                <img src="{{asset('font-end/img/logo-utt.png')}}"
                     alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3"
                     style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">UTT</span>
                 </a>
                 <!-- Sidebar -->
                 <div class="sidebar">

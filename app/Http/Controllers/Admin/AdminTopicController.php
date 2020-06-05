@@ -107,6 +107,18 @@ class AdminTopicController extends AdminController
             $sinhvien_id            = $request->sinhvien;
 
             if(isset($sinhvien_id)) {
+                //Check sinh viên đã được thêm vào đề tài nào trước đó hay chưa
+                $checkSinhvien = DeTai::where('sinhvien_id', $sinhvien_id)->first();
+
+                //Check giảng viên đã thêm bao nhiêu sinh viên vào đề tài
+                $checkDetai = DeTai::where('user_id', $id)->whereNotNull('sinhvien_id')->get();
+                if(isset($checkSinhvien->sinhvien_id)) {
+                    toastr()->error('Sinh viên này đã được đăng ký đề tài.');
+                    return redirect()->back();
+                } elseif (count($checkDetai) >= 5) {
+                    toastr()->error('Bạn đã thêm quá 5 sinh viên vào đề tài.');
+                    return redirect()->back();
+                }
                 $detai->tendetai        = $request->tendetai;
                 $detai->mota            = $request->mota;
                 $detai->slug            = Str::slug($request->tendetai);
@@ -116,7 +128,8 @@ class AdminTopicController extends AdminController
                 $detai->sinhvien_id     = $sinhvien_id;
                 $detai->save();
 
-                return redirect()->back()->with('notify','Thêm mới thành công.');
+                toastr()->success('Thêm mới thành công.');
+                return redirect()->back();
             }
 
             $detai->tendetai        = $request->tendetai;
@@ -127,7 +140,8 @@ class AdminTopicController extends AdminController
             $detai->user_id         = $id;
             $detai->save();
 
-            return redirect()->back()->with('notify','Thêm mới thành công.');
+            toastr()->success('Thêm mới thành công.');
+            return redirect()->back();
     	}
     }
 
@@ -144,7 +158,7 @@ class AdminTopicController extends AdminController
         return view('admin.topic.update', $viewDataDetai);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $detai_id)
     {
     	$data = $request->except('_token');
 
@@ -164,21 +178,34 @@ class AdminTopicController extends AdminController
     		$errors = $validator->errors();
     		return redirect()->back()->with('errors', $errors);
     	}else {
-    		$detai = new DeTai();
-    		$detai = DeTai::find($id);
-            $sinhvien_id            = $request->sinhvien;
+            $id = Auth::id();
+            $sinhvien_id = $request->sinhvien;
+            //Check sinh viên đã được thêm vào đề tài nào trước đó hay chưa
+            $checkSinhvien = DeTai::where('sinhvien_id', $sinhvien_id)->get();
 
+            //Check giảng viên đã thêm bao nhiêu sinh viên vào đề tài
+            $checkDetai = DeTai::where('user_id', $id)->whereNotNull('sinhvien_id')->get();
+            if(isset($checkSinhvien->sinhvien_id)) {
+                toastr()->error('Sinh viên này đã được đăng ký đề tài.');
+                return redirect()->back();
+            } elseif (count($checkDetai) >= 5) {
+                toastr()->error('Bạn đã thêm quá 5 sinh viên vào đề tài.');
+                return redirect()->back();
+            }
+    		$detai = new DeTai();
+    		$detai = DeTai::find($detai_id);
+            $sinhvien_id            = $request->sinhvien;
     		$detai->tendetai 		= $request->tendetai;
     		$detai->mota 	 		= $request->mota;
     		$detai->chuyennganh_id 	= $request->chuyennganh;
             $detai->linhvuc_id      = $request->linhvuc;
             $detai->sinhvien_id     = $sinhvien_id;
-    		$detai->slug 	 		= Str::slug($request->tendetai."-".time());
+    		$detai->slug 	 		= Str::slug($request->tendetai);
 
     		$detai->update();
 
-			return redirect()->back()->with('notify','Cập nhật thành công.');
-
+            toastr()->success('Cập nhật thành công.');
+            return redirect()->back();
     	}
     }
 

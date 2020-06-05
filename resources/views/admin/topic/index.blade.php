@@ -71,8 +71,8 @@
                                     <td>{{$dt->tenchuyennganh}}</td>
                                     <td>{{$dt->name}}</td>
                                     <td>
-                                        <a href="{{ route('admin.topic.edit', $dt->id)}}" class="btn btn-xs btn-primary"><i class="fas fa-pencil-alt"></i> Sửa</a>
-                                        <a href="{{ route('admin.topic.delete', $dt->id)}}" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Xóa</a>
+                                        <a href="{{ route('admin.topic.edit', ['detai_id' => $dt->id])}}" class="btn btn-xs btn-primary"><i class="fas fa-pencil-alt"></i> Sửa</a>
+                                        <a href="{{ route('admin.topic.delete', ['detai_id' => $dt->id])}}" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Xóa</a>
                                     </td>
                                 </tr>
                             @endforeach

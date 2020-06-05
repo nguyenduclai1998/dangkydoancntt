@@ -30,9 +30,9 @@
 			Route::get('/create','AdminTopicController@create')->name('admin.topic.create');
 			Route::get('/{id}','AdminTopicController@show')->name('admin.topic.index');
 			Route::post('create','AdminTopicController@store')->name('admin.topic.store');
-			Route::get('edit/{id}','AdminTopicController@edit')->name('admin.topic.edit');
-			Route::post('update/{id}','AdminTopicController@update')->name('admin.topic.update');
-			Route::get('delete/{id}','AdminTopicController@delete')->name('admin.topic.delete');
+			Route::get('edit/{detai_id}','AdminTopicController@edit')->name('admin.topic.edit');
+			Route::post('update/{detai_id}','AdminTopicController@update')->name('admin.topic.update');
+			Route::get('delete/{detai_id}','AdminTopicController@delete')->name('admin.topic.delete');
 		});
 
 		Route::group(['prefix' => 'chuyen-nganh'], function(){
@@ -81,5 +81,7 @@
 			Route::get('view/{id}','QuanLySinhVienController@view')->name('admin.quanlysinhvien.view');
 			Route::post('reset-password/{user_id}', 'QuanLySinhVienController@resetPassword')->name('admin.quanlysinhvien.resetpassword');
 		});
+
+		// Route::group()
 	});
 
