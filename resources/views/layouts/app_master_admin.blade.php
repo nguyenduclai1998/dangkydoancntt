@@ -29,6 +29,11 @@
         <!-- Select2 from a CDN -->
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+        {{-- Datetime Picker --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+        <link rel="stylesheet" href="https://rawgit.com/Eonasdan/bootstrap-datetimepicker/master/build/css/bootstrap-datetimepicker.min.css">
+        <script src="https://rawgit.com/Eonasdan/bootstrap-datetimepicker/master/build/js/bootstrap-datetimepicker.min.js"></script>
         @toastr_css        
     </head>
     <style type="text/css">
@@ -122,8 +127,7 @@
                          <div class="image">
                             <button class="dropbtn" style="border: none;"><img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" style="width: 33.59px; height: auto;" class="img-circle elevation-2" alt="User Image"></button><span>{{Auth::user()->name}}</span>
                             <div class="dropdown-content">
-                                <a href="">Cập nhật thông tin</a>
-                                <a href="">Đổi mật khẩu</a>
+                                <a href="{{ route('admin.quanlygiaovien.profile')}}">Cập nhật thông tin</a>
                                 <a href="{{ route('post.admin.logout')}}"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
                             </div>
                         </div>
@@ -146,11 +150,11 @@
                     <!-- Sidebar user (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+                            <a href="{{ route('admin.quanlygiaovien.profile')}}"><img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image"></a>
                         </div>
                         @if(Auth::check())
                         <div class="info">
-                            <a href="" class="d-block">{{Auth::user()->name}}</a>
+                            <a href="{{ route('admin.quanlygiaovien.profile')}}" class="d-block">{{Auth::user()->name}}</a>
                         </div>
                         @endif
                     </div>

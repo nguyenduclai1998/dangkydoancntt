@@ -39,7 +39,8 @@ class UsersController extends Controller
     		$user->masv  		= $request->masv;
     		$user->update();
     		$thongtin->lop 		= $request->class;;
-    		$thongtin->ngaysinh = $request->birthday;;
+    		$thongtin->ngaysinh = $request->birthday;
+            $thongtin->gioitinh = $request->gioitinh;
     		$thongtin->sdt 		= $request->phonenumber;
     		$thongtin->update();
             \DB::commit();

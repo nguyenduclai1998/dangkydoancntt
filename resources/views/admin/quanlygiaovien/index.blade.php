@@ -40,44 +40,32 @@
             <section class="content">
                 <div class="card-body pb-0">
                     <div class="row d-flex align-items-stretch">
-                        @if(isset($giaovien))
-                            @foreach($giaovien as $gv)
-                                <div class="col-12 col-sm-4 col-md-4 d-flex align-items-stretch">
-                                    <div class="card bg-light">
-                                        <div class="card-header text-muted border-bottom-0">
-                                            {{$gv->role->rolename}}
-                                        </div>
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-7">
-                                                    <h2 class="lead"><b>{{$gv->name}}</b></h2>
-                                                    <p class="text-muted text-sm"><b>Email: </b>{{$gv->email}}</p>
-                                                    <p class="text-muted text-sm"><b>Ngày sinh: </b>{{$gv->thongtin->ngaysinh}}</p>
-                                                    <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Học hàm: {{$gv->thongtin->hocham}}</li>
-                                                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: {{$gv->thongtin->sdt}}</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-5 text-center">
-                                                    @if($gv->thongtin->avatar == null)
-                                                        <img style="max-width: 128px; height: auto;" src="{{ asset('admin/dist/img/default-avatar.png')}}" alt="" class="img-circle img-fluid">
-                                                    @else
-                                                        <img style="max-width: 128px; height: auto;" src="{{ asset('admin/dist/img/user1-128x128.jpg')}}" alt="" class="img-circle img-fluid">
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="text-right">
-                                                <a href=" {{ route('admin.quanlygiaovien.view', $gv->id)}}" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> View Profile
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
+                        <table id="usersTable" class="table table table-striped table-bordered" class="display" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Họ và tên</th>
+                                    <th scope="col">Mã sinh viên</th>
+                                    <th scope="col">Lớp</th>
+                                    <th scope="col">Ghi chú</th>
+                                    <th scope="col">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(isset($giaovien))
+                                    @foreach($giaovien as $k => $gv)
+                                        <tr>
+                                            <th scope="row">{{$k + 1}}</th>
+                                            <td>{{$gv->name}}</td>
+                                            <td>{{$gv->masv}}</td>
+                                            <td>{{$gv->thongtin->lop}}</td>
+                                            <td>{{$gv->thongtin->ghichu}}</td>
+                                            <td><a href="{{ route('admin.quanlygiaovien.view', ['id' => $gv->id])}}">Xem chi tiết</a></td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </section>

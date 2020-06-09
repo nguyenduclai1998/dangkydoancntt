@@ -62,49 +62,39 @@ class QuanLyGiaoVienController extends Controller
     	}
     }
 
-    public function delete($id)
-    {
-
-    }
-
     public function view($id)
     {
     	$giaovien  = User::with('thongtin','role')->where('users.id', $id)->first();
+        $role = Role::get();
 
   		$viewData = [
-			'giaovien' => $giaovien
+			'giaovien' => $giaovien,
+            'role'     => $role 
 		];
     	return view('admin.quanlygiaovien.view', $viewData);
     }
 
-    public function changePassword(Request $request)
+    public function profile(Request $request)
     {
-    	$user_id = \Auth::user()->id;
-        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
-            // The passwords matches
-            return redirect()->back()->with("errors","Mật khẩu bạn nhập không đúng, vui lòng thử lại.");
-        }
+        $user_id = Auth::id();
 
-        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
-            //Current password and new password are same
-            return redirect()->back()->with("errors","New Password cannot be same as your current password. Please choose a different password.");
-        }
+        $user = new User();
+        $user = User::with('thongtin','role')->where('users.id', $user_id)->first();
 
-        $validatedData = $request->validate([
-            'current-password' => 'required',
-            'new-password' => 'required|string|min:6|confirmed',
-        ]);
-
-        //Change Password
-        $user = User::find($user_id);
-        $user->password = bcrypt($request->get('new-password'));
-        $user->save();
-
-        return redirect()->back()->with("notify","Password changed successfully !");
+        $viewData = [
+            'user' => $user
+        ];
+        return view('admin.profile.profile', $viewData);
     }
 
-    public function updateProfile(Request $request)
+    public function role(Request $request, $id)
     {
+        $user = new User();
+        $user = User::find($id);
+        $user->role_id = $request->role;
+        $user->update();
 
+        toastr()->success('Phân quyền thành công.');
+        return redirect()->back();
     }
 }

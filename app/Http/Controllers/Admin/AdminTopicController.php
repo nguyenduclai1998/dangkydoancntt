@@ -181,17 +181,23 @@ class AdminTopicController extends AdminController
             $id = Auth::id();
             $sinhvien_id = $request->sinhvien;
             //Check sinh viên đã được thêm vào đề tài nào trước đó hay chưa
-            $checkSinhvien = DeTai::where('sinhvien_id', $sinhvien_id)->get();
+            if($sinhvien_id) {
+                $checkSinhvien = DeTai::where('sinhvien_id', $sinhvien_id)->where('id', '!=' , $detai_id)->exists();
+
+                if( $checkSinhvien ) {
+                    toastr()->error('Sinh viên này đã được đăng ký đề tài.');
+                    return redirect()->back();
+                }
+            }
 
             //Check giảng viên đã thêm bao nhiêu sinh viên vào đề tài
             $checkDetai = DeTai::where('user_id', $id)->whereNotNull('sinhvien_id')->get();
-            if(isset($checkSinhvien->sinhvien_id)) {
-                toastr()->error('Sinh viên này đã được đăng ký đề tài.');
-                return redirect()->back();
-            } elseif (count($checkDetai) >= 5) {
+
+            if (count($checkDetai) >= 5) {
                 toastr()->error('Bạn đã thêm quá 5 sinh viên vào đề tài.');
                 return redirect()->back();
-            }
+            }    
+            
     		$detai = new DeTai();
     		$detai = DeTai::find($detai_id);
             $sinhvien_id            = $request->sinhvien;

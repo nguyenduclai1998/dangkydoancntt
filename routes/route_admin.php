@@ -22,7 +22,8 @@
 		//Route upload anh trong bai viet
 		Route::post('image-upload', 'ImageUploadController@imageUpload')->name('admin.image.upload');
 
-		//Route import and export file excel.
+		//Route set time.
+		// Route::post('time', '');
 
 
 		Route::group(['prefix' => 'de-tai'], function(){
@@ -72,6 +73,8 @@
 			Route::get('view/{id}','QuanLyGiaoVienController@view')->name('admin.quanlygiaovien.view');
 			Route::post('changepassword', 'QuanLyGiaoVienController@changePassword')->name('admin.quanlygiaovien.changepassword');
 			Route::post('updateprofile', 'QuanLyGiaoVienController@updateProfile')->name('admin.quanlygiaovien.updateprofile');
+			Route::get('updateprofile', 'QuanLyGiaoVienController@profile')->name('admin.quanlygiaovien.profile');
+			Route::post('role/{id}', 'QuanLyGiaoVienController@role')->name('admin.quanlygiaovien.role');
 		});
 
 		Route::group(['prefix' => 'quan-ly-sinh-vien'], function() {
@@ -81,7 +84,5 @@
 			Route::get('view/{id}','QuanLySinhVienController@view')->name('admin.quanlysinhvien.view');
 			Route::post('reset-password/{user_id}', 'QuanLySinhVienController@resetPassword')->name('admin.quanlysinhvien.resetpassword');
 		});
-
-		// Route::group()
 	});
 
