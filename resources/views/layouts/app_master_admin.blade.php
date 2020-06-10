@@ -164,6 +164,15 @@
                             <!-- Add icons to the links using the .nav-icon class
                                 with font-awesome or any other icon font library -->
                             <li class="nav-item has-treeview">
+                                <a href="{{ route('admin.indexTime')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-table"></i>
+                                    <p>
+                                        Thời gian mở đăng ký
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item has-treeview">
                                 <a href="" class="nav-link">
                                     <i class="nav-icon fas fa-edit"></i>
                                     <p>
@@ -185,6 +194,7 @@
                                     
                                 </ul>
                             </li>
+
                             <li class="nav-item has-treeview">
                                 <a href="{{ route('admin.chuyennganh.index')}}" class="nav-link">
                                     <i class="nav-icon fas fa-table"></i>

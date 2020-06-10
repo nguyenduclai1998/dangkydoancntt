@@ -15,7 +15,10 @@
 	Route::post('import', 'HomeController@import')->name('import');
 
 	//Route set time.
-	Route::post('time', 'HomeController@setTime')->name('admin.setTime');
+	Route::get('time','HomeController@indexTime')->name('admin.indexTime');
+	Route::post('create-time', 'HomeController@setTime')->name('admin.setTime');
+	Route::get('update-time','HomeController@updateTime')->name('admin.updateTime');
+	Route::get('delete/{id}', 'HomeController@deteleTime')->name('admin.deteleTime');
 
 	Route::group(['prefix' => 'quan-tri', 'namespace' => 'Admin', 'middleware' => 'check_login_admin'], function(){
 		Route::get('/', function () {

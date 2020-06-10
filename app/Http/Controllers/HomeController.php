@@ -58,17 +58,56 @@ class HomeController extends Controller
     	
     }
 
+    public function indexTime()
+    {
+        $time = new Time();
+
+        $checkTime = Time::first();
+        
+        $viewData = [
+            'checkTime' => $checkTime
+        ];   
+        return view('admin.thoigian.index', $viewData);
+    }
+
     public function setTime(Request $request)
     {
         $timeStart = $request->timestart;
         $timeEnd   = $request->timeend;
+        $timeToday = time();
 
         $time = new Time();
-        $time->time_start = $timeStart;
-        $time->time_end   = $timeEnd;
-        $time->save();
 
-        toastr()->success('Thêm thời gian thành công.'); 
-        return redirect()->back();
+        $checkTime = Time::first();
+        if($checkTime) {
+            toastr()->error('Bạn phải xóa thời gian trước đó để thêm mới.'); 
+            return redirect()->back();
+        }elseif (strtotime($timeStart) < strtotime($timeEnd) && strtotime($timeStart) > $timeToday && strtotime($timeEnd) > $timeToday ) {
+            $time->time_start = $timeStart;
+            $time->time_end   = $timeEnd;
+            $time->save();
+
+            toastr()->success('Thêm thời gian thành công.'); 
+            return redirect()->back();
+        } else{
+            toastr()->error('Đã xảy ra lỗi vui lòng kiểm tra lại thời gian.'); 
+            return redirect()->back();
+        }
+        
+    }
+
+    public function deteleTime($id)
+    {
+        $time = new Time();
+
+        $checkTime = Time::first();
+        if($checkTime) {
+            $checkTime->delete();
+            toastr()->success('Xóa thời gian thành công.'); 
+            return redirect()->back();
+        }else{
+            toastr()->error('Đã xảy ra lỗi vui lòng kiểm tra lại.'); 
+            return redirect()->back();
+        }
     }
 }
