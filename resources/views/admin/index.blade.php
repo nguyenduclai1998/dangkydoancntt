@@ -3,7 +3,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
-        <form action="" method="POST" id="datetimePicker" id="formTime">
+        <form action="{{ route('admin.setTime')}}" method="POST" id="datetimePicker" id="formTime">
             @csrf
             <div class="row">
                 <div class="form-group col-md-6">
@@ -25,13 +25,13 @@
 <script type="text/javascript">
     $('#datetimepicker1').datetimepicker({
         defaultDate: new Date(),
-        format: 'DD/MM/YYYY H:mm:ss',
+        format: 'YYYY-MM-DD H:mm:ss',
         sideBySide: true
     });
 
     $('#datetimepicker2').datetimepicker({
         defaultDate: new Date(),
-        format: 'DD/MM/YYYY H:mm:ss',
+        format: 'YYYY-MM-DD H:mm:ss',
         sideBySide: true
     });
 </script>

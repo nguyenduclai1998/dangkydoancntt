@@ -14,6 +14,9 @@
 	Route::get('importExportView', 'HomeController@importExportView')->name('importview');
 	Route::post('import', 'HomeController@import')->name('import');
 
+	//Route set time.
+	Route::post('time', 'HomeController@setTime')->name('admin.setTime');
+
 	Route::group(['prefix' => 'quan-tri', 'namespace' => 'Admin', 'middleware' => 'check_login_admin'], function(){
 		Route::get('/', function () {
 		    return view('admin.index');
@@ -21,10 +24,6 @@
 
 		//Route upload anh trong bai viet
 		Route::post('image-upload', 'ImageUploadController@imageUpload')->name('admin.image.upload');
-
-		//Route set time.
-		// Route::post('time', '');
-
 
 		Route::group(['prefix' => 'de-tai'], function(){
 			Route::get('','AdminTopicController@deTai')->name('admin.topic.detai');

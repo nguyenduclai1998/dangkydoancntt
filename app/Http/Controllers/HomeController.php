@@ -7,6 +7,7 @@ use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Admin\Time;
 
 class HomeController extends Controller
 {
@@ -55,5 +56,19 @@ class HomeController extends Controller
 	        return back();
     	}
     	
+    }
+
+    public function setTime(Request $request)
+    {
+        $timeStart = $request->timestart;
+        $timeEnd   = $request->timeend;
+
+        $time = new Time();
+        $time->time_start = $timeStart;
+        $time->time_end   = $timeEnd;
+        $time->save();
+
+        toastr()->success('Thêm thời gian thành công.'); 
+        return redirect()->back();
     }
 }
