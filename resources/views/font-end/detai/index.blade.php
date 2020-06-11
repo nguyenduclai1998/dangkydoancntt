@@ -1,6 +1,32 @@
 @extends('layouts.app_master_font_end')
 @section('content')
-@if(isset($detai))
+
+<script type="text/javascript">
+    function countDown(countDownDate) {
+        var timer = setInterval(function() {
+
+            var now = new Date().getTime();
+
+            var distance = countDownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            $('[data-countdown-content=days]').html(days)
+            $('[data-countdown-content=hours]').html(hours)
+            $('[data-countdown-content=minutes]').html(minutes)
+            $('[data-countdown-content=seconds]').html(seconds)
+
+
+            if (distance < 0) {
+                clearInterval(timer);
+                // $('[data-content=countdown]').html('Hết thời hạn giao dịch');
+            }   
+        }, 1000);
+    }
+</script>
 <!-- Content  -->
     <section class="content">
         <div class="breadcrumbs">
@@ -17,7 +43,7 @@
                                                     <nav class="breadcrumb " role="navigation" aria-labelledby="system-breadcrumb">
                                                         <ol>
                                                             <li>
-                                                                <a href="index.html">Trang chủ</a>
+                                                                <a href="{{ route('home.index')}}">Trang chủ</a>
                                                                 <span class="slash">»</span>
                                                                 <a href="detai.html">Đề tài</a>
                                                             </li>
@@ -35,6 +61,9 @@
             </div>
         </div>
 
+        @if(isset($detai) )
+        @if($TIMES)
+        @if(strtotime( $TIMES->time_start ) < time() && strtotime( $TIMES->time_end ) > time())
         <div role="main" class="main main-page">
             <div class="clearfix"></div>
             <div id="content" class="content content-full">
@@ -146,7 +175,26 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="container">
+            <h1>Bắt đầu đăng ký đồ án sau:</h1>
+            <ul>
+                <li class="time"><span data-countdown-content="days"></span>Ngày</li>
+                <li class="time"><span data-countdown-content=hours></span>Giờ</li>
+                <li class="time"><span data-countdown-content=minutes></span>Phút</li>
+                <li class="time"><span data-countdown-content="seconds"></span>Giây</li>
+            </ul>
+        </div>
+        @endif
+        
+
+
     </section>
     <!-- End Content  -->
+<script type="text/javascript">
+    countDown("{{ strtotime($TIMES->time_start) * 1000 }}")
+</script>
+@endif
 @endif
 @stop
+

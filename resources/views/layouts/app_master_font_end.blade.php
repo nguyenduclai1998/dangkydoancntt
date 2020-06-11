@@ -15,8 +15,26 @@
 </head>
 <style type="text/css">
 	button.toast-close-button {
-    position: absolute;
-}
+	    position: absolute;
+	}
+
+	section.content {
+        min-height: 53.5vh;
+    }
+
+    li.time {
+	  	display: inline-block;
+	  	font-size: 1.5em;
+	  	list-style-type: none;
+	  	padding: 1em;
+	  	text-transform: uppercase;
+	}
+
+	li.time span {
+		display: block;
+	  	font-size: 4.5rem;
+	}
+
 </style>
 <body>
 	<div class="fullscreeen">
@@ -71,6 +89,7 @@
 						<div class="left-menu">
 							<ul class="navbarMain__menu__wrap">
 								<li class=""><a href="">Trang chủ</a></li>
+								
 								<li class="dropdown_menu" >
 									<a href="" class="">Đề tài</a>
 									<ul class="dropdown_content">

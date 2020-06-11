@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use App\Models\Admin\LinhVuc;
 use App\Models\Admin\ChuyenNganh;
+use App\Models\Admin\Time;
 use App\User;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,9 +32,11 @@ class AppServiceProvider extends ServiceProvider
         $chuyennganh = ChuyenNganh::get();
         $linhvuc     = LinhVuc::get();
         $sinhvien    = User::where('role_id', 3)->get();
-        
+        $checkTimes  = Time::first();
+
         View::share('CHUYENNGANHS', $chuyennganh);
         View::share('LINHVUCS', $linhvuc);
         View::share('SINHVIENS', $sinhvien);
+        View::share('TIMES', $checkTimes);
     }
 }
