@@ -15,7 +15,10 @@ class KetquadangkyController extends Controller
     public function index(Request $request)
     {
     	$ketquadangky = NguyenVong::with('linhvuc', 'detai', 'users')->get();
-    	// dd($ketquadangky);
+    	
+    	$user = new User();
+   		$phandoan = $user->rightJoin('detai', 'users.id', '=', 'detai.user_id')->whereNotNull('detai.sinhvien_id')->get();
+    	dd($phandoan);
     	$viewData = [
     		'ketquadangky' => $ketquadangky
     	];
