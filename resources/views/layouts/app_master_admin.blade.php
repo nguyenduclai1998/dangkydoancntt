@@ -255,25 +255,12 @@
                             </li>
                             @if(Auth::check() && Auth::user()->role_id == 1)
                             <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon far fa-plus-square"></i>
+                                <a href="{{ route('admin.ketquadangky.index')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-table"></i>
                                     <p>
                                         Kết quả đăng ký đề tài
-                                        <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    @if(isset($CHUYENNGANHS))
-                                        @foreach($CHUYENNGANHS as $cn)
-                                            <li class="nav-item">
-                                                <a href="" class="nav-link menu" style="max-width: 235px">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>{{$cn->tenchuyennganh}}</p>
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    @endif
-                                </ul>
                             </li>
                             @endif
                         </ul>

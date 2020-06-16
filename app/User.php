@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function nguyenvong()
     {
-        return $this->hasMany('App\Models\Admin\NguyenVong');
+        return $this->hasMany('App\Models\Admin\NguyenVong', 'user_id');
     }
 
     /**

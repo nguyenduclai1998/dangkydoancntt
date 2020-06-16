@@ -22,7 +22,7 @@
 
             if (distance < 0) {
                 clearInterval(timer);
-                // $('[data-content=countdown]').html('Hết thời hạn giao dịch');
+                $('[data-content=countdown]').html('Hết thời hạn giao dịch');
             }   
         }, 1000);
     }
@@ -175,7 +175,7 @@
                 </div>
             </div>
         </div>
-        @else
+        @elseif(strtotime( $TIMES->time_start ) > time())
         <div class="container">
             <h1>Bắt đầu đăng ký đồ án sau:</h1>
             <ul>
@@ -184,6 +184,10 @@
                 <li class="time"><span data-countdown-content=minutes></span>Phút</li>
                 <li class="time"><span data-countdown-content="seconds"></span>Giây</li>
             </ul>
+        </div>
+        @elseif(strtotime( $TIMES->time_end ) < time())
+            <div class="container">
+            <h1>Thời gian đăng ký đã kết thúc</h1>
         </div>
         @endif
         

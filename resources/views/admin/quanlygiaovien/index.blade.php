@@ -45,8 +45,7 @@
                                 <tr>
                                     <th scope="col">STT</th>
                                     <th scope="col">Họ và tên</th>
-                                    <th scope="col">Mã sinh viên</th>
-                                    <th scope="col">Lớp</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Ghi chú</th>
                                     <th scope="col">Hành động</th>
                                 </tr>
@@ -57,8 +56,7 @@
                                         <tr>
                                             <th scope="row">{{$k + 1}}</th>
                                             <td>{{$gv->name}}</td>
-                                            <td>{{$gv->masv}}</td>
-                                            <td>{{$gv->thongtin->lop}}</td>
+                                            <td>{{$gv->email}}</td>
                                             <td>{{$gv->thongtin->ghichu}}</td>
                                             <td><a href="{{ route('admin.quanlygiaovien.view', ['id' => $gv->id])}}">Xem chi tiết</a></td>
                                         </tr>

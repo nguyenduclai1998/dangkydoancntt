@@ -86,5 +86,9 @@
 			Route::get('view/{id}','QuanLySinhVienController@view')->name('admin.quanlysinhvien.view');
 			Route::post('reset-password/{user_id}', 'QuanLySinhVienController@resetPassword')->name('admin.quanlysinhvien.resetpassword');
 		});
+
+		Route::group(['prefix' => 'ket-qua-dang-ky'], function() {
+			Route::get('', 'KetquadangkyController@index')->name('admin.ketquadangky.index');
+		});
 	});
 

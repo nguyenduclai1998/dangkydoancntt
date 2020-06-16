@@ -1,6 +1,7 @@
 @extends('layouts.app_master_admin')
 @section('content')
 <!-- Content Header (Page header) -->
+
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -19,7 +20,6 @@
     <!-- /.container-fluid -->
 </section>
 <!-- Main content -->
-
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -38,45 +38,31 @@
                 <button type="submit" class="btn btn-primary" style="font-size: .875rem;"><a href="{{ route('admin.topic.create')}}" style="color: #fff">Thêm mới </a><i class="fas fa-plus"></i></button>
             </div>
             <!-- /.card-header -->
-            @if(count($errors)>0)
-                <div class="alert alert-danger">
-                    @foreach ($errors->all() as $err)
-                        {{$err}}<br>
-                    @endforeach
-                </div>
-            @endif
-            {{-- Hiển thị thông tin trạng thái tạo bài viết --}}
-            @if (session('notify'))
-                <div class="alert alert-info">{{session('notify')}}</div>
-            @endif
             <div class="card-body pb-0">
                 <div class="card-body table-responsive p-0">
-                    <table id="topicTable" class="table table table-striped table-bordered" class="display" width="100%" cellspacing="0">
+                    <table id="ketquaTable" class="table table table-striped table-bordered" class="display" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">Tên đề tài</th>
                                 <th scope="col">Lĩnh vực</th>
-                                <th scope="col">Chuyên ngành</th>
-                                <th scope="col">Người tạo</th>
+                                <th scope="col">Sinh viên</th>
+                                <th scope="col">Nguyện vọng</th>
                                 <th scope="col">Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if(isset($detai))
-                                @foreach($detai as $k => $dt)
+                            @if(isset($ketquadangky))
+                            @foreach($ketquadangky as $k => $kq)
                                     <tr>
                                         <th scope="row">{{$k + 1}}</th>
-                                        <td>{{$dt->tendetai}}</td>
-                                        <td>{{$dt->tenlinhvuc}}</td>
-                                        <td>{{$dt->tenchuyennganh}}</td>
-                                        <td>{{$dt->name}}</td>
-                                        <td>
-                                            <a href="{{ route('admin.topic.edit', ['detai_id' => $dt->id])}}" class="btn btn-xs btn-primary"><i class="fas fa-pencil-alt"></i> Sửa</a>
-                                            <a href="{{ route('admin.topic.delete', ['detai_id' => $dt->id])}}" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Xóa</a>
-                                        </td>
+                                        <td>{{$kq->detai->tendetai}}</td>
+                                        <td>{{$kq->linhvuc->tenlinhvuc}}</td>
+                                        <td>{{$kq->users->name}}</td>
+                                        <td>Nguyện vọng {{$kq->loainguyenvong}}</td>
+                                        <td></td>
                                     </tr>
-                                @endforeach
+                            @endforeach
                             @endif
                         </tbody>
                     </table>
@@ -86,7 +72,7 @@
         </div>
         <!-- /.card -->
         <div>
-            {{ $detai->links() }}
+            {{-- {{ $detai->links() }} --}}
         </div>
     </div>
 </div>
@@ -101,7 +87,7 @@
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#topicTable').DataTable({
+        $('#ketquaTable').DataTable({
             
         });
     });
