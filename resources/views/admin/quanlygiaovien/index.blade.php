@@ -26,12 +26,7 @@
             <div class="card-header">
                 <h3 class="card-title">Danh sách giáo viên</h3>
                 <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div class="card-footer">
@@ -40,7 +35,7 @@
             <section class="content">
                 <div class="card-body pb-0">
                     <div class="row d-flex align-items-stretch">
-                        <table id="usersTable" class="table table table-striped table-bordered" class="display" width="100%" cellspacing="0">
+                        <table id="usersTable" class="table table table-striped table-bordered" class="display" width="100%" cellspacing="0" id="teacherTable">
                             <thead>
                                 <tr>
                                     <th scope="col">STT</th>
@@ -69,9 +64,6 @@
             </section>
         </div>
         <!-- /.card -->
-        <div>
-            {{ $giaovien->links() }}
-        </div>
     </div>
 </div>
 <style type="text/css">
@@ -79,6 +71,17 @@
         width: 100%;
     }
 </style>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#usersTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>
 <!-- /.row -->
 @endif
 @stop

@@ -16,7 +16,7 @@ class QuanLyGiaoVienController extends Controller
 {
     public function index()
     {
-    	$giaovien  = User::with('thongtin','role')->where('users.role_id', 2)->paginate(10);
+    	$giaovien  = User::with('thongtin','role')->where('users.role_id', 2)->get();
     	$viewData = [
 			'giaovien' => $giaovien
 		];

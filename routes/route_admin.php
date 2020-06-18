@@ -73,9 +73,9 @@
 			Route::get('create', 'QuanLyGiaoVienController@create')->name('admin.quanlygiaovien.create');
 			Route::post('create', 'QuanLyGiaoVienController@store')->name('admin.quanlygiaovien.store');
 			Route::get('view/{id}','QuanLyGiaoVienController@view')->name('admin.quanlygiaovien.view');
-			Route::post('changepassword', 'QuanLyGiaoVienController@changePassword')->name('admin.quanlygiaovien.changepassword');
-			Route::post('updateprofile', 'QuanLyGiaoVienController@updateProfile')->name('admin.quanlygiaovien.updateprofile');
-			Route::get('updateprofile', 'QuanLyGiaoVienController@profile')->name('admin.quanlygiaovien.profile');
+			Route::post('change-password', 'QuanLyGiaoVienController@changePassword')->name('admin.quanlygiaovien.changepassword');
+			Route::post('update-profile', 'QuanLyGiaoVienController@updateProfile')->name('admin.quanlygiaovien.updateprofile');
+			Route::get('update-profile', 'QuanLyGiaoVienController@profile')->name('admin.quanlygiaovien.profile');
 			Route::post('role/{id}', 'QuanLyGiaoVienController@role')->name('admin.quanlygiaovien.role');
 		});
 
@@ -89,6 +89,11 @@
 
 		Route::group(['prefix' => 'ket-qua-dang-ky'], function() {
 			Route::get('', 'KetquadangkyController@index')->name('admin.ketquadangky.index');
+		});
+
+		Route::group(['prefix' => 'phan-de-tai'], function() {
+			Route::get('', 'PhandetaiController@index')->name('admin.phandetai.index');
+			Route::get('phan-de-tai', 'PhandetaiController@phandetai')->name('admin.phandetai.phandetai');
 		});
 	});
 

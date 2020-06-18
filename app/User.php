@@ -52,32 +52,18 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Admin\NguyenVong', 'user_id');
     }
 
-    /**
-    // * @param string|array $roles
-    */
-    // public function authorizeRoles($roles)
-    // {
-    //     if (is_array($roles)) {
-    //         return $this->hasAnyRole($roles) || 
-    //                 abort(401, 'Bạn có quyền truy cập trang này.');
-    //     }
-    //     return $this->hasRole($roles) || 
-    //             abort(401, 'Bạn có quyền truy cập trang này.');
-    // }
-    /**
-    * Check multiple roles
-    // * @param array $roles
-    */
-    // public function hasAnyRole($roles)
-    // {
-    //   return null !== $this->role()->whereIn('rolename', $roles)->first();
-    // }
-    /**
-    * Check one role
-    // * @param string $role
-    */
-    // public function hasRole($role)
-    // {
-    //   return null !== $this->role()->where('rolename', $role)->first();
-    // }
+    public function detai()
+    {
+        return $this->hasMany('App\Models\Admin\DeTai', 'user_id');
+    }
+
+    public function phandetai()
+    {
+        return $this->hasMany('App\Models\Admin\Phandetai', 'user_id');
+    }
+
+    public function giangvienhuongdan()
+    {
+        return $this->hasMany('App\Models\Admin\Phandetai', 'giangvien_id')
+    }
 }

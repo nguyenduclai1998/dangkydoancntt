@@ -1,17 +1,16 @@
 @extends('layouts.app_master_admin')
 @section('content')
 <!-- Content Header (Page header) -->
-
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Kết quả đăng ký</h1>
+                <h1>Phân đề tài</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('admin.index')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item active"><a href="{{ route('admin.ketquadangky.index')}}">Kết quả đăng ký</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('admin.phandetai.index')}}">Phân đề tài</a></li>
                 </ol>
             </div>
         </div>
@@ -19,34 +18,44 @@
     <!-- /.container-fluid -->
 </section>
 <!-- Main content -->
+
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Kết quả đăng ký</h3>
+                <h3 class="card-title">Phân đề tài</h3>
                 <div class="card-tools">
                 </div>
             </div>
-
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary" style="font-size: .875rem;"><a href="{{ route('admin.phandetai.phandetai')}}" style="color: #fff">Phân đề tài </a><i class="fas fa-plus"></i></button>
+            </div>
+            <!-- /.card-header -->
             <div class="card-body pb-0">
                 <div class="card-body table-responsive p-0">
-                    <table id="ketquaTable" class="table table table-striped table-bordered" class="display" width="100%" cellspacing="0">
+                    <table id="topicTable" class="table table table-striped table-bordered" class="display" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">Sinh viên</th>
-                                <th scope="col">Mã sinh viên</th>
+                                <th scope="col">Tên đề tài</th>
+                                <th scope="col">Lĩnh vực</th>
+                                <th scope="col">Giảng viên hướng dẫn</th>
                                 <th scope="col">Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if(isset($ketquadangky))
-                            @foreach($ketquadangky as $k => $kq)
+                            @if(isset($phandetai))
+                            @foreach($phandetai as $k => $pdt)
                                 <tr>
                                     <th scope="row">{{$k + 1}}</th>
-                                    <td>{{$kq->users->name}}</td>
-                                    <td>{{$kq->users->masv}}</td>
-                                    <td><a href="{{ route('admin.quanlysinhvien.view', ['id' => $kq->users->id])}}">Xem chi tiết</a></td>
+                                    <td>{{$pdt->users->name}}</td>
+                                    <td>{{$pdt->detai->tendetai}}</td>
+                                    <td>{{$pdt->linhvuc->tenlinhvuc}}</td>
+                                    <td>{{$pdt->giangvienhuongdan->name}}</td>
+                                    <td>
+                                        <a href="" ><i class="fas fa-pencil-alt"></i> Xem chi tiết</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             @endif
@@ -57,9 +66,6 @@
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-        <div>
-            {{-- {{ $detai->links() }} --}}
-        </div>
     </div>
 </div>
 <!-- /.row -->
@@ -73,7 +79,7 @@
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#ketquaTable').DataTable({
+        $('#topicTable').DataTable({
             
         });
     });

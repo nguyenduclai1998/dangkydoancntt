@@ -1,6 +1,11 @@
 @extends('layouts.app_master_font_end')
 @section('content')
-
+<style type="text/css">
+    .body.hidden-xs {
+        max-height: 43px;
+        overflow: hidden;
+    }
+</style>
 <script type="text/javascript">
     function countDown(countDownDate) {
         var timer = setInterval(function() {

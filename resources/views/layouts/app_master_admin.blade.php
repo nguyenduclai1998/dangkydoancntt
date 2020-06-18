@@ -163,6 +163,7 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class
                                 with font-awesome or any other icon font library -->
+                            @if(Auth::check() && Auth::user()->role_id == 1)    
                             <li class="nav-item has-treeview">
                                 <a href="{{ route('admin.indexTime')}}" class="nav-link">
                                     <i class="nav-icon fas fa-table"></i>
@@ -171,6 +172,7 @@
                                     </p>
                                 </a>
                             </li>
+                            @endif
 
                             <li class="nav-item has-treeview">
                                 <a href="" class="nav-link">
@@ -262,6 +264,16 @@
                                     </p>
                                 </a>
                             </li>
+
+                            <li class="nav-item has-treeview">
+                                <a href="{{ route('admin.phandetai.index')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-table"></i>
+                                    <p>
+                                        Phân đề tài
+                                    </p>
+                                </a>
+                            </li>
+
                             @endif
                         </ul>
                     </nav>
