@@ -23,7 +23,7 @@ class DeTaiController extends Controller
                                    ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
     							   ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
                                    ->where('detai.chuyennganh_id', $id)
-    							   ->paginate(5);
+    							   ->paginate(10);
         foreach ($detai as $dt) {
             $detai_id = $dt->id;
             $subscribers = NguyenVong::where('detai_id', $detai_id)->get();

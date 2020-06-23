@@ -46,4 +46,29 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Admin\Role', 'role_id');
     }
+
+    public function nguyenvong()
+    {
+        return $this->hasMany('App\Models\Admin\NguyenVong', 'user_id');
+    }
+
+    public function detai()
+    {
+        return $this->hasMany('App\Models\Admin\DeTai', 'user_id');
+    }
+
+    public function phandetai()
+    {
+        return $this->hasMany('App\Models\Admin\Phandetai', 'user_id');
+    }
+
+    public function giangvienhuongdan()
+    {
+        return $this->hasMany('App\Models\Admin\Phandetai', 'giangvien_id');
+    }
+
+    public function users()
+    {
+        return $this->hasMany('App\Models\Admin\Phandetai', 'user_id');
+    }
 }

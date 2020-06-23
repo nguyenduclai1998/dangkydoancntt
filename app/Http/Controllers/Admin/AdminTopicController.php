@@ -191,8 +191,7 @@ class AdminTopicController extends AdminController
             }
 
             //Check giảng viên đã thêm bao nhiêu sinh viên vào đề tài
-            $checkDetai = DeTai::where('user_id', $id)->whereNotNull('sinhvien_id')->get();
-
+            $checkDetai = DeTai::where('user_id', $id)->whereNotNull('sinhvien_id')->where('id', '!=' , $detai_id)->get();
             if (count($checkDetai) >= 5) {
                 toastr()->error('Bạn đã thêm quá 5 sinh viên vào đề tài.');
                 return redirect()->back();

@@ -19,7 +19,7 @@ class QuanLySinhVienController extends Controller
     public function index()
     {
     	$sinhvien  = User::with('thongtin','role')->where('users.role_id', 3)->get();
-        // dd($sinhvien);
+
     	$viewData = [
 			'sinhvien' => $sinhvien
 		];

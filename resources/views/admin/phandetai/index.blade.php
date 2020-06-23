@@ -27,9 +27,11 @@
                 <div class="card-tools">
                 </div>
             </div>
+            @if($checkData->count() ==0)
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary" style="font-size: .875rem;"><a href="{{ route('admin.phandetai.phandetai')}}" style="color: #fff">Phân đề tài </a><i class="fas fa-plus"></i></button>
             </div>
+            @endif
             <!-- /.card-header -->
             <div class="card-body pb-0">
                 <div class="card-body table-responsive p-0">
@@ -39,7 +41,6 @@
                                 <th scope="col">STT</th>
                                 <th scope="col">Sinh viên</th>
                                 <th scope="col">Tên đề tài</th>
-                                <th scope="col">Lĩnh vực</th>
                                 <th scope="col">Giảng viên hướng dẫn</th>
                                 <th scope="col">Hành động</th>
                             </tr>
@@ -51,7 +52,6 @@
                                     <th scope="row">{{$k + 1}}</th>
                                     <td>{{$pdt->users->name}}</td>
                                     <td>{{$pdt->detai->tendetai}}</td>
-                                    <td>{{$pdt->linhvuc->tenlinhvuc}}</td>
                                     <td>{{$pdt->giangvienhuongdan->name}}</td>
                                     <td>
                                         <a href="" ><i class="fas fa-pencil-alt"></i> Xem chi tiết</a>

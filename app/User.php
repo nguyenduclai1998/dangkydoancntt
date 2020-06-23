@@ -64,6 +64,11 @@ class User extends Authenticatable
 
     public function giangvienhuongdan()
     {
-        return $this->hasMany('App\Models\Admin\Phandetai', 'giangvien_id')
+        return $this->hasMany('App\Models\Admin\Phandetai', 'giangvien_id');
+    }
+
+    public function users()
+    {
+        return $this->hasMany('App\Models\Admin\Phandetai', 'user_id');
     }
 }
