@@ -47,17 +47,17 @@
                         </thead>
                         <tbody>
                             @if(isset($phandetai))
-                            @foreach($phandetai as $k => $pdt)
-                                <tr>
-                                    <th scope="row">{{$k + 1}}</th>
-                                    <td>{{$pdt->users->name}}</td>
-                                    <td>{{$pdt->detai->tendetai}}</td>
-                                    <td>{{$pdt->giangvienhuongdan->name}}</td>
-                                    <td>
-                                        <a href="" ><i class="fas fa-pencil-alt"></i> Xem chi tiết</a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                @foreach($phandetai as $k => $pdt)
+                                    <tr>
+                                        <th scope="row">{{$k + 1}}</th>
+                                        <td>{{$pdt->users->name}}</td>
+                                        <td>{{$pdt->detai->tendetai}}</td>
+                                        <td>{{$pdt->giangvienhuongdan->name}}</td>
+                                        <td>
+                                            <a href="{{ route('admin.quanlysinhvien.view', ['id' => $pdt->user_id])}}" ><i class="fas fa-pencil-alt"></i> Xem chi tiết</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @endif
                         </tbody>
                     </table>

@@ -100,17 +100,15 @@
                                         <table class="table">
                                             <thead class="thead-inverse">
                                                 <tr>
-                                                    <th scope="col">Nguyện vọng</th>
                                                     <th scope="col">Tên đề tài</th>
-                                                    <th scope="col">Lĩnh vực</th>
+                                                    <th scope="col">Giảng viên hướng dẫn</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach($finalResult as $fr)
                                                     <tr>
-                                                        <th scope="row">Nguyện vọng {{$fr->loainguyenvong}}</th>
                                                         <td>{{$fr->detai->tendetai}}</td>
-                                                        <td>{{$fr->linhvuc->tenlinhvuc}}</td>
+                                                        <td>{{$fr->giangvienhuongdan->name}}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
+use App\Models\Admin\Phandetai;
 
 class QuanLySinhVienController extends Controller
 {
@@ -71,7 +72,7 @@ class QuanLySinhVienController extends Controller
     {
     	$sinhvien      = User::with('thongtin','role')->where('users.id', $id)->first();
         $nguyenvong    = NguyenVong::with('linhvuc', 'detai')->where('user_id', $id)->where('trangthai', 0)->get();
-        $finalResult   = NguyenVong::with('linhvuc', 'detai')->where('user_id', $id)->where('trangthai', 1)->get();
+        $finalResult = Phandetai::with('detai', 'giangvienhuongdan')->where('user_id', $id)->get();
   		$viewData = [
 			'sinhvien'   => $sinhvien,
             'nguyenvong' => $nguyenvong,

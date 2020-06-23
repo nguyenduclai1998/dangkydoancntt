@@ -14,7 +14,7 @@ class KetquadangkyController extends Controller
 {
     public function index(Request $request)
     {
-    	$ketquadangky = NguyenVong::with('linhvuc', 'detai', 'users')->get();
+    	$ketquadangky = NguyenVong::with('linhvuc', 'detai', 'users')->groupBy('user_id')->get();
 
     	$viewData = [
     		'ketquadangky' => $ketquadangky

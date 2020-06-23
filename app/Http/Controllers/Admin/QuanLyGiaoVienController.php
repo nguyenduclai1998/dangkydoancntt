@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Admin\Phandetai;
 
 class QuanLyGiaoVienController extends Controller
 {
@@ -65,11 +66,13 @@ class QuanLyGiaoVienController extends Controller
     public function view($id)
     {
     	$giaovien  = User::with('thongtin','role')->where('users.id', $id)->first();
+        $finalResult = Phandetai::with('detai', 'users')->where('giangvien_id', $id)->get();
         $role = Role::get();
 
   		$viewData = [
-			'giaovien' => $giaovien,
-            'role'     => $role 
+			'giaovien'      => $giaovien,
+            'role'          => $role,
+            'finalResult'   => $finalResult
 		];
     	return view('admin.quanlygiaovien.view', $viewData);
     }

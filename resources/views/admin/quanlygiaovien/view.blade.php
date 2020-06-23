@@ -91,7 +91,26 @@
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="timeline">
                                     <div class="content">
-                                        
+                                        <div class="content">
+                                            @if(isset($finalResult))
+                                            <table class="table">
+                                                <thead class="thead-inverse">
+                                                    <tr>
+                                                        <th scope="col">Tên đề tài</th>
+                                                        <th scope="col">Sinh viên</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($finalResult as $fr)
+                                                        <tr>
+                                                            <td>{{$fr->detai->tendetai}}</td>
+                                                            <td>{{$fr->users->name}}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table> 
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
