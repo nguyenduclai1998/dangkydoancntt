@@ -73,7 +73,7 @@
                                                                                                 @if($tt->avatar == null)
                                                                                                     <img style="max-width: 300px; height: auto;" src="{{asset('font-end/img/logo-utt.png')}}">
                                                                                                 @else
-                                                                                                    <img style="max-width: 300px; height: auto;" src="{{asset('storage/uploads/'.$tintuc->avatar)}}">
+                                                                                                    <img style="max-width: 300px; height: auto;" src="{{asset('storage/uploads/'.$tt->avatar)}}">
                                                                                                 @endif
                                                                                             </a>
                                                                                         </div>
