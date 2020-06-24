@@ -28,6 +28,11 @@ class PhandetaiController extends Controller
 
     public function phandetai()
     {
+        $giangvien = User::where('role_id', 2)->get();
+        $sinhvien = User::where('role_id', 3)->get();
+
+        $tile = ceil($sinhvien->count()/$giangvien->count());
+
         //Lay ra nhung sinh vien da duoc GVHD them vao de tai
         $mucdo1 = DeTai::whereNotNull('sinhvien_id')->get();
     	foreach ($mucdo1 as $md1) {
@@ -65,14 +70,13 @@ class PhandetaiController extends Controller
         }
 
         //Lay ra giang vien het slot huong dan sinh vien
-        $teachersValid = Phandetai::with('giangvienhuongdan')->havingRaw('count(giangvien_id) >= 5')->get();
+        $teachersValid = Phandetai::with('giangvienhuongdan')->groupBy('giangvien_id')->havingRaw('count(giangvien_id) >='.$tile)->get();
 
         $teachersValidMap = [];
         foreach ($teachersValid as $key => $value) {
             $teachersValidMap[$value['giangvien_id']] = $value;
         }
 
-        $giangvien = User::where('role_id', 2)->get();
         //Lay ra nhung giang vien con slot huong dan sinh vien
         $teachersWithoudUser = [];
         foreach ($giangvien as $key => $value) {
@@ -123,18 +127,39 @@ class PhandetaiController extends Controller
             }
         }
 
+        //Lay ra giang vien het slot huong dan sinh vien sau nguyen vong 1
+        $teachersValid2 = Phandetai::with('giangvienhuongdan')->groupBy('giangvien_id')->havingRaw('count(giangvien_id) >='.$tile)->get();
+
+        $teachersValid2Map = [];
+        foreach ($teachersValid2 as $key => $value) {
+            $teachersValid2Map[$value['giangvien_id']] = $value;
+        }
+
+        //Lay ra nhung giang vien con slot huong dan sinh vien
+        $teachersWithoudUser2 = [];
+        foreach ($giangvien as $key => $value) {
+            if(!isset($teachersValid2Map[$value['id']])) {
+                $teachersWithoudUser2[] = $value;
+            }
+        }
+
+        //Lay id giang vien con slot huong dan 
+        $teachersWithoudUserMap2 = [];
+
+        foreach ($teachersWithoudUser2 as $key => $value) {
+            $teachersWithoudUserMap2[$value['id']] = $value;
+        }
+
         //Insert sinh vien dang ky nguyen vong 2 som nhat
         foreach ($nguyenVong2 as $nv2) {
             Phandetai::create([
                 'user_id'       => $nv2['user_id'],
                 'detai_id'      => $nv2['detai_id'],
-                'giangvien_id'  => array_rand($teachersWithoudUserMap)
+                'giangvien_id'  => array_rand($teachersWithoudUserMap2)
             ]);
         }
 
         //Random de tai cho truong hop cuoi cung
-        
-        $sinhvien = User::where('role_id', 3)->get();
 
         //Lay ra nhung sinh vien da co de tai sau khi phan nguyen vong 1 va nguyen vong 2.
         $usersHasTopiccc = Phandetai::get();
@@ -155,7 +180,30 @@ class PhandetaiController extends Controller
         $usersCollection = collect($usersWithoudTopic);
 
         foreach ($usersCollection as $key => $user) {
-            
+
+            //Lay ra giang vien het slot huong dan sinh vien sau nguyen vong 1
+            $teachersValid3 = Phandetai::with('giangvienhuongdan')->groupBy('giangvien_id')->havingRaw('count(giangvien_id) >='.$tile)->get();
+            $teachersValid3Map = [];
+            foreach ($teachersValid3 as $key => $value) {
+                $teachersValid3Map[$value['giangvien_id']] = $value;
+            }
+
+            //Lay ra nhung giang vien con slot huong dan sinh vien
+            $teachersWithoudUser3 = [];
+            foreach ($giangvien as $key => $value) {
+                if(!isset($teachersValid3Map[$value['id']])) {
+                    $teachersWithoudUser3[] = $value;
+                }
+            }
+
+            //Lay id giang vien con slot huong dan 
+            $teachersWithoudUserMap3 = [];
+
+            foreach ($teachersWithoudUser3 as $key => $value) {
+                $teachersWithoudUserMap3[$value['id']] = $value;
+            }
+
+
             $topicHasUsers = Phandetai::with('detai')->get();
 
             $topicHasUsersMap = [];
@@ -178,7 +226,7 @@ class PhandetaiController extends Controller
             Phandetai::create([
                 'user_id'       => $user['id'],
                 'detai_id'      => $topicRandom->id,
-                'giangvien_id'  => array_rand($teachersWithoudUserMap)
+                'giangvien_id'  => array_rand($teachersWithoudUserMap3)
             ]);
         }
 
