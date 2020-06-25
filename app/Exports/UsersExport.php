@@ -1,17 +1,19 @@
 <?php
-
 namespace App\Exports;
 
-use App\User;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Models\Admin\Phandetai;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class UsersExport implements FromCollection
+class UsersExport implements FromView
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public function view(): View
     {
-        return User::all();
+    	$ketquaphandoan = Phandetai::with('users', 'giangvienhuongdan', 'detai')->get();
+
+    	$viewData = [
+            'ketquaphandoan' => $ketquaphandoan
+        ];
+       	return view('admin.phandetai.exportexcel', $viewData);
     }
 }

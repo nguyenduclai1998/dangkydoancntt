@@ -34,4 +34,10 @@ class Phandetai extends Model
     {
     	return $this->belongsTo('App\Models\Admin\LinhVuc', 'linhvuc_id');
     }
+
+    public function thongtin()
+    {
+        return $this->hasOne('App\Models\Admin\ThongTin', 'user_id');
+    }
+
 }

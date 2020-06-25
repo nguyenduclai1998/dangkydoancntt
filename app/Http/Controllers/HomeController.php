@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Exports\UsersExport;
 use App\Imports\UsersImport;
+use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Admin\Time;
+use App\Models\Admin\Phandetai;
+use App\Models\Admin\Detai;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -24,7 +27,7 @@ class HomeController extends Controller
     */
     public function export() 
     {
-        return Excel::download(new UsersExport, 'users.xlsx');
+        return Excel::download(new UsersExport, 'phandoan.xlsx', \Maatwebsite\Excel\Excel::XLSX);
     }
    
     /**
@@ -109,5 +112,22 @@ class HomeController extends Controller
             toastr()->error('Đã xảy ra lỗi vui lòng kiểm tra lại.'); 
             return redirect()->back();
         }
+    }
+
+    public function test()
+    {
+        $ketquaphandoan = Phandetai::with('users', 'giangvienhuongdan', 'detai')->get();
+        // $lop = \DB::table('ketquaphandoan')
+        //                                     ->select('users.masv', 'users.name as sinhvien',  'thongtin.lop', 'detai.tendetai')
+        //                                     ->join('users', 'users.id', '=', 'ketquaphandoan.user_id')
+        //                                     ->join('users', 'users.id', '=', 'ketquaphandoan.giangvien_id')
+        //                                     ->join('detai', 'ketquaphandoan.detai_id', '=', 'detai.id')
+        //                                     ->join('thongtin', 'thongtin.user_id', '=', 'users.id')
+        //                                     ->get();
+        // dd($ketquaphandoan);
+        $viewData = [
+            'ketquaphandoan' => $ketquaphandoan
+        ];
+        return view('admin.phandetai.exportexcel', $viewData);
     }
 }

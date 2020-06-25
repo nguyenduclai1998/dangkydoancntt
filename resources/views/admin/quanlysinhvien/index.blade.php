@@ -100,10 +100,10 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#usersTable').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                'excel', 'pdf', 'print'
-            ]
+            // dom: 'Bfrtip',
+            // buttons: [
+            //     'excel', 'pdf', 'print'
+            // ]
         });
     });
 </script>

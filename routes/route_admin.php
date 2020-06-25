@@ -11,6 +11,7 @@
 
 	//Import and Export file
 	Route::get('export', 'HomeController@export')->name('export');
+	Route::get('test', 'HomeController@test');
 	Route::get('importExportView', 'HomeController@importExportView')->name('importview');
 	Route::post('import', 'HomeController@import')->name('import');
 
