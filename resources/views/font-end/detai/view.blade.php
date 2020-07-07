@@ -73,36 +73,39 @@
                                 </div>
                             </div>
                             <!-- Sidebar Right -->
+                            @if(isset($newTopic))
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 sidebar sidebar-right theiaStickySidebar">
                                 <div class="sidebar-inner">
                                     <div class="views-element-container block block-views block-views-blockpost-other-block-1">
-                                        <h2 class="block-title" ><span>Tin mới</span></h2>
+                                        <h2 class="block-title" ><span>Đề tài mới</span></h2>
                                         <div class="content block-content">
                                             <div class="post-style-list small gva-view ">
                                                 <div class="item-list">
                                                     <ul>
+                                                        @foreach($newTopic as $ht)
                                                         <li class="view-list-item" >
                                                             <div class="views-field views-field-nothing">
                                                                 <div class="field-content">
                                                                     <div class="post-block">
                                                                         <div class="post-image">
-                                                                            <a href="">
-                                                                            <img src="{{asset('font-end/img/aa198226f6d778af0f29fcef70b6cbce.jpg')}}" alt="Thông báo mở lớp Đào tạo cấp chứng chỉ thẩm tra viên an toàn giao thông đường bộ" typeof="Image" />
+                                                                            <a href="{{ route('fontend.detai.view', ['slug' => $ht->slug, 'detai_slug' => $ht->detai_slug, 'id' => $ht->id])}}">
+                                                                            <img style="width: 80px; height: auto" src="{{asset('font-end/img/logo-utt.png')}}" alt="Thông báo mở lớp Đào tạo cấp chứng chỉ thẩm tra viên an toàn giao thông đường bộ" typeof="Image" />
                                                                             </a>
                                                                         </div>
                                                                         <div class="post-content">
                                                                             <div class="post-title">
-                                                                                <a href="">
-                                                                                Thông báo mở lớp Đào tạo cấp chứng chỉ thẩm tra viên an toàn giao thông đường bộ<img src="{{asset('font-end/img/newicon_vi.gif')}}" alt="hot news">                                                        </a>
+                                                                                <a href="{{ route('fontend.detai.view', ['slug' => $ht->slug, 'detai_slug' => $ht->detai_slug, 'id' => $ht->id])}}">
+                                                                                {{$ht->tendetai}}<img src="{{asset('font-end/img/newicon_vi.gif')}}" alt="hot news">                                                        </a>
                                                                             </div>
                                                                             <div class="post-meta">
-                                                                                <span class="post-created">10/05/2020 14:05</span>
+                                                                                <span class="post-created">{{$ht->created_at}}</span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </li>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
@@ -112,6 +115,7 @@
                                 </div>
                                 <!-- End Sidebar Right -->
                             </div>
+                            @endif
                             <div class="clearfix"></div>
                         </div>
                     </div>

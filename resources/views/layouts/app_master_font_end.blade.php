@@ -42,7 +42,7 @@
 		<nav class="pushy pushy-left">
 			<div class="pushy-content">
 				<ul>
-					<li class="pushy-link"><a href="#">Trang chủ</a></li>
+					<li class="pushy-link"><a href="{{ route('home.index')}}">Trang chủ</a></li>
 					<li class="pushy-submenu">
 						<button>Đề tài</button>
 						<ul>
@@ -88,7 +88,7 @@
 					<div class="row">
 						<div class="left-menu">
 							<ul class="navbarMain__menu__wrap">
-								<li class=""><a href="">Trang chủ</a></li>
+								<li class=""><a href="{{ route('home.index')}}">Trang chủ</a></li>
 								
 								<li class="dropdown_menu" >
 									<a href="" class="">Đề tài</a>

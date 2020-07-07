@@ -38,20 +38,6 @@
                 <input type="text" class="form-control" name="tenbaiviet" placeholder="Tên tin tức">
             </div>
 
-            <div class="form-group col-sm-12 col-md-4 col-lg-4">
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Chuyên ngành</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="chuyennganh">
-                        <option value="">--Chọn chuyên ngành--</option>
-                        @if(isset($CHUYENNGANHS))
-                            @foreach($CHUYENNGANHS as $cn)
-                                <option value="{{$cn->id}}">{{$cn->tenchuyennganh}}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                  </div>
-            </div>
-
             <div class="mb-3 col-sm-12 col-md-8 col-lg-8 content">
                 <label for="formGroupExampleInput">Mô tả</label>
                 <textarea class="textarea" placeholder="Mô tả" id="content" name="noidung"

@@ -10,10 +10,12 @@ class TinTucController extends Controller
 {
     public function getNews()
     {	
-    	$tintuc = TinTuc::orderBy('created_at', 'desc')->paginate(10);
+    	$tintuc = TinTuc::paginate(10);
+        $newNews = TinTuc::orderBy('created_at', 'ASC')->paginate(5);
 
     	$viewData = [
-    		'tintuc' => $tintuc
+    		'tintuc' => $tintuc,
+            'newNews' => $newNews
     	];
     	return view('font-end.tintuc.index', $viewData);
     }
@@ -22,9 +24,11 @@ class TinTucController extends Controller
     {
     	$tintuc_id = $request->id;
     	$tintuc = TinTuc::where('tintuc.id', $tintuc_id)->first();
+        $newNews = TinTuc::orderBy('created_at', 'ASC')->paginate(5);
 
     	$viewData = [
-    		'tintuc' => $tintuc
+    		'tintuc' => $tintuc,
+            'newNews' => $newNews
     	];
     	return view('font-end.tintuc.view', $viewData);
     }

@@ -60,6 +60,12 @@
                                                 <input type="text" class="form-control" name="email" value="{{$info->email}}" placeholder="Email">
                                                 <label for="masv" class="error"></label>
     										</div>
+
+                                            <div class="form-group">
+                                                <label for="">Sở trường</label>
+                                                <input type="text" class="form-control" name="sotruong" value="{{$info->thongtin->sotruong}}" placeholder="Sở trường">
+                                                <label for="masv" class="error"></label>
+                                            </div>
     										
                                             <div class="form-group">
                                                 <label for="">Lớp</label>

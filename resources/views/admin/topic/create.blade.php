@@ -41,7 +41,7 @@
             <div class="form-group col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Chuyên ngành</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="chuyennganh">
+                    <select class="form-control sinhvien-select" id="exampleFormControlSelect1" name="chuyennganh">
                         <option value="">--Chọn chuyên ngành--</option>
                         @if(isset($CHUYENNGANHS))
                             @foreach($CHUYENNGANHS as $cn)
@@ -64,7 +64,7 @@
             <div class="form-group col-sm-12 col-md-4 col-lg-4">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Lĩnh vực</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="linhvuc">
+                    <select class="form-control sinhvien-select" id="exampleFormControlSelect1" name="linhvuc">
                         <option value="">--Chọn lĩnh vực--</option>
                         @if(isset($LINHVUCS))
                             @foreach($LINHVUCS as $lv)
@@ -76,7 +76,7 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Sinh viên đã đăng ký đề tài với giảng viên hướng dẫn</label>
-                    <label for="exampleFormControlSelect1" style="color:red; font-size: 12px" >*Nếu không sinh viên chưa đăng ký vui lòng bỏ qua phần này*</label>
+                    <label for="exampleFormControlSelect1" style="color:red; font-size: 12px" >*Nếu sinh viên chưa đăng ký vui lòng bỏ qua phần này*</label>
                     <select class="form-control sinhvien-select" id="exampleFormControlSelect1" name="sinhvien">
                         <option value="">--Chọn sinh viên--</option>
                         @if(isset($SINHVIENS))

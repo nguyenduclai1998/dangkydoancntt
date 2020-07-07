@@ -25,14 +25,14 @@ class AdminTopicController extends AdminController
                                             ->join('users', 'users.id', '=', 'detai.user_id')
                                             ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
                                             ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
-                                            ->paginate(10);
+                                            ->get();
         }else {
             $detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
                                             ->join('users', 'users.id', '=', 'detai.user_id')
                                             ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
                                             ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
                                             ->where('detai.user_id', $user_id)
-                                            ->paginate(10);
+                                            ->get();
         }
 		
 		$viewData = [
@@ -54,7 +54,7 @@ class AdminTopicController extends AdminController
                                    ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
                                    ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
                                    ->where('chuyennganh.id', $id)
-                                   ->paginate(10);
+                                   ->get();
         }else {
            $detai = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'users.name','chuyennganh.tenchuyennganh', 'linhvuc.tenlinhvuc')
                                    ->join('users', 'users.id', '=', 'detai.user_id')
@@ -62,7 +62,7 @@ class AdminTopicController extends AdminController
                                    ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
                                    ->where('chuyennganh.id', $id)
                                    ->where('detai.user_id', $user_id)
-                                   ->paginate(10);
+                                   ->get();
         }
     	
         $viewData = [
@@ -101,10 +101,9 @@ class AdminTopicController extends AdminController
     		return redirect()->back()->with('errors', $errors);
     	}else {
             // Lấy thông tin người dùng thêm mới đề tài
-            $user = Auth::user();
             $id = Auth::id();
             $detai = new DeTai();
-            $sinhvien_id            = $request->sinhvien;
+            $sinhvien_id = $request->sinhvien;
 
             if(isset($sinhvien_id)) {
                 //Check sinh viên đã được thêm vào đề tài nào trước đó hay chưa
@@ -131,14 +130,13 @@ class AdminTopicController extends AdminController
                 toastr()->success('Thêm mới thành công.');
                 return redirect()->back();
             }
-
-            $detai->tendetai        = $request->tendetai;
-            $detai->mota            = $request->mota;
-            $detai->slug            = Str::slug($request->tendetai);
-            $detai->chuyennganh_id  = $request->chuyennganh;
-            $detai->linhvuc_id      = $request->linhvuc;
-            $detai->user_id         = $id;
-            $detai->save();
+                $detai->tendetai        = $request->tendetai;
+                $detai->mota            = $request->mota;
+                $detai->slug            = Str::slug($request->tendetai);
+                $detai->chuyennganh_id  = $request->chuyennganh;
+                $detai->linhvuc_id      = $request->linhvuc;
+                $detai->user_id         = $id;
+                $detai->save();
 
             toastr()->success('Thêm mới thành công.');
             return redirect()->back();
@@ -220,9 +218,11 @@ class AdminTopicController extends AdminController
     	if($detai) {
     		$detai->delete();
 
-    		return redirect()->back()->with('notify','Xóa thành công.');
+    		toastr()->success('Xóa thành công.');
+            return redirect()->back();
     	} else {
-    		return redirect()->back()->with('errors','Đã xảy ra lỗi.');
+    		toastr()->error('Đã xảy ra lỗi.');
+            return redirect()->back();
     	}
     }
 

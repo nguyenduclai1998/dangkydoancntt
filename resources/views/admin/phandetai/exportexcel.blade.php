@@ -27,7 +27,7 @@
 </style>
 
 <body>
-	<div class="container">
+	{{-- <div class="container">
 		<div class="row">
 			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 header">
 				<h3>BỘ GIAO THÔNG VẬN TẢI</h3>
@@ -46,7 +46,7 @@
 					<p>(Kèm theo Quyết định số       /QĐ-ĐHCNGTVT ngày       /03/2020 của Hiệu trưởng trường Đại học Công nghệ GTVT)</p>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 	<div class="container-fuild">
 		<table class="table table-bordered">
 		    <thead>
@@ -54,9 +54,8 @@
 		            <th>STT</th>
 		            <th>Mã sinh viên</th>
 		            <th>Họ và tên</th>
-		            <th>Lớp</th>
 		            <th>GVHD</th>
-		            <th>Tên đề tài tốt nghiệp</th>
+		            <th>Tên đề tài</th>
 		            <th>Có phải sửa lại không</th>
 		        </tr>
 		    </thead>
@@ -67,7 +66,6 @@
 				            <td>{{$k + 1}}</td>
 				            <td>{{$kq->users->masv}}</td>
 				            <td>{{$kq->users->name}}</td>
-				            <td></td>
 				            <td>{{$kq->giangvienhuongdan->name}}</td>
 				            <td>{{$kq->detai->tendetai}}</td>
 				            <td></td>

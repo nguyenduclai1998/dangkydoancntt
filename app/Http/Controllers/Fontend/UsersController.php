@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\ThongTin;
 use App\Models\Admin\NguyenVong;
+use App\Models\Admin\Phandetai;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
@@ -22,7 +24,7 @@ class UsersController extends Controller
     	return view('font-end.user.index', $viewData);
     }
 
-    public function postInfo(Request $request)
+    public function updateProfile(Request $request)
     {
     	try {
              \DB::beginTransaction();
@@ -42,6 +44,8 @@ class UsersController extends Controller
     		$thongtin->ngaysinh = $request->birthday;
             $thongtin->gioitinh = $request->gioitinh;
     		$thongtin->sdt 		= $request->phonenumber;
+            $thongtin->sotruong = $request->sotruong;
+            $thongtin->slug     = Str::slug($request->sotruong);
     		$thongtin->update();
             \DB::commit();
     		toastr()->success('Cập nhật thông tin thành công.');
@@ -82,9 +86,11 @@ class UsersController extends Controller
     	$user_id = Auth::id();
 
     	$nguyenvong = NguyenVong::with('linhvuc', 'detai')->where('user_id', $user_id)->get();
+        $ketqua     = Phandetai::with('detai', 'giangvienhuongdan')->where('user_id', $user_id)->first();
 
     	$viewData = [
-    		'nguyenvong' => $nguyenvong
+    		'nguyenvong' => $nguyenvong,
+            'ketqua'     => $ketqua
     	];
 		return view('font-end.user.registerresult', $viewData);    	
     }

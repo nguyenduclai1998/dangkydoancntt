@@ -110,7 +110,7 @@
 						<div>
 							<img src="{{ asset('font-end/img/desktop-2.png')}}" alt="">
 							<p><strong>Yêu cầu biểu mẫu online</strong></p>
-							<p>Điền thông tin và gửi yêu cầu các loại biểu mẫu online. Viện sẽ xử lý và thông báo qua email cho Sinh viên khi hoàn thành, Sinh viên chỉ lên một lần để nhận kết quả.</p>
+							<p>Điền thông tin và gửi yêu cầu các loại biểu mẫu online.</p>
 						</div>			
 					</div>
 

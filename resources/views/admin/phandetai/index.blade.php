@@ -34,7 +34,6 @@
             @else
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary" style="font-size: .875rem;"><a href="{{route('export')}}" style="color: #fff">Xuất Execl </a><i class="fas fa-plus"></i></button>
-                <a href="{{ route('export')}}">Test</a>
             </div>
             @endif
             <!-- /.card-header -->

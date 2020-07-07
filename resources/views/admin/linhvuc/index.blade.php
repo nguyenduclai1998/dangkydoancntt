@@ -56,7 +56,7 @@
                             <th scope="col">Mã</th>
                             <th scope="col">Tên chuyên ngành </th>
                             <th scope="col">Mô tả chuyên ngành</th>
-                            <th scope="col">Hoạt động</th>
+                            <th scope="col">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,9 +66,9 @@
                                     <th scope="row">{{$cn->id}}</th>
                                     <td>{{$cn->tenlinhvuc}}</td>
                                     <td>{{$cn->mota}}</td>
-                                    <td>
-                                        <a href="{{ route('admin.linhvuc.edit', $cn->id)}}" class="btn btn-xs btn-primary"><i class="fas fa-pencil-alt"></i> Sửa</a>
-                                        <a href="{{ route('admin.linhvuc.delete', $cn->id)}}" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Xóa</a>
+                                    <td class="active">
+                                        <a href="{{ route('admin.linhvuc.edit', $cn->id)}}"><i class="far fa-edit"></i></a>
+                                        <a href="{{ route('admin.linhvuc.delete', $cn->id)}}"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

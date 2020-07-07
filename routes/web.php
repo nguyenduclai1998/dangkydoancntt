@@ -42,7 +42,7 @@ include 'route_admin.php';
             
             Route::group(['prefix' => 'users'], function(){
             	Route::get('profile', 'UsersController@getInfo')->name('get.fontend.info');
-            	Route::post('update-profile', 'UsersController@postInfo')->name('post.fontend.info');
+            	Route::post('update-profile', 'UsersController@updateProfile')->name('post.fontend.info');
             	Route::get('change-password', 'UsersController@getChangePassword')->name('get.fontend.changepassword');
             	Route::post('change-password', 'UsersController@postChangePassword')->name('post.fontend.changepassword');
             	Route::get('ket-qua-dang-ky', 'UsersController@registerResult')->name('get.fontend.registerResult');

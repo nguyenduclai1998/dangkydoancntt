@@ -24,18 +24,27 @@ class DeTaiController extends Controller
     							   ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
                                    ->where('detai.chuyennganh_id', $id)
     							   ->paginate(10);
+
+        $newTopic = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'detai.view', 'detai.chuyennganh_id', 'detai.slug as detai_slug', 'detai.sinhvien_id', 'detai.created_at', 'users.name','chuyennganh.tenchuyennganh','chuyennganh.slug', 'linhvuc.tenlinhvuc')
+                                   ->join('users', 'users.id', '=', 'detai.user_id')
+                                   ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
+                                   ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
+                                   ->orderBy('created_at', 'ASC')
+                                   ->paginate(5);
         foreach ($detai as $dt) {
             $detai_id = $dt->id;
             $subscribers = NguyenVong::where('detai_id', $detai_id)->get();
         }
         if(isset($subscribers)){
             $viewData = [
-                'detai' => $detai,
-                'subscribers' => $subscribers
+                'detai'       => $detai,
+                'subscribers' => $subscribers,
+                'newTopic'    => $newTopic
             ];
         }
     	$viewData = [
-			'detai' => $detai,
+			'detai'      => $detai,
+            'newTopic'   => $newTopic
 		];
     	return view('font-end.detai.index', $viewData);
     }
@@ -44,6 +53,12 @@ class DeTaiController extends Controller
     {	
     	$detai_id = $request->id;
     	$detai = DeTai::with('chuyennganh','linhvuc')->where('detai.id',$detai_id)->first();
+        $newTopic = DB::table('detai')->select('detai.id','detai.tendetai', 'detai.mota', 'detai.view', 'detai.chuyennganh_id', 'detai.slug as detai_slug', 'detai.sinhvien_id', 'detai.created_at', 'users.name','chuyennganh.tenchuyennganh','chuyennganh.slug', 'linhvuc.tenlinhvuc')
+                                   ->join('users', 'users.id', '=', 'detai.user_id')
+                                   ->join('linhvuc', 'detai.linhvuc_id', '=', 'linhvuc.id')
+                                   ->join('chuyennganh', 'detai.chuyennganh_id', '=', 'chuyennganh.id')
+                                   ->orderBy('created_at', 'ASC')
+                                   ->paginate(3);
 
         $topicKey = 'detai_'.$detai_id;
         if (!Session::has($topicKey)) {
@@ -55,7 +70,8 @@ class DeTaiController extends Controller
 
     	$viewData = [
 			'detai'       => $detai,
-            'subscribers' => $subscribers
+            'subscribers' => $subscribers,
+            'newTopic'    => $newTopic
 		];
     	return view('font-end.detai.view', $viewData);
     }

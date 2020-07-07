@@ -10,16 +10,16 @@
 	});
 
 	//Import and Export file
-	Route::get('export', 'HomeController@export')->name('export');
-	Route::get('test', 'HomeController@test');
-	Route::get('importExportView', 'HomeController@importExportView')->name('importview');
-	Route::post('import', 'HomeController@import')->name('import');
+	Route::get('export', 'HomeController@export')->name('export')->middleware('check_login_admin');
+	Route::get('test', 'HomeController@test')->middleware('check_login_admin');
+	Route::get('importExportView', 'HomeController@importExportView')->name('importview')->middleware('check_login_admin');
+	Route::post('import', 'HomeController@import')->name('import')->middleware('check_login_admin');
 
 	//Route set time.
-	Route::get('time','HomeController@indexTime')->name('admin.indexTime');
-	Route::post('create-time', 'HomeController@setTime')->name('admin.setTime');
-	Route::get('update-time','HomeController@updateTime')->name('admin.updateTime');
-	Route::get('delete/{id}', 'HomeController@deteleTime')->name('admin.deteleTime');
+	Route::get('time','HomeController@indexTime')->name('admin.indexTime')->middleware('check_login_admin');
+	Route::post('create-time', 'HomeController@setTime')->name('admin.setTime')->middleware('check_login_admin');
+	Route::get('update-time','HomeController@updateTime')->name('admin.updateTime')->middleware('check_login_admin');
+	Route::get('delete/{id}', 'HomeController@deteleTime')->name('admin.deteleTime')->middleware('check_login_admin');
 
 	Route::group(['prefix' => 'quan-tri', 'namespace' => 'Admin', 'middleware' => 'check_login_admin'], function(){
 		Route::get('/', function () {

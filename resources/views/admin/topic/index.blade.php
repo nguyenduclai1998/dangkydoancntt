@@ -59,7 +59,7 @@
                                 <th scope="col">Lĩnh vực</th>
                                 <th scope="col">Chuyên ngành</th>
                                 <th scope="col">Người tạo</th>
-                                <th scope="col">Hành động</th>
+                                <th scope="col">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -71,9 +71,9 @@
                                         <td>{{$dt->tenlinhvuc}}</td>
                                         <td>{{$dt->tenchuyennganh}}</td>
                                         <td>{{$dt->name}}</td>
-                                        <td>
-                                            <a href="{{ route('admin.topic.edit', ['detai_id' => $dt->id])}}" class="btn btn-xs btn-primary"><i class="fas fa-pencil-alt"></i> Sửa</a>
-                                            <a href="{{ route('admin.topic.delete', ['detai_id' => $dt->id])}}" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Xóa</a>
+                                        <td class="active">
+                                            <a href="{{ route('admin.topic.edit', ['detai_id' => $dt->id])}}"><i class="far fa-edit"></i></a>
+                                            <a href="{{ route('admin.topic.delete', ['detai_id' => $dt->id])}}"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -85,9 +85,6 @@
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-        <div>
-            {{ $detai->links() }}
-        </div>
     </div>
 </div>
 <!-- /.row -->

@@ -30,6 +30,10 @@
                             <li class="list-group-item">
                                 <b>Số điện thoại</b> <a class="float-right">{{$user->thongtin->sdt}}</a>
                             </li>
+
+                            <li class="list-group-item">
+                                <b>Sở trường</b> <a class="float-right">{{$user->thongtin->sotruong}}</a>
+                            </li>
                         </ul>
                     </div>
                     <!-- /.card-body -->
@@ -42,10 +46,6 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <strong><i class="fas fa-book mr-1"></i>Học hàm</strong>
-                        <p class="text-muted">
-                            {{$user->thongtin->hocham}}
-                        </p>
                         <strong><i class="far fa-file-alt mr-1"></i> Ghi chú</strong>
                         <p class="text-muted">{{$user->thongtin->ghichu}}</p>
                     </div>
@@ -85,15 +85,21 @@
                                             </div>
 
                                             <div class="form-group">
+                                                <label for="">Sở trường</label>
+                                                <input type="text" class="form-control" name="sotruong" value="{{$user->thongtin->sotruong}}" placeholder="Sở trường">
+                                                <label for="masv" class="error"></label>
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label for="">Ngày sinh</label>
                                                 <input type="date" class="form-control" name="birthday" value="{{$user->thongtin->ngaysinh}}" placeholder="Ngày sinh">
                                                 <label for="masv" class="error"></label>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="">Phân quyền</label>
+                                                <label for="">Giới tính</label>
                                                 <select style="height: 40px;" class="form-control" name="gioitinh">
-                                                    <option value="">--Chọn giới tính--</option>
+                                                    <option value="{{$user->thongtin->gioitinh ? : null}}">--Chọn giới tính--</option>
                                                         <option value="Nam">Nam</option>
                                                         <option value="Nữ">Nữ</option>
                                                 </select>

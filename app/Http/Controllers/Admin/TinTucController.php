@@ -14,9 +14,8 @@ class TinTucController extends Controller
 {
 	public function tinTuc()
 	{
-		$tintuc = DB::table('tintuc')->select('tintuc.id', 'tintuc.tenbaiviet', 'tintuc.noidung', 'tintuc.chuyennganh_id', 'chuyennganh.tenchuyennganh', 'tintuc.user_id', 'users.name')
+		$tintuc = DB::table('tintuc')->select('tintuc.id', 'tintuc.tenbaiviet', 'tintuc.noidung', 'tintuc.user_id', 'users.name', 'tintuc.created_at')
 									 ->join('users', 'users.id', '=', 'tintuc.user_id')
-									 ->join('chuyennganh', 'tintuc.chuyennganh_id', '=', 'chuyennganh.id')
 									 ->paginate(5);
 
 		$viewData = [
@@ -27,10 +26,8 @@ class TinTucController extends Controller
 
 	public function index($id)
 	{
-		$tintuc = DB::table('tintuc')->select('tintuc.id','tintuc.tenbaiviet', 'tintuc.noidung', 'users.name','chuyennganh.tenchuyennganh')
+		$tintuc = DB::table('tintuc')->select('tintuc.id','tintuc.tenbaiviet', 'tintuc.noidung', 'users.name', 'tintuc.created_at')
     							     ->join('users', 'users.id', '=', 'tintuc.user_id')
-    							     ->join('chuyennganh', 'tintuc.chuyennganh_id', '=', 'chuyennganh.id')
-                                     ->where('chuyennganh.id', $id)
     							     ->paginate(5); 
                            
     	$viewData = [
@@ -52,13 +49,11 @@ class TinTucController extends Controller
     		'tenbaiviet.required'		=> "Tên bài viết không được bỏ trống.",
     		'tenbaiviet.min'			=> "Tên bài viết tối thiểu là 3 ký tự",
     		'tenbaiviet.max'			=> "Tên bài viết quá dài.",
-    		'chuyennganh.required' 		=> "Chuyên ngành không được bỏ trống.",
     		'noidung.required' 			=> "Mô tả không được bỏ trống."
     	];
 
     	$validator = Validator::make($data,[
     		'tenbaiviet'		=> 'required|min:3|max:255',
-    		'chuyennganh' 		=> 'required',
     		'noidung'		    => 'required'
     	], $messages);
 
@@ -100,20 +95,10 @@ class TinTucController extends Controller
     		$id = Auth::id();
     		$tintuc = new TinTuc();
 
-    		if(isset($filenametostore)) {
-    			$tintuc->tenbaiviet 		= $request->tenbaiviet;
-	    		$tintuc->noidung 		    = $request->noidung;
-	    		$tintuc->slug 			    = Str::slug($request->tenbaiviet);
-				$tintuc->chuyennganh_id 	= $request->chuyennganh;
-				$tintuc->avatar				= $filenametostore;
-	    		$tintuc->user_id 	   	    = $id;
-	    		$tintuc->save();
-    		}
-
-    		$tintuc->tenbaiviet 		= $request->tenbaiviet;
+			$tintuc->tenbaiviet 		= $request->tenbaiviet;
     		$tintuc->noidung 		    = $request->noidung;
     		$tintuc->slug 			    = Str::slug($request->tenbaiviet);
-			$tintuc->chuyennganh_id 	= $request->chuyennganh;
+			$tintuc->avatar				= $filenametostore ?? '';
     		$tintuc->user_id 	   	    = $id;
     		$tintuc->save();
 
@@ -139,13 +124,11 @@ class TinTucController extends Controller
             'tenbaiviet.required'       => "Tên bài viết không được bỏ trống.",
             'tenbaiviet.min'            => "Tên bài viết tối thiểu là 3 ký tự",
             'tenbaiviet.max'            => "Tên bài viết quá dài.",
-            'chuyennganh.required'      => "Chuyên ngành không được bỏ trống.",
             'noidung.required'          => "Mô tả không được bỏ trống."
         ];
 
         $validator = Validator::make($data,[
             'tenbaiviet'        => 'required|min:3|max:255',
-            'chuyennganh'       => 'required',
             'noidung'           => 'required'
         ], $messages);
 
@@ -187,23 +170,23 @@ class TinTucController extends Controller
 				$tintuc = TinTuc::find($id);
 				$tintuc->tenbaiviet         = $request->tenbaiviet;
 				$tintuc->noidung            = $request->noidung;
-				$tintuc->slug               = Str::slug($request->tenbaiviet."-".time());
+				$tintuc->slug               = Str::slug($request->tenbaiviet);
 				$tintuc->avatar				= $filenametostore;
-				$tintuc->chuyennganh_id     = $request->chuyennganh;
 				$tintuc->update();
 
-				return redirect()->back()->with('notify','Cập nhật thành công.');
+				toastr()->success('Cập nhật thành công.');
+            	return redirect()->back();
 		 
 			} else {
 				$tintuc = new TinTuc();
 				$tintuc = TinTuc::find($id);
 				$tintuc->tenbaiviet         = $request->tenbaiviet;
 				$tintuc->noidung            = $request->noidung;
-				$tintuc->slug               = Str::slug($request->tenbaiviet."-".time());
-				$tintuc->chuyennganh_id     = $request->chuyennganh;
+				$tintuc->slug               = Str::slug($request->tenbaiviet);
 				$tintuc->update();
 	
-				return redirect()->back()->with('notify','Cập nhật thành công.');
+				toastr()->success('Cập nhật thành công.');
+            	return redirect()->back();
 			}
         }
     }
@@ -214,9 +197,11 @@ class TinTucController extends Controller
         if($tintuc) {
             $tintuc->delete();
 
-            return redirect()->back()->with('notify', 'Xóa bài viết thành công.');
-        } else {
-            return redirect()->back()->with('errors', 'Đã xảy ra lỗi, vui lòng thử lại.');
+            toastr()->success('Xóa thành công.');
+            return redirect()->back();
+    	} else {
+    		toastr()->error('Đã xảy ra lỗi.');
+            return redirect()->back();
         }
     }
 }

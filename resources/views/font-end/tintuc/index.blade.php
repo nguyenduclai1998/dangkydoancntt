@@ -68,7 +68,6 @@
                                                                                 <span class="field-content">
                                                                                     <div class="post-block">
                                                                                         <div class="post-image img">
-                                                                                            {{-- {{dd($tt->slug)}} --}}
                                                                                             <a href="{{ route('fontend.tintuc.view', ['slug' => $tt->slug, 'id' => $tt->id])}}">
                                                                                                 @if($tt->avatar == null)
                                                                                                     <img style="max-width: 300px; height: auto;" src="{{asset('font-end/img/logo-utt.png')}}">
@@ -102,6 +101,7 @@
                                 </div>
                             </div>
                             <!-- Sidebar Right -->
+                            @if(isset($newNews))
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 sidebar sidebar-right theiaStickySidebar">
                                 <div class="sidebar-inner">
                                     <div class="views-element-container block block-views block-views-blockpost-other-block-1">
@@ -110,19 +110,24 @@
                                             <div class="post-style-list small gva-view ">
                                                 <div class="item-list">
                                                     <ul>
+                                                        @foreach($newNews as $nn)
                                                         <li class="view-list-item" >
                                                             <div class="views-field views-field-nothing">
                                                                 <div class="field-content">
                                                                     <div class="post-block">
-                                                                        <div class="post-image">
-                                                                            <a href="">
-                                                                            <img src="{{asset('font-end/img/aa198226f6d778af0f29fcef70b6cbce.jpg')}}" alt="Thông báo mở lớp Đào tạo cấp chứng chỉ thẩm tra viên an toàn giao thông đường bộ" typeof="Image" />
+                                                                        <div class="post-image" style="max-width: 90px; min-width: 90px; height: auto;">
+                                                                            <a href="{{ route('fontend.tintuc.view', ['slug' => $nn->slug, 'id' => $nn->id])}}">
+                                                                            @if($tt->avatar == null)
+                                                                                <img src="{{asset('font-end/img/logo-utt.png')}}">
+                                                                            @else
+                                                                                <img src="{{asset('storage/uploads/'.$nn->avatar)}}">
+                                                                            @endif
                                                                             </a>
                                                                         </div>
                                                                         <div class="post-content">
                                                                             <div class="post-title">
-                                                                                <a href="">
-                                                                                Thông báo mở lớp Đào tạo cấp chứng chỉ thẩm tra viên an toàn giao thông đường bộ<img src="{{asset('font-end/img/newicon_vi.gif')}}" alt="hot news">                                                        </a>
+                                                                                <a href="{{ route('fontend.tintuc.view', ['slug' => $nn->slug, 'id' => $nn->id])}}">
+                                                                                {{$nn->tenbaiviet}}<img src="{{asset('font-end/img/newicon_vi.gif')}}" alt="hot news">                                                        </a>
                                                                             </div>
                                                                             <div class="post-meta">
                                                                                 <span class="post-created">10/05/2020 14:05</span>
@@ -132,6 +137,7 @@
                                                                 </div>
                                                             </div>
                                                         </li>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
@@ -141,6 +147,7 @@
                                 </div>
                                 <!-- End Sidebar Right -->
                             </div>
+                            @endif
                         </div>
                     </div>
                     <div>

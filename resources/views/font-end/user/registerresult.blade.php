@@ -60,6 +60,35 @@
 									    </tbody>
 									</table>
                                 </div>
+
+                                @if(isset($ketqua))
+                                <div class="content-inner">
+                                    <nav class="breadcrumb" style="padding-left: 0px!important; margin-bottom: 0px!important;" role="navigation" aria-labelledby="system-breadcrumb">
+                                        <ol>
+                                            <li>
+                                                <h2>Kết quả phân đồ án</h2>
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+
+                                <div class="main-content-inner">
+                                    <table class="table">
+                                        <thead class="thead-inverse">
+                                            <tr>
+                                                <th scope="col">Tên đề tài</th>
+                                                <th scope="col">Giảng viên hướng dẫn</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{$ketqua->detai->tendetai}}</td>
+                                                <td>{{$ketqua->giangvienhuongdan->name}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                @endif
                             </div>
                             <!-- Sidebar Right -->
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 sidebar sidebar-right theiaStickySidebar">

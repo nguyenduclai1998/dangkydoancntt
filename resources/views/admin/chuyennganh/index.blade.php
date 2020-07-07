@@ -25,14 +25,6 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Danh sách chuyên ngành</h3>
-                <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary" style="font-size: .875rem;"><a href="{{ route('admin.chuyennganh.create')}}" style="color: #fff">Thêm mới </a><i class="fas fa-plus"></i></button>
@@ -56,7 +48,7 @@
                             <th scope="col">Mã</th>
                             <th scope="col">Tên chuyên ngành </th>
                             <th scope="col">Mô tả chuyên ngành</th>
-                            <th scope="col">Hoạt động</th>
+                            <th scope="col">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,9 +58,9 @@
                                     <th scope="row">{{$cn->id}}</th>
                                     <td>{{$cn->tenchuyennganh}}</td>
                                     <td>{{$cn->mota}}</td>
-                                    <td>
-                                        <a href="{{ route('admin.chuyennganh.edit', $cn->id)}}" class="btn btn-xs btn-primary"><i class="fas fa-pencil-alt"></i> Sửa</a>
-                                        <a href="{{ route('admin.chuyennganh.delete', $cn->id)}}" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Xóa</a>
+                                    <td class="active">
+                                        <a href="{{ route('admin.chuyennganh.edit', $cn->id)}}"><i class="far fa-edit"></i></a>
+                                        <a href="{{ route('admin.chuyennganh.delete', $cn->id)}}"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

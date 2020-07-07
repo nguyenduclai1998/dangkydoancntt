@@ -382,7 +382,7 @@ nav.breadcrumb ol li>span {
 
 .post-style-list.small .post-title a {
     font-size: 13px;
-    margin-top: -5px;
+    /*margin-top: -5px;*/
     text-transform: none;
     line-height: 20px;
 }

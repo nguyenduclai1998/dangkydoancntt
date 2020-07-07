@@ -57,7 +57,7 @@
                             <th scope="col">Tên bài viết </th>
                             <!-- <th scope="col">Nội dung</th> -->
                             <th scope="col">Người tạo</th>
-                            <th scope="col">Chuyên ngành</th>
+                            <th scope="col">Ngày tạo</th>
                             <th scope="col">Hoạt động</th>
                         </tr>
                     </thead>
@@ -73,10 +73,10 @@
                                         {!!$tt->noidung!!} -->
                                     </td>
                                     <td>{{$tt->name}}</td>
-                                    <td>{{$tt->tenchuyennganh}}</td>
-                                    <td>
-                                        <a href="{{ route('admin.tintuc.edit', $tt->id)}}" class="btn btn-xs btn-primary"><i class="fas fa-pencil-alt"></i> Sửa</a>
-                                        <a href="{{ route('admin.tintuc.delete', $tt->id)}}" class="btn btn-xs btn-danger"><i class="fas fa-trash"></i> Xóa</a>
+                                    <td>{{$tt->created_at}}</td>
+                                    <td class="active">
+                                        <a href="{{ route('admin.tintuc.edit', $tt->id)}}"><i class="far fa-edit"></i></a>
+                                        <a href="{{ route('admin.tintuc.delete', $tt->id)}}"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

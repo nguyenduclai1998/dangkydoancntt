@@ -14,6 +14,8 @@ class ThongTin extends Model
     	'gioitinh',
         'hocham',
         'lop',
+        'sotruong',
+        'slug',
         'ghichu',
         'avatar',
         'user_id'

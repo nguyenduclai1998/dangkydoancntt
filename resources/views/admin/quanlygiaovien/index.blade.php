@@ -42,7 +42,7 @@
                                     <th scope="col">Họ và tên</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Ghi chú</th>
-                                    <th scope="col">Hành động</th>
+                                    <th scope="col">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
